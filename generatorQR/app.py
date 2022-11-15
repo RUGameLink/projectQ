@@ -1,6 +1,5 @@
 from flask import Flask
 from flask_restful import Api, Resource, reqparse
-from config import client_id
 import qrcode
 import pyimgur
 
@@ -19,7 +18,7 @@ def getStaticQR(key, data):
 
 
 def uploadToImg(path):
-    id = client_id
+    id = '2513abfb1d6eab5'
 
     im = pyimgur.Imgur(id)
     upload_image = im.upload_image(path)
