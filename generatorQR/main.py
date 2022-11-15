@@ -1,5 +1,7 @@
 import qrcode
 import pyimgur
+
+import app
 from config import client_id
 
 def getStaticQR(key, data):
@@ -19,7 +21,8 @@ def uploadToImg(path):
     return upload_image.link
 
 def main():
-    getStaticQR("1", "text")
+    #getStaticQR("1", "text")
+    print(app.Quote.get(1, "etewt", "etewtwet"))
 
 if __name__ == '__main__':
     main()

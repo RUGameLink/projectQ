@@ -27,5 +27,11 @@ def uploadToImg(path):
 
 class Quote(Resource):
     def get(self, key, data):
-        return getStaticQR(key, data)
+        url = getStaticQR(key, data)
+        response = {
+            "Key": key,
+            "Data": data,
+            "URL": url
+        }
+        return response
 
