@@ -11,7 +11,7 @@ def getStaticQR(key, data):
     img = qrcode.make(key + " " + data)
     # сохраняем img в файл
     img.save(filename)
-    return uploadToImg(filename)
+    return uploadToImg(img)
 
 def uploadToImg(path):
     id = client_id
@@ -21,7 +21,7 @@ def uploadToImg(path):
     return upload_image.link
 
 def main():
-    #getStaticQR("1", "text")
+    #print(getStaticQR("1", "text"))
     print(app.Quote.get(1, "etewt", "etewtwet"))
 
 if __name__ == '__main__':
