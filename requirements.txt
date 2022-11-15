@@ -1,0 +1,5 @@
+qrcode
+pyimgur
+flask
+flask-restful
+gunicorn
