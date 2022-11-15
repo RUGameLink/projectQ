@@ -1,21 +1,8 @@
-from flask import Flask
-from flask_restful import Api, Resource, reqparse
 import qrcode
 import pyimgur
 
-app = Flask(__name__)
-api = Api(app)
-
-class Quote(Resource):
-    def get(self, key, data):
-        url = "getStaticQR(key, data)"
-        response = {
-            "Key": key,
-            "Data": data,
-            "URL": url
-        }
-        return response
-
+import app
+from config import client_id
 
 def getStaticQR(key, data):
     # имя конечного файла
@@ -24,13 +11,28 @@ def getStaticQR(key, data):
     img = qrcode.make(key + " " + data)
     # сохраняем img в файл
     img.save(filename)
-    return uploadToImg(filename)
+    url = uploadToImg(img)
 
+    response = {
+        "Key": key,
+        "Data": data,
+        "URL": url
+    }
+
+    return response
 
 def uploadToImg(path):
-    id = '2513abfb1d6eab5'
+    id = client_id
 
     im = pyimgur.Imgur(id)
     upload_image = im.upload_image(path)
+
+
     return upload_image.link
 
+def main():
+    #print(getStaticQR("1", "text"))
+    print(app.Quote.get(1, "etewt", "etewtwet"))
+
+if __name__ == '__main__':
+    main()
