@@ -9,7 +9,7 @@ api = Api()
 
 class Main(Resource):
     def get(self):
-        key, url = getStaticQR()
+        key, url = get_static_qr()
         response = {
             "Key": key,
             "URL": url
@@ -19,7 +19,7 @@ class Main(Resource):
 api.add_resource(Main, "/api/getqr")
 api.init_app(app)
 
-def getStaticQR():
+def get_static_qr():
     #UUID Пользователя
     key = str(uuid.uuid4())
     # имя конечного файла
@@ -28,10 +28,10 @@ def getStaticQR():
     img = qrcode.make(key)
     # сохраняем img в файл
     img.save(filename)
-    url = uploadToImg(filename)
+    url = upload_to_img(filename)
     return key, url
 
-def uploadToImg(path):
+def upload_to_img(path):
     id = '2513abfb1d6eab5' #id для Imgur
 
     im = pyimgur.Imgur(id) #Подключение к Imgur
