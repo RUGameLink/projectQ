@@ -8,9 +8,14 @@ app = Flask(__name__)
 api = Api()
 
 
-class Main(Resource):
+@app.route('/')
+def index():
+    return "hello World"
+
+
+class QR(Resource):
     def get(self):
-        key, url = get_static_qr()
+        key, url = generate_qr()
         response = {
             "Key": key,
             "URL": url
@@ -18,11 +23,10 @@ class Main(Resource):
         return response
 
 
-api.add_resource(Main, "/api/getqr")
+api.add_resource(QR, '/get_qr')
 api.init_app(app)
 
-
-def get_static_qr():
+def generate_qr():
     #UUID Пользователя
     key = str(uuid.uuid4())
     # имя конечного файла
@@ -45,4 +49,3 @@ def upload_to_img(path):
 
 if __name__ == "__main__":
     app.run(debug=True, port=3000, host="127.0.0.1")
-
