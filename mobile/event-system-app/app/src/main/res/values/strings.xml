@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">event-system-app</string>
+    <string name="events_text">Мероприятия</string>
+    <string name="my_events_text">Мои мероприятия</string>
+    <string name="profile_text">Профиль</string>
+</resources>
