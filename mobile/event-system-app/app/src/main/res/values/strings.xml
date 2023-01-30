@@ -3,4 +3,10 @@
     <string name="events_text">Мероприятия</string>
     <string name="my_events_text">Мои мероприятия</string>
     <string name="profile_text">Профиль</string>
+    <string name="settings_text">Настройки</string>
+    <string name="theme_text">Темная тема приложения:</string>
+    <string name="translate_text">Изменить язык приложения</string>
+    <string name="translate_header">Сменить язык</string>
+    <string name="russian_text">Русский</string>
+    <string name="english_text">English</string>
 </resources>

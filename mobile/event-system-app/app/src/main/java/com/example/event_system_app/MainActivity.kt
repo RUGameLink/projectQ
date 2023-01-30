@@ -1,11 +1,16 @@
 package com.example.event_system_app
 
+import android.content.Context
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.preference.PreferenceManager
 import android.view.Menu
 import android.view.MenuInflater
+import android.view.MenuItem
 import android.widget.Toast
 import android.widget.Toolbar
+import androidx.appcompat.app.AppCompatDelegate
 import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationBarView
@@ -19,8 +24,9 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         init()
         setSupportActionBar(toolbar)
-        title = "Test"
         toolbar.isTitleCentered = true
+        title = getString(R.string.events_text)
+        menu.setSelectedItemId(R.id.events_item);
 
         menu.setOnItemSelectedListener { item ->
             when(item.itemId) {
@@ -39,6 +45,41 @@ class MainActivity : AppCompatActivity() {
                 else -> false
             }
         }
+
+        getPref()
+    }
+
+    private fun getPref() {
+        var style = 0
+        val pref = PreferenceManager.getDefaultSharedPreferences(this)
+        pref.apply {
+            style = getInt("Theme", 0)
+
+            if (style != 0){
+                setStyle(style)
+            }
+        }
+    }
+
+    private fun setStyle(themeStyle: Int) {
+        AppCompatDelegate.setDefaultNightMode(themeStyle);
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.settings_item -> {
+                val i = Intent(this, SettingsActivity::class.java)
+                startActivity(i)
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        val inflater: MenuInflater = menuInflater
+        inflater.inflate(R.menu.settings_menu, menu)
+        return true
     }
 
     private fun init(){
