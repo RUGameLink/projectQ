@@ -11,8 +11,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.event_system_app.Adapter.EventAdapter
 import com.example.event_system_app.Model.Event
 import com.example.event_system_app.R
+import android.widget.SearchView
 
 class EventsFragment: Fragment() {
+    private lateinit var eventsSearchView: SearchView
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
@@ -102,6 +105,28 @@ class EventsFragment: Fragment() {
         )
         eventList.add(event4)
         setEventAdapter(eventList, view, requireContext())
+
+        eventsSearchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+
+                val searchEventList = ArrayList<Event>()
+                eventList.forEach {
+                    if(it.title.contains(query!!, ignoreCase = true)){
+                        searchEventList.add(it)
+                    }
+                }
+                setEventAdapter(searchEventList, view, requireContext())
+                return false
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                if(newText!!.isEmpty()){
+                    setEventAdapter(eventList, view, requireContext())
+                }
+                return false
+            }
+        })
+
         return view
     }
 
@@ -113,7 +138,7 @@ class EventsFragment: Fragment() {
         recyclerView.adapter = EventAdapter(events, context) //внесение данных из листа в адаптер (заполнение данными)
     }
 
-    private fun init(view: Any) {
-
+    private fun init(view: View) {
+        eventsSearchView = view.findViewById(R.id.eventsSearchView)
     }
 }
