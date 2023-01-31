@@ -12,4 +12,5 @@
     <color name="text_baw">#000000</color>
     <color name="elem_bg_menu">#49454F</color>
     <color name="dialog_color">#eee8f4</color>
+    <color name="black_and_white">#ffffff</color>
 </resources>

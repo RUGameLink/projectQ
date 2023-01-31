@@ -4,8 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_marginBottom="15dp"
     android:orientation="vertical"
-    app:cardCornerRadius="15dp">
+    android:paddingStart="15dp"
+    android:paddingEnd="15dp"
+    android:paddingBottom="30dp"
+    app:cardCornerRadius="15dp"
+    app:cardElevation="2dp"
+    app:strokeColor="@color/elem_bg_menu"
+    app:strokeWidth="2dp">
 
 
     <LinearLayout
@@ -16,7 +23,7 @@
         <ImageView
             android:id="@+id/eventImg"
             android:layout_width="match_parent"
-            android:layout_height="150dp"
+            android:layout_height="300dp"
             tools:srcCompat="@tools:sample/avatars" />
 
         <TextView
@@ -25,14 +32,19 @@
             android:layout_height="wrap_content"
             android:inputType="textMultiLine"
             android:paddingStart="10dp"
-            android:paddingEnd="10dp"
-            android:text="efefefef" />
+            android:paddingTop="10dp"
+            android:paddingEnd="15dp"
+            android:text="efefefef"
+            android:textColor="@color/black_and_white"
+            android:textSize="16sp"
+            android:textStyle="bold" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:paddingStart="10dp"
+            android:paddingTop="10dp"
             android:paddingEnd="10dp">
 
             <TextView
@@ -58,23 +70,28 @@
             android:inputType="textMultiLine"
             android:maxLines="3"
             android:paddingStart="10dp"
+            android:paddingTop="10dp"
             android:paddingEnd="10dp" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:gravity="end"
+            android:orientation="horizontal"
+            android:paddingBottom="15dp">
 
             <Button
                 android:id="@+id/descButton"
                 style="@style/Widget.Material3.Button.OutlinedButton.Icon"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
+                android:gravity="start"
                 android:paddingTop="15dp"
+                android:paddingEnd="10dp"
                 android:paddingBottom="15dp"
                 android:text="@string/description_text"
-                android:textColor="@color/bottom_nav_color"
+                android:textColor="@color/black_and_white"
                 android:textSize="16sp"
                 app:iconPadding="10dp"
                 app:iconTint="@color/purple_200"
@@ -84,10 +101,14 @@
             <Button
                 android:id="@+id/runButton"
                 style="@style/Widget.Material3.Button.OutlinedButton.Icon"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
                 android:layout_marginTop="20dp"
+                android:layout_marginEnd="10dp"
                 android:backgroundTint="@color/purple_200"
+                android:gravity="end"
+                android:paddingStart="20dp"
                 android:paddingTop="15dp"
                 android:paddingBottom="15dp"
                 android:text="@string/run_text"
