@@ -12,4 +12,10 @@
     <string name="search_events_hint">Поиск мероприятия</string>
     <string name="run_text">Участвовать</string>
     <string name="description_text">Открыть описание</string>
+    <string name="filters_text">Фильтры</string>
+    <string name="education_text">Учебное</string>
+    <string name="sport_text">Спортивное</string>
+    <string name="society_text">Общественное</string>
+    <string name="science_text">Научное</string>
+    <string name="culture_text">Культурное</string>
 </resources>

@@ -10,12 +10,17 @@
 
     <SearchView
         android:id="@+id/myEventsSearchView"
+        style="@android:style/Widget.Material.SearchView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
         android:layout_marginTop="15dp"
         android:layout_marginRight="10dp"
         android:layout_marginBottom="15dp"
+        android:background="@drawable/bg_rounded"
+        android:backgroundTint="@color/elem_bg_menu"
+        android:iconifiedByDefault="false"
+        android:paddingStart="-10dp"
         android:queryHint="@string/search_events_hint"></SearchView>
 
     <RelativeLayout
@@ -23,7 +28,7 @@
         android:layout_height="match_parent">
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/eventsRecyclerView"
+            android:id="@+id/myEventsRecyclerView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:padding="8dp">

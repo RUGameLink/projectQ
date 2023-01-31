@@ -2,10 +2,14 @@
 <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="wrap_content"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_marginBottom="15dp"
     android:orientation="horizontal"
-    app:cardCornerRadius="15dp">
+    app:cardCornerRadius="15dp"
+    app:cardElevation="2dp"
+    app:strokeColor="@color/elem_bg_menu"
+    app:strokeWidth="2dp">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -21,38 +25,43 @@
                 android:id="@+id/titleText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
                 android:maxLength="20"
                 android:paddingStart="15dp"
-                android:text="Мепроприятие111111111111111111111111111111111111111" />
+                android:text="Мепроприятие111111111111111111111111111111111111111"
+                android:textStyle="bold" />
 
             <LinearLayout
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:orientation="horizontal"
+                android:layout_marginBottom="10dp"
+                android:orientation="vertical"
                 android:paddingTop="11dp">
 
                 <TextView
                     android:id="@+id/tagText"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:maxLength="20"
                     android:paddingStart="15dp"
-                    android:text="ergergergergergergreg" />
+                    android:text="ergergergergergergreg"
+                    android:textAlignment="textEnd" />
 
                 <TextView
                     android:id="@+id/dateText"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:paddingStart="30dp"
-                    android:text="egergregergergreg" />
+                    android:text="egergregergergreg"
+                    android:textAlignment="textEnd" />
             </LinearLayout>
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:layout_gravity="end"
             android:gravity="end"
             android:orientation="vertical"
@@ -60,8 +69,8 @@
 
             <ImageView
                 android:id="@+id/eventSmallImg"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
                 tools:srcCompat="@tools:sample/avatars" />
         </LinearLayout>
