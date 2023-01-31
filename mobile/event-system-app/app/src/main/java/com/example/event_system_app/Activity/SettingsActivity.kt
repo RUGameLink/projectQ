@@ -69,7 +69,7 @@ class SettingsActivity: AppCompatActivity()  {
 
     private fun showTranslateDialog() {
         val builder = MaterialAlertDialogBuilder(this, R.style.MaterialAlertDialog_Rounded)
-        val dialogView = LayoutInflater.from(this).inflate(R.layout.language_dialog, null)
+        val dialogView = LayoutInflater.from(this).inflate(R.layout.dialog_language, null)
         builder.setView(dialogView)
 
         val russianRadioButton = dialogView.findViewById<RadioButton>(R.id.rus_rbtn)
