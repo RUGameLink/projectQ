@@ -1,29 +1,22 @@
-package com.example.event_system_app
+package com.example.event_system_app.Activity
 
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.preference.PreferenceManager
-import android.view.LayoutInflater
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
-import android.view.View
 import android.widget.FrameLayout
-import android.widget.RadioButton
-import android.widget.Toast
-import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
 import com.example.event_system_app.Fragments.EventsFragment
 import com.example.event_system_app.Fragments.MyEventsFragment
 import com.example.event_system_app.Fragments.ProfileFragment
+import com.example.event_system_app.R
 import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import com.google.android.material.button.MaterialButton
-import java.util.*
 
 
 class MainActivity : AppCompatActivity() {

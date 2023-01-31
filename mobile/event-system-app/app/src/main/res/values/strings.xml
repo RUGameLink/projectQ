@@ -9,4 +9,7 @@
     <string name="translate_header">Сменить язык</string>
     <string name="russian_text">Русский</string>
     <string name="english_text">English</string>
+    <string name="search_events_hint">Поиск мероприятия</string>
+    <string name="run_text">Участвовать</string>
+    <string name="description_text">Открыть описание</string>
 </resources>
