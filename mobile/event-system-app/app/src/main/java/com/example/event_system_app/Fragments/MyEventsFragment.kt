@@ -1,6 +1,7 @@
 package com.example.event_system_app.Fragments
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -10,9 +11,12 @@ import android.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.event_system_app.Activity.EventActivity
+import com.example.event_system_app.Activity.MyEventActivity
 import com.example.event_system_app.Adapter.EventAdapter
 import com.example.event_system_app.Adapter.MyEventAdapter
 import com.example.event_system_app.Model.Event
+import com.example.event_system_app.Model.MyEvent
 import com.example.event_system_app.R
 
 class MyEventsFragment: Fragment() {
@@ -136,7 +140,16 @@ class MyEventsFragment: Fragment() {
         val linearLayoutManager = LinearLayoutManager(context) //Подготовка лайаут менеджера
         linearLayoutManager.orientation = LinearLayoutManager.VERTICAL
         recyclerView.layoutManager = linearLayoutManager //Инициализация лайаут менеджера
-        recyclerView.adapter = MyEventAdapter(events, context) //внесение данных из листа в адаптер (заполнение данными)
+        val myEventAdapter = MyEventAdapter(events, context) //внесение данных из листа в адаптер (заполнение данными)
+        recyclerView.adapter = myEventAdapter //внесение данных из листа в адаптер (заполнение данными)
+
+        myEventAdapter.onItemClick = {
+            val myEvent = MyEvent(1212, it.id, it.title, "https://ixbt.online/live/images/original/24/67/86/2022/07/19/c145c2d9c7.jpg", it.tags, it.date, it.location)
+
+            val i = Intent(context, MyEventActivity::class.java)
+            i.putExtra("myEvent", myEvent)
+            context.startActivity(i)
+        }
     }
 
     private fun init(view: View) {

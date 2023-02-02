@@ -12,6 +12,8 @@ import com.example.event_system_app.Model.Event
 import com.example.event_system_app.R
 
 class MyEventAdapter(private val events: ArrayList<Event>, private val context: Context): RecyclerView.Adapter<MyEventAdapter.MyViewHolder>() {
+    var onItemClick : ((Event) -> Unit) ?= null
+
     class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){ //Инициализация объектов лайаута айтемов ресайклера
         val titleText: TextView = itemView.findViewById(R.id.titleText)
         val eventSmallImg: ImageView = itemView.findViewById(R.id.eventSmallImg)
@@ -22,7 +24,7 @@ class MyEventAdapter(private val events: ArrayList<Event>, private val context: 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder { //Подвязка лайаута к адаптеру ресайклера
         val itemView =
             LayoutInflater.from(parent.context)
-                .inflate(R.layout.my_events_recycler_item, parent, false) //Определение лайаута
+                .inflate(R.layout.item_my_events_recycler, parent, false) //Определение лайаута
         return MyViewHolder(itemView)
     }
 
@@ -31,6 +33,10 @@ class MyEventAdapter(private val events: ArrayList<Event>, private val context: 
         holder.titleText.text = events[position].title
         holder.tagText.text = events[position].tags
         holder.dateText.text = events[position].date
+
+        holder.itemView.setOnClickListener {
+            onItemClick?.invoke(events[position])
+        }
 
         val imgUrl = events[position].imgUrl
         Glide.with(context)

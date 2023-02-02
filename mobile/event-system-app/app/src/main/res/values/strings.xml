@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">event-system-app</string>
     <string name="events_text">Мероприятия</string>
+    <string name="event_text">Мероприятие</string>
     <string name="my_events_text">Мои мероприятия</string>
     <string name="profile_text">Профиль</string>
     <string name="settings_text">Настройки</string>
@@ -24,4 +25,8 @@
     <string name="no_text">Нет</string>
     <string name="warning_text">Внимание</string>
     <string name="warning_body_text">Вы действительно хотите отменить регистрацию на данное мероприятие?</string>
+    <string name="location_text">Место проведения</string>
+    <string name="human_count_text">Уже участвуют:</string>
+    <string name="event_page_text">Страница мероприятия</string>
+    <string name="cancel_event_text">Отменить регистрацию</string>
 </resources>

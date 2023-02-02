@@ -26,6 +26,8 @@
                 android:value="" />
         </activity>
         <activity android:name=".Activity.SettingsActivity" />
+        <activity android:name=".Activity.EventActivity" />
+        <activity android:name=".Activity.MyEventActivity" />
     </application>
 
 </manifest>
