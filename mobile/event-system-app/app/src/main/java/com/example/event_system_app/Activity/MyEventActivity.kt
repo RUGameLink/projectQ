@@ -1,6 +1,7 @@
 package com.example.event_system_app.Activity
 
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuInflater
@@ -8,6 +9,7 @@ import android.view.MenuItem
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
 import com.example.event_system_app.Model.MyEvent
@@ -15,6 +17,7 @@ import com.example.event_system_app.R
 import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import java.nio.file.Paths
 
 class MyEventActivity: AppCompatActivity()  {
     private lateinit var toolbar: MaterialToolbar
@@ -56,12 +59,52 @@ class MyEventActivity: AppCompatActivity()  {
         }
 
         downloadButton.setOnClickListener {
-            Toast.makeText(this, "Я скачаю файл", Toast.LENGTH_SHORT).show()
+            downloadFile(event)
         }
 
         shareButton.setOnClickListener {
             Toast.makeText(this, "Я расшарю файл", Toast.LENGTH_SHORT).show()
         }
+
+        qrImg.setOnClickListener {
+            val i = Intent(this, QrActivity::class.java)
+            i.putExtra("qr", event.qrImg)
+            startActivity(i)
+        }
+    }
+
+    @RequiresApi(Build.VERSION_CODES.O)
+    private fun downloadFile(event: MyEvent){
+        val pdf by lazy {
+            HtmlToPdf(executable = "/usr/bin/wkhtmltopdf") {
+                orientation(PageOrientation.LANDSCAPE)
+                pageSize("Letter")
+                marginTop("1in")
+                marginBottom("1in")
+                marginLeft("1in")
+                marginRight("1in")
+            }
+        }
+
+        val htmlString = "<html>\n" +
+                "    <body>\n" +
+                "        <h1 align=\"center\">${event.title} \"Лезвие Восход\"/h1>\n" +
+                "        <p></p>\n" +
+                "        <p></p>\n" +
+                "        <center>\n" +
+                "            <img src=\"${event.qrImg}\">\n" +
+                "        </center>\n" +
+                "        <p></p>\n" +
+                "        <h2 align=\"center\">Дата проведения:&nbsp;${event.date}</h2>\n" +
+                "        <h2 align=\"center\">Место проведения:&nbsp;${event.location}</h2>\n" +
+                "    </body>\n" +
+                "    </html>"
+
+        val outputFile = Paths.get("/home/jasoet/document/destination.pdf").toFile()
+        val inputStream = pdf.convert(input = file,output = outputFile) // will always return null if output is redirected
+
+// Convert and return InputStream
+        val inputStream = pdf.convert(input = file) // InputStream is open and ready to use
     }
 
     private fun setContent(event: MyEvent) {

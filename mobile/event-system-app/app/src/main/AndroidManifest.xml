@@ -28,6 +28,7 @@
         <activity android:name=".Activity.SettingsActivity" />
         <activity android:name=".Activity.EventActivity" />
         <activity android:name=".Activity.MyEventActivity" />
+        <activity android:name=".Activity.QrActivity" />
     </application>
 
 </manifest>

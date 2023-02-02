@@ -141,7 +141,6 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="10dp"
-                        android:gravity="start"
                         android:paddingTop="15dp"
                         android:paddingEnd="10dp"
                         android:paddingBottom="15dp"
