@@ -15,6 +15,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.FileProvider
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.GlideBitmapDrawable
 import com.example.event_system_app.Model.MyEvent
@@ -28,10 +29,13 @@ import com.itextpdf.text.Image
 import com.itextpdf.text.Paragraph
 import com.itextpdf.text.pdf.BaseFont
 import com.itextpdf.text.pdf.PdfWriter
+
 import java.io.ByteArrayOutputStream
+import java.io.File
 import java.io.FileOutputStream
 import java.text.SimpleDateFormat
 import java.util.*
+
 
 
 class MyEventActivity: AppCompatActivity()  {
@@ -48,6 +52,7 @@ class MyEventActivity: AppCompatActivity()  {
 
     private var STORAGE_CODE = 1001
     private lateinit var event: MyEvent
+    private var pathToShare = ""
 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -76,22 +81,14 @@ class MyEventActivity: AppCompatActivity()  {
         }
 
         downloadButton.setOnClickListener {
-            if(Build.VERSION.SDK_INT > Build.VERSION_CODES.M){
-                if(checkSelfPermission(android.Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_DENIED){
-                    val permission = arrayOf(android.Manifest.permission.WRITE_EXTERNAL_STORAGE)
-                    requestPermissions(permission, STORAGE_CODE)
-                }
-                else{
-                    savePDF()
-                }
-            }
-            else{
-                savePDF()
-            }
+            checkToSave()
         }
 
         shareButton.setOnClickListener {
-            Toast.makeText(this, "Я расшарю файл", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "One moment...", Toast.LENGTH_SHORT).show()
+            checkToSave()
+            startFileShareIntent()
+
         }
 
         qrImg.setOnClickListener {
@@ -101,9 +98,46 @@ class MyEventActivity: AppCompatActivity()  {
         }
     }
 
+    fun startFileShareIntent() {
+        val shareIntent = Intent(Intent.ACTION_SEND).apply {
+            type = "*/*"
+            flags = Intent.FLAG_GRANT_READ_URI_PERMISSION
+            putExtra(
+                Intent.EXTRA_SUBJECT,
+                ""
+            )
+            putExtra(
+                Intent.EXTRA_TEXT,
+                ""
+            )
+            val fileURI = FileProvider.getUriForFile(
+                this@MyEventActivity!!, this@MyEventActivity!!.packageName + ".provider",
+                File(pathToShare)
+            )
+            putExtra(Intent.EXTRA_STREAM, fileURI)
+        }
+        startActivity(shareIntent)
+    }
+
+    @RequiresApi(Build.VERSION_CODES.O)
+    private fun checkToSave(){
+        if(Build.VERSION.SDK_INT > Build.VERSION_CODES.M){
+            if(checkSelfPermission(android.Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_DENIED){
+                val permission = arrayOf(android.Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                requestPermissions(permission, STORAGE_CODE)
+            }
+            else{
+                savePDF()
+            }
+        }
+        else{
+            savePDF()
+        }
+    }
+
     @RequiresApi(Build.VERSION_CODES.O)
     private fun savePDF() {
-    //    try {
+        try {
             val FONT = "/res/font/timesnewromanpsmt.ttf"
             val bf = BaseFont.createFont(FONT.toString(), BaseFont.IDENTITY_H, BaseFont.EMBEDDED)
             val fontBold = Font(bf, 18f, Font.BOLD)
@@ -111,6 +145,7 @@ class MyEventActivity: AppCompatActivity()  {
             val doc = com.itextpdf.text.Document()
             val fileName = SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault()).format(System.currentTimeMillis())
             val filePath = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).toString() + "/" + fileName + ".pdf"
+            pathToShare = filePath
             PdfWriter.getInstance(doc, FileOutputStream(filePath))
             doc.open()
 
@@ -138,10 +173,10 @@ class MyEventActivity: AppCompatActivity()  {
             doc.close()
 
             Toast.makeText(this, "$fileName.pdf $filePath", Toast.LENGTH_SHORT).show()
-//        }
-//        catch (e: Exception){
-//            println(e)
-//        }
+        }
+        catch (e: Exception){
+            println(e)
+        }
     }
 
     private fun imageToBitmap(): ByteArray {
