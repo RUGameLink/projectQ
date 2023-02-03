@@ -29,4 +29,7 @@
     <string name="human_count_text">Уже участвуют:</string>
     <string name="event_page_text">Страница мероприятия</string>
     <string name="cancel_event_text">Отменить регистрацию</string>
+    <string name="clean_profile_text">Для регистрации на мероприятия необходима авторизация в систему</string>
+    <string name="sing_in_text">Войти через личный кабинет</string>
+    <string name="logout_button_text">Выйти из аккаунта</string>
 </resources>

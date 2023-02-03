@@ -13,6 +13,7 @@ import androidx.appcompat.app.AppCompatDelegate
 import androidx.fragment.app.Fragment
 import com.example.event_system_app.Fragments.EventsFragment
 import com.example.event_system_app.Fragments.MyEventsFragment
+import com.example.event_system_app.Fragments.ProfileCleanFragment
 import com.example.event_system_app.Fragments.ProfileFragment
 import com.example.event_system_app.R
 import com.google.android.material.appbar.MaterialToolbar
@@ -26,6 +27,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var profileFragment: ProfileFragment
     private lateinit var eventsFragment: EventsFragment
     private lateinit var myEventsFragment: MyEventsFragment
+    private lateinit var profileCleanFragment: ProfileCleanFragment
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -54,8 +56,18 @@ class MainActivity : AppCompatActivity() {
                 }
                 R.id.profile_item -> {
                     title = getString(R.string.profile_text)
-                    profileFragment = ProfileFragment()
-                    replaceFragment(profileFragment)
+                    var resp = checkUser()
+                    when(resp){
+                        1 -> {
+                            profileFragment = ProfileFragment()
+                            replaceFragment(profileFragment)
+                        }
+                        0 -> {
+                            profileCleanFragment = ProfileCleanFragment()
+                            replaceFragment(profileCleanFragment)
+                        }
+                    }
+
                     true
                 }
                 else -> false
@@ -63,6 +75,15 @@ class MainActivity : AppCompatActivity() {
         }
 
         getPref()
+    }
+
+    private fun checkUser(): Int{
+        var user = 0
+        val pref  = PreferenceManager.getDefaultSharedPreferences(this)
+        pref.apply {
+            user = getInt("login", 0)
+        }
+        return user
     }
 
     private fun getPref() {
