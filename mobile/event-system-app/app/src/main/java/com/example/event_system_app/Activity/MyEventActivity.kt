@@ -1,8 +1,12 @@
 package com.example.event_system_app.Activity
 
 import android.content.Intent
+import android.content.pm.PackageManager
+import android.graphics.Bitmap
+import android.graphics.drawable.BitmapDrawable
 import android.os.Build
 import android.os.Bundle
+import android.os.Environment
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
@@ -12,12 +16,23 @@ import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.resource.bitmap.GlideBitmapDrawable
 import com.example.event_system_app.Model.MyEvent
 import com.example.event_system_app.R
 import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.floatingactionbutton.FloatingActionButton
-import java.nio.file.Paths
+import com.itextpdf.text.Element.ALIGN_CENTER
+import com.itextpdf.text.Font
+import com.itextpdf.text.Image
+import com.itextpdf.text.Paragraph
+import com.itextpdf.text.pdf.BaseFont
+import com.itextpdf.text.pdf.PdfWriter
+import java.io.ByteArrayOutputStream
+import java.io.FileOutputStream
+import java.text.SimpleDateFormat
+import java.util.*
+
 
 class MyEventActivity: AppCompatActivity()  {
     private lateinit var toolbar: MaterialToolbar
@@ -31,7 +46,10 @@ class MyEventActivity: AppCompatActivity()  {
     private lateinit var eventPageButton: MaterialButton
     private lateinit var cancelButton: MaterialButton
 
+    private var STORAGE_CODE = 1001
+    private lateinit var event: MyEvent
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_my_event)
@@ -41,8 +59,7 @@ class MyEventActivity: AppCompatActivity()  {
         title = getString(R.string.event_text)
         supportActionBar?.setHomeAsUpIndicator(R.drawable.back_icon)
         toolbar.navigationIcon = getDrawable(R.drawable.back_icon)
-        val event = intent.getSerializableExtra("myEvent") as MyEvent
-
+        event = intent.getSerializableExtra("myEvent") as MyEvent
         toolbar.setNavigationOnClickListener {
             val i = Intent(this, MainActivity::class.java)
             startActivity(i)
@@ -59,7 +76,18 @@ class MyEventActivity: AppCompatActivity()  {
         }
 
         downloadButton.setOnClickListener {
-            downloadFile(event)
+            if(Build.VERSION.SDK_INT > Build.VERSION_CODES.M){
+                if(checkSelfPermission(android.Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_DENIED){
+                    val permission = arrayOf(android.Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                    requestPermissions(permission, STORAGE_CODE)
+                }
+                else{
+                    savePDF()
+                }
+            }
+            else{
+                savePDF()
+            }
         }
 
         shareButton.setOnClickListener {
@@ -74,42 +102,77 @@ class MyEventActivity: AppCompatActivity()  {
     }
 
     @RequiresApi(Build.VERSION_CODES.O)
-    private fun downloadFile(event: MyEvent){
-        val pdf by lazy {
-            HtmlToPdf(executable = "/usr/bin/wkhtmltopdf") {
-                orientation(PageOrientation.LANDSCAPE)
-                pageSize("Letter")
-                marginTop("1in")
-                marginBottom("1in")
-                marginLeft("1in")
-                marginRight("1in")
+    private fun savePDF() {
+    //    try {
+            val FONT = "/res/font/timesnewromanpsmt.ttf"
+            val bf = BaseFont.createFont(FONT.toString(), BaseFont.IDENTITY_H, BaseFont.EMBEDDED)
+            val fontBold = Font(bf, 18f, Font.BOLD)
+            val fontNormal = Font(bf, 14f, Font.NORMAL)
+            val doc = com.itextpdf.text.Document()
+            val fileName = SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault()).format(System.currentTimeMillis())
+            val filePath = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).toString() + "/" + fileName + ".pdf"
+            PdfWriter.getInstance(doc, FileOutputStream(filePath))
+            doc.open()
+
+            val bitmap =
+                (qrImg.getDrawable().getCurrent() as BitmapDrawable).bitmap
+            val bmp = Bitmap.createScaledBitmap(bitmap, 300, 300, false);
+            val stream = ByteArrayOutputStream()
+            bmp.compress(Bitmap.CompressFormat.JPEG, 100, stream)
+
+            val image = Image.getInstance(stream.toByteArray())
+            image.alignment = ALIGN_CENTER
+
+            val title = "${event.title}\n".toString().trim()
+            val titleParagraph = Paragraph(title, fontBold)
+            titleParagraph.alignment = ALIGN_CENTER
+            val footer = "Место проведения   ${event.location}\n" +
+                    "Дата начала   ${event.date}".toString().trim()
+            val footerParagraph = Paragraph(footer, fontNormal)
+            footerParagraph.alignment = ALIGN_CENTER
+
+            doc.addAuthor("Рейтинг стипендии")
+            doc.add(titleParagraph)
+            doc.add((image))
+            doc.add(footerParagraph)
+            doc.close()
+
+            Toast.makeText(this, "$fileName.pdf $filePath", Toast.LENGTH_SHORT).show()
+//        }
+//        catch (e: Exception){
+//            println(e)
+//        }
+    }
+
+    private fun imageToBitmap(): ByteArray {
+       // val bitmap = (qrImg.drawable as BitmapDrawable).bitmap
+        val bitmap =
+            (qrImg.getDrawable().getCurrent() as BitmapDrawable).bitmap
+        val stream = ByteArrayOutputStream()
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream)
+
+        return stream.toByteArray()
+    }
+
+    @RequiresApi(Build.VERSION_CODES.O)
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
+        when (requestCode){
+            STORAGE_CODE -> {
+                if(grantResults.size > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED){
+                    savePDF()
+                }
+                else{
+                    Toast.makeText(this, "PERMISSION DENIED!", Toast.LENGTH_SHORT).show()
+                }
             }
         }
-
-        val htmlString = "<html>\n" +
-                "    <body>\n" +
-                "        <h1 align=\"center\">${event.title} \"Лезвие Восход\"/h1>\n" +
-                "        <p></p>\n" +
-                "        <p></p>\n" +
-                "        <center>\n" +
-                "            <img src=\"${event.qrImg}\">\n" +
-                "        </center>\n" +
-                "        <p></p>\n" +
-                "        <h2 align=\"center\">Дата проведения:&nbsp;${event.date}</h2>\n" +
-                "        <h2 align=\"center\">Место проведения:&nbsp;${event.location}</h2>\n" +
-                "    </body>\n" +
-                "    </html>"
-
-        val outputFile = Paths.get("/home/jasoet/document/destination.pdf").toFile()
-        val inputStream = pdf.convert(input = file,output = outputFile) // will always return null if output is redirected
-
-// Convert and return InputStream
-        val inputStream = pdf.convert(input = file) // InputStream is open and ready to use
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
     }
 
     private fun setContent(event: MyEvent) {
         Glide.with(this)
             .load(event.qrImg)
+            .asBitmap()
             .placeholder(R.drawable.events_icon)
             .into(qrImg)
 
