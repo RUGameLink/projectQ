@@ -1,6 +1,7 @@
 package com.example.event_system_app.Fragments
 
 import android.content.Context
+import android.content.pm.ActivityInfo
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -12,11 +13,21 @@ import com.example.event_system_app.Adapter.EventAdapter
 import com.example.event_system_app.Model.Event
 import com.example.event_system_app.R
 import android.widget.SearchView
+import android.widget.Toast
+import com.google.android.material.button.MaterialButtonToggleGroup
+import com.nex3z.togglebuttongroup.SingleSelectToggleGroup
 
 class EventsFragment: Fragment() {
     private lateinit var eventsSearchView: SearchView
+    private lateinit var tagsGrpup: SingleSelectToggleGroup
+
+
+    private var tags: String = ""
+    val eventList = ArrayList<Event>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        getActivity()?.setRequestedOrientation(
+            ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         super.onCreate(savedInstanceState)
     }
 
@@ -27,8 +38,8 @@ class EventsFragment: Fragment() {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_events, container, false)
         init(view)
+        tagsGrpup.check(R.id.anyToggle)
 
-        val eventList = ArrayList<Event>()
         val event1 = Event(
             1,
             "Встреча сети Точек кипения: 2023 год",
@@ -108,12 +119,19 @@ class EventsFragment: Fragment() {
 
         eventsSearchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
-
                 val searchEventList = ArrayList<Event>()
                 eventList.forEach {
-                    if(it.title.contains(query!!, ignoreCase = true)){
-                        searchEventList.add(it)
+                    if (!tags.equals("Любое")){
+                        if(it.title.contains(query!!, ignoreCase = true) && it.tags.contains(tags!!, ignoreCase = true)){
+                            searchEventList.add(it)
+                        }
                     }
+                    else{
+                        if(it.title.contains(query!!, ignoreCase = true)){
+                            searchEventList.add(it)
+                        }
+                    }
+
                 }
                 setEventAdapter(searchEventList, view, requireContext())
                 return false
@@ -127,7 +145,52 @@ class EventsFragment: Fragment() {
             }
         })
 
+        tagsGrpup.setOnCheckedChangeListener { group, checkedId ->
+            when(checkedId){
+                R.id.scienceToggle -> {
+                    tags = "Научное"
+                    searchTag(view)
+                }
+                R.id.sportToggle -> {
+                    tags = "Спортивное"
+                    searchTag(view)
+                }
+                R.id.cultureToggle -> {
+                    tags = "Культурное"
+                    searchTag(view)
+                }
+                R.id.educationalToggle -> {
+                    tags = "Учебное"
+                    searchTag(view)
+                }
+                R.id.societyToggle -> {
+                    tags = "Общественное"
+                    searchTag(view)
+                }
+                R.id.anyToggle -> {
+                    tags = "Любое"
+                    searchTag(view)
+                }
+            }
+        }
+
         return view
+    }
+
+    private fun searchTag(view: View){
+        if(tags.equals("Любое")){
+            setEventAdapter(eventList, view, requireContext())
+        }
+        else {
+            val searchEventList = ArrayList<Event>()
+            eventList.forEach {
+                if (it.tags.contains(tags!!, ignoreCase = true)) {
+                    searchEventList.add(it)
+                }
+
+                setEventAdapter(searchEventList, view, requireContext())
+            }
+        }
     }
 
     private fun setEventAdapter(events: ArrayList<Event>, view: View, context: Context){ //Адаптер текущих игр
@@ -140,5 +203,6 @@ class EventsFragment: Fragment() {
 
     private fun init(view: View) {
         eventsSearchView = view.findViewById(R.id.eventsSearchView)
+        tagsGrpup = view.findViewById(R.id.tags_group)
     }
 }

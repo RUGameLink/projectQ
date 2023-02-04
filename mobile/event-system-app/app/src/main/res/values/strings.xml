@@ -19,6 +19,7 @@
     <string name="society_text">Общественное</string>
     <string name="science_text">Научное</string>
     <string name="culture_text">Культурное</string>
+    <string name="any_tag_text">Любое</string>
     <string name="logout_text">Выход</string>
     <string name="logout_body_text">Вы действительно хотите выйти из аккаунта?</string>
     <string name="yes_text">Да</string>

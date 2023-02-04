@@ -13,8 +13,10 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
+        android:screenOrientation="portrait"
         android:supportsRtl="true"
         android:theme="@style/Theme.Eventsystemapp"
+        android:windowSoftInputMode="adjustPan"
         tools:targetApi="31">
         <activity
             android:name=".Activity.MainActivity"
@@ -29,10 +31,14 @@
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
-        <activity android:name=".Activity.SettingsActivity" />
-        <activity android:name=".Activity.EventActivity" />
-        <activity android:name=".Activity.MyEventActivity" />
-        <activity android:name=".Activity.QrActivity" />
+        <activity android:name=".Activity.SettingsActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".Activity.EventActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".Activity.MyEventActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".Activity.QrActivity"
+            android:screenOrientation="portrait" />
 
         <provider
             android:name="androidx.core.content.FileProvider"

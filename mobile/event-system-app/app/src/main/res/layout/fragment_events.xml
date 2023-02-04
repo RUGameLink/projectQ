@@ -3,6 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:screenOrientation="portrait"
     android:orientation="vertical">
 
     <LinearLayout
@@ -17,77 +18,59 @@
             android:layout_marginStart="10dp"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
-            android:text="@string/events_text"
+            android:text="@string/filters_text"
             android:textStyle="bold" />
 
-        <com.google.android.material.button.MaterialButtonToggleGroup
-            android:id="@+id/toggleButtonGroup"
+        <com.nex3z.togglebuttongroup.SingleSelectToggleGroup
+            android:id="@+id/tags_group"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center_horizontal"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:singleSelection="false">
+            android:layout_marginTop="5dp"
+            android:foregroundGravity="center_horizontal"
+            android:paddingStart="10dp"
+            android:paddingEnd="10dp"
+            app:tbgChildSpacing="auto"
+            app:tbgChildSpacingForLastRow="align"
+            app:tbgFlow="true"
+            app:tbgRowSpacing="8dp">
 
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/sportToggle"
-                style="?attr/materialButtonOutlinedStyle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/sport_text"
-                android:textSize="12sp"
-                app:backgroundTint="@color/toggle_color"></com.google.android.material.button.MaterialButton>
-
-            <com.google.android.material.button.MaterialButton
+            <com.nex3z.togglebuttongroup.button.LabelToggle
                 android:id="@+id/cultureToggle"
-                style="?attr/materialButtonOutlinedStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/culture_text"
-                android:textSize="12sp"
-                app:backgroundTint="@color/toggle_color"></com.google.android.material.button.MaterialButton>
+                android:text="@string/culture_text" />
 
-            <com.google.android.material.button.MaterialButton
+            <com.nex3z.togglebuttongroup.button.LabelToggle
                 android:id="@+id/societyToggle"
-                style="?attr/materialButtonOutlinedStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/society_text"
-                android:textSize="12sp"
-                app:backgroundTint="@color/toggle_color"></com.google.android.material.button.MaterialButton>
-        </com.google.android.material.button.MaterialButtonToggleGroup>
+                android:text="@string/society_text" />
 
-        <com.google.android.material.button.MaterialButtonToggleGroup
-            android:id="@+id/toggleButtonGroupTwo"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_horizontal"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:singleSelection="false">
-
-            <com.google.android.material.button.MaterialButton
+            <com.nex3z.togglebuttongroup.button.LabelToggle
                 android:id="@+id/educationalToggle"
-                style="?attr/materialButtonOutlinedStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/education_text"
-                android:textSize="12sp"
-                app:backgroundTint="@color/toggle_color"></com.google.android.material.button.MaterialButton>
+                android:text="@string/education_text" />
 
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/scienceToggle"
-                style="?attr/materialButtonOutlinedStyle"
+            <com.nex3z.togglebuttongroup.button.LabelToggle
+                android:id="@+id/sportToggle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/science_text"
-                android:textSize="12sp"
-                app:backgroundTint="@color/toggle_color"></com.google.android.material.button.MaterialButton>
-        </com.google.android.material.button.MaterialButtonToggleGroup>
+                android:text="@string/sport_text" />
+
+            <com.nex3z.togglebuttongroup.button.LabelToggle
+                android:id="@+id/scienceToggle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/science_text" />
+
+            <com.nex3z.togglebuttongroup.button.LabelToggle
+                android:id="@+id/anyToggle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/any_tag_text" />
+
+        </com.nex3z.togglebuttongroup.SingleSelectToggleGroup>
 
         <SearchView
             android:id="@+id/eventsSearchView"
