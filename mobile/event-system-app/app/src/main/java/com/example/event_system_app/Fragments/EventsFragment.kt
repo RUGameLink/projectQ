@@ -179,7 +179,8 @@ class EventsFragment: Fragment() {
 
     private fun searchTag(view: View){
         if(tags.equals("Любое")){
-            setEventAdapter(eventList, view, requireContext())
+            println("Размер листа ивентов ${eventList.size}")
+            context?.let { setEventAdapter(eventList, view, it) }
         }
         else {
             val searchEventList = ArrayList<Event>()

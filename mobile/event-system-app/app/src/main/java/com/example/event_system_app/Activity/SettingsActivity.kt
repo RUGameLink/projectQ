@@ -1,6 +1,8 @@
 package com.example.event_system_app.Activity
 
+import android.app.Activity
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import android.preference.PreferenceManager
 import android.view.LayoutInflater
@@ -9,11 +11,13 @@ import android.widget.RadioButton
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
+import androidx.core.app.ActivityCompat.recreate
 import com.example.event_system_app.R
 import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.materialswitch.MaterialSwitch
+
 
 @Suppress("DEPRECATION")
 class SettingsActivity: AppCompatActivity()  {
@@ -47,6 +51,7 @@ class SettingsActivity: AppCompatActivity()  {
                 }
                 catch (ex: Exception){
                     println(ex)
+                    restartActivity(this)
                 }
 
             }else{
@@ -56,11 +61,21 @@ class SettingsActivity: AppCompatActivity()  {
                 }
                 catch (ex: Exception){
                     println(ex)
+                    restartActivity(this)
                 }
             }
         }
 
         translateButton.setOnClickListener(translateListener)
+    }
+
+    fun restartActivity(activity: Activity) {
+        if (Build.VERSION.SDK_INT >= 11) {
+            activity.recreate()
+        } else {
+            activity.finish()
+            activity.startActivity(activity.intent)
+        }
     }
 
     private val translateListener: View.OnClickListener = View.OnClickListener {
