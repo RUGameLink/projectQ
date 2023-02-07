@@ -7,14 +7,28 @@
     android:gravity="center_horizontal|center_vertical"
     android:orientation="vertical">
 
-    <com.google.android.material.imageview.ShapeableImageView
-        app:shapeAppearanceOverlay="@style/roundedImageViewRounded"
-        android:id="@+id/userImage"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/image_card"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
         android:layout_marginTop="-30dp"
         android:layout_marginBottom="50dp"
-        tools:srcCompat="@tools:sample/avatars" />
+        android:visibility="visible"
+        app:cardCornerRadius="50dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/userImage"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@color/purple_200" />
+    </com.google.android.material.card.MaterialCardView>
 
     <TextView
         android:id="@+id/nameUserText"

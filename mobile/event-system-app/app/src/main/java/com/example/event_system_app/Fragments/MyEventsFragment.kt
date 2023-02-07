@@ -111,8 +111,9 @@ class MyEventsFragment: Fragment() {
         eventList.add(event4)
         setMyEventAdapter(eventList, view, requireContext())
 
+        //Слушатель поисковика
         myEventsSearchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
-            override fun onQueryTextSubmit(query: String?): Boolean {
+            override fun onQueryTextSubmit(query: String?): Boolean { //Поиск по карточкам
 
                 val searchEventList = ArrayList<Event>()
                 eventList.forEach {
@@ -124,7 +125,7 @@ class MyEventsFragment: Fragment() {
                 return false
             }
 
-            override fun onQueryTextChange(newText: String?): Boolean {
+            override fun onQueryTextChange(newText: String?): Boolean { //Сброс поиска
                 if(newText!!.isEmpty()){
                     setMyEventAdapter(eventList, view, requireContext())
                 }
@@ -152,6 +153,7 @@ class MyEventsFragment: Fragment() {
         }
     }
 
+    //Инициализация компонентов
     private fun init(view: View) {
         myEventsSearchView = view.findViewById(R.id.myEventsSearchView)
     }

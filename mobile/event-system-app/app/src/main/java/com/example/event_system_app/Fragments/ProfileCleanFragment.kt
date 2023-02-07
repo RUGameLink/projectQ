@@ -31,17 +31,20 @@ class ProfileCleanFragment: Fragment() {
         return view
     }
 
+    //Переключение фрагмента при логине
     private fun login(context: Context?) {
         setPref(delegate = 1, context)
         replaceFragment()
     }
 
+    //Установка префа логина
     private fun setPref(delegate: Int, context: Context?){
         val pref = PreferenceManager.getDefaultSharedPreferences(context)
         val editor = pref.edit()
         editor.putInt("login", delegate).apply()
     }
 
+    //Смена фрагмента
     private fun replaceFragment(){
         val profileFragment = ProfileFragment()
         var fragmentTransaction : FragmentTransaction = requireFragmentManager().beginTransaction()
@@ -49,6 +52,7 @@ class ProfileCleanFragment: Fragment() {
         fragmentTransaction.commit()
     }
 
+    //Инициализация компонентов
     private fun init(view: View) {
         singInButton = view.findViewById(R.id.singInButton)
     }

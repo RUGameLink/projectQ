@@ -98,6 +98,7 @@ class MyEventActivity: AppCompatActivity()  {
         }
     }
 
+    //Отправка файла
     fun startFileShareIntent() {
         val shareIntent = Intent(Intent.ACTION_SEND).apply {
             type = "*/*"
@@ -119,6 +120,7 @@ class MyEventActivity: AppCompatActivity()  {
         startActivity(shareIntent)
     }
 
+    //Проверка разрешения на сохранение
     @RequiresApi(Build.VERSION_CODES.O)
     private fun checkToSave(){
         if(Build.VERSION.SDK_INT > Build.VERSION_CODES.M){
@@ -135,6 +137,7 @@ class MyEventActivity: AppCompatActivity()  {
         }
     }
 
+    //Сохранение файла
     @RequiresApi(Build.VERSION_CODES.O)
     private fun savePDF() {
         try {
@@ -179,16 +182,7 @@ class MyEventActivity: AppCompatActivity()  {
         }
     }
 
-    private fun imageToBitmap(): ByteArray {
-       // val bitmap = (qrImg.drawable as BitmapDrawable).bitmap
-        val bitmap =
-            (qrImg.getDrawable().getCurrent() as BitmapDrawable).bitmap
-        val stream = ByteArrayOutputStream()
-        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream)
-
-        return stream.toByteArray()
-    }
-
+    //Получение результата разрешения на сохранение
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
         when (requestCode){
@@ -204,6 +198,7 @@ class MyEventActivity: AppCompatActivity()  {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
     }
 
+    //Установка информации в компоненты
     private fun setContent(event: MyEvent) {
         Glide.with(this)
             .load(event.qrImg)
@@ -217,12 +212,14 @@ class MyEventActivity: AppCompatActivity()  {
         myEventLocationText.text = event.location
     }
 
+    //Создание меню настройки
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         val inflater: MenuInflater = menuInflater
         inflater.inflate(R.menu.settings_menu, menu)
         return true
     }
 
+    //Слушатель элементов меню
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.settings_item -> {
@@ -234,6 +231,7 @@ class MyEventActivity: AppCompatActivity()  {
         }
     }
 
+    //Инициализация компонентов
     private fun init(){
         toolbar = findViewById(R.id.toolbar)
         headerMyText = findViewById(R.id.headerMyText)

@@ -43,6 +43,7 @@ class EventActivity: AppCompatActivity() {
         setContent(event)
     }
 
+    //Заполнение компонентов информацией
     private fun setContent(event: Event) {
         Glide.with(this)
             .load(event.imgUrl)
@@ -57,12 +58,13 @@ class EventActivity: AppCompatActivity() {
         human_count_text.text = event.humanCount.toString()
     }
 
+    //Создание меню настроек
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         val inflater: MenuInflater = menuInflater
         inflater.inflate(R.menu.settings_menu, menu)
         return true
     }
-
+    //Слушатель элементов меню
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.settings_item -> {
@@ -74,6 +76,7 @@ class EventActivity: AppCompatActivity() {
         }
     }
 
+    //Инициализация компонентов
     private fun init(){
         toolbar = findViewById(R.id.toolbar)
         eventImage = findViewById(R.id.eventImage)

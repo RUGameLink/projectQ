@@ -77,6 +77,7 @@ class MainActivity : AppCompatActivity() {
         getPref()
     }
 
+    //Проверка входа юзера
     private fun checkUser(): Int{
         var user = 0
         val pref  = PreferenceManager.getDefaultSharedPreferences(this)
@@ -86,6 +87,7 @@ class MainActivity : AppCompatActivity() {
         return user
     }
 
+    //Получение информации и смена темы
     private fun getPref() {
         var style = 0
         val pref = PreferenceManager.getDefaultSharedPreferences(this)
@@ -98,10 +100,12 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    //Установка темы
     private fun setStyle(themeStyle: Int) {
         AppCompatDelegate.setDefaultNightMode(themeStyle);
     }
 
+    //Слушатель элементов меню
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.settings_item -> {
@@ -113,6 +117,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    //Смена фрагмента
     private fun replaceFragment(fragment: Fragment){
         val fragmentManager = supportFragmentManager
         val fragmentTransaction = fragmentManager.beginTransaction()
@@ -120,12 +125,14 @@ class MainActivity : AppCompatActivity() {
         fragmentTransaction.commit()
     }
 
+    //Создание меню настройки
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         val inflater: MenuInflater = menuInflater
         inflater.inflate(R.menu.settings_menu, menu)
         return true
     }
 
+    //Инициализация компонентов
     private fun init(){
         toolbar = findViewById(R.id.toolbar)
         menu = findViewById(R.id.bottom_navigation)

@@ -69,6 +69,7 @@ class SettingsActivity: AppCompatActivity()  {
         translateButton.setOnClickListener(translateListener)
     }
 
+    //Перезагрузка графики активити
     fun restartActivity(activity: Activity) {
         if (Build.VERSION.SDK_INT >= 11) {
             activity.recreate()
@@ -78,10 +79,12 @@ class SettingsActivity: AppCompatActivity()  {
         }
     }
 
+    //Слушатель кнопки перевода
     private val translateListener: View.OnClickListener = View.OnClickListener {
         showTranslateDialog()
     }
 
+    //Запуск диалога смены языка
     private fun showTranslateDialog() {
         val builder = MaterialAlertDialogBuilder(this, R.style.MaterialAlertDialog_Rounded)
         val dialogView = LayoutInflater.from(this).inflate(R.layout.dialog_language, null)
@@ -107,12 +110,14 @@ class SettingsActivity: AppCompatActivity()  {
         dialog.show()
     }
 
+    //Чтение префа темы
     private fun setPref(delegate: Int){
         val pref = PreferenceManager.getDefaultSharedPreferences(this)
         val editor = pref.edit()
         editor.putInt("Theme", delegate).apply()
     }
 
+    //Инициализация компонентов
     private fun init(){
         toolbar = findViewById(R.id.toolbar)
         switch = findViewById(R.id.theme_switch)

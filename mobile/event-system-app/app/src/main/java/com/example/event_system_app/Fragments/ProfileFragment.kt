@@ -18,7 +18,7 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.imageview.ShapeableImageView
 
 class ProfileFragment: Fragment() {
-    private lateinit var userImage: ShapeableImageView
+    private lateinit var userImage: ImageView
     private lateinit var nameUserText: TextView
     private lateinit var groupUserText: TextView
     private lateinit var logOutButton: MaterialButton
@@ -44,6 +44,7 @@ class ProfileFragment: Fragment() {
         return view
     }
 
+    //Запуск диалога выхода
     private fun showLogOutDialog() {
         val builder = MaterialAlertDialogBuilder(requireContext(), R.style.MaterialAlertDialog_Rounded)
         val dialogView = LayoutInflater.from(context).inflate(R.layout.dialog_logout, null)
@@ -65,17 +66,20 @@ class ProfileFragment: Fragment() {
         dialog.show()
     }
 
+    //Смена фрагмента при выходе
     private fun logout() {
         setPref(delegate = 0, context)
         replaceFragment()
     }
 
+    //Установка префа логина
     private fun setPref(delegate: Int, context: Context?){
         val pref = PreferenceManager.getDefaultSharedPreferences(context)
         val editor = pref.edit()
         editor.putInt("login", delegate).apply()
     }
 
+    //Смена фрагмента
     private fun replaceFragment(){
         val profileFragment = ProfileCleanFragment()
         var fragmentTransaction : FragmentTransaction = requireFragmentManager().beginTransaction()
@@ -83,6 +87,7 @@ class ProfileFragment: Fragment() {
         fragmentTransaction.commit()
     }
 
+    //Инициализация компонентов
     private fun init(view: View) {
         userImage = view.findViewById(R.id.userImage)
         nameUserText = view.findViewById(R.id.nameUserText)

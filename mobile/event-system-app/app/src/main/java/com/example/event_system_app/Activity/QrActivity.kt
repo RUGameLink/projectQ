@@ -33,6 +33,7 @@ class QrActivity: AppCompatActivity()  {
             .into(qrFullscreen)
     }
 
+    //Инициализация компонентов
     private fun init(){
         toolbar = findViewById(R.id.toolbar)
         qrFullscreen = findViewById(R.id.qrFullscreen)

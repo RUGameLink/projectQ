@@ -118,7 +118,7 @@ class EventsFragment: Fragment() {
         setEventAdapter(eventList, view, requireContext())
 
         eventsSearchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
-            override fun onQueryTextSubmit(query: String?): Boolean {
+            override fun onQueryTextSubmit(query: String?): Boolean { //Поиск в карточках
                 val searchEventList = ArrayList<Event>()
                 eventList.forEach {
                     if (!tags.equals("Любое")){
@@ -137,14 +137,17 @@ class EventsFragment: Fragment() {
                 return false
             }
 
+            //Сброс поиска
             override fun onQueryTextChange(newText: String?): Boolean {
                 if(newText!!.isEmpty()){
                     setEventAdapter(eventList, view, requireContext())
+                    tagsGrpup.check(R.id.anyToggle)
                 }
                 return false
             }
         })
 
+        //Слушатель кнопок фильтра
         tagsGrpup.setOnCheckedChangeListener { group, checkedId ->
             when(checkedId){
                 R.id.scienceToggle -> {
@@ -177,6 +180,7 @@ class EventsFragment: Fragment() {
         return view
     }
 
+    //Поиск по тегу
     private fun searchTag(view: View){
         if(tags.equals("Любое")){
             println("Размер листа ивентов ${eventList.size}")
@@ -202,6 +206,7 @@ class EventsFragment: Fragment() {
         recyclerView.adapter = EventAdapter(events, context) //внесение данных из листа в адаптер (заполнение данными)
     }
 
+    //Инициализация компонентов
     private fun init(view: View) {
         eventsSearchView = view.findViewById(R.id.eventsSearchView)
         tagsGrpup = view.findViewById(R.id.tags_group)
