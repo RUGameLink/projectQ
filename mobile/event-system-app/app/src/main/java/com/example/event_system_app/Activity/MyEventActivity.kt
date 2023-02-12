@@ -17,7 +17,6 @@ import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.FileProvider
 import com.bumptech.glide.Glide
-import com.bumptech.glide.load.resource.bitmap.GlideBitmapDrawable
 import com.example.event_system_app.Model.MyEvent
 import com.example.event_system_app.R
 import com.google.android.material.appbar.MaterialToolbar
@@ -46,6 +45,7 @@ class MyEventActivity: AppCompatActivity()  {
     private lateinit var qrImg: ImageView
     private lateinit var downloadButton: FloatingActionButton
     private lateinit var shareButton: FloatingActionButton
+    private lateinit var calendarButton: FloatingActionButton
     private lateinit var myEventLocationText: TextView
     private lateinit var eventPageButton: MaterialButton
     private lateinit var cancelButton: MaterialButton
@@ -96,6 +96,26 @@ class MyEventActivity: AppCompatActivity()  {
             i.putExtra("qr", event.qrImg)
             startActivity(i)
         }
+
+        val mSimpleDateFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss")
+
+        var startTime = replaceDate(event.date)
+        val mStartTime = mSimpleDateFormat.parse(startTime)
+
+        calendarButton.setOnClickListener {
+            val mIntent = Intent(Intent.ACTION_EDIT)
+            mIntent.type = "vnd.android.cursor.item/event"
+            mIntent.putExtra("beginTime", mStartTime.time)
+            mIntent.putExtra("time", true)
+            mIntent.putExtra("rule", "FREQ=YEARLY")
+            mIntent.putExtra("title", "${event.title}")
+            startActivity(mIntent)
+        }
+    }
+
+    private fun replaceDate(date: String): String {
+        var dateComponent = date.split('.', ' ')
+        return "${dateComponent[2]}-${dateComponent[1]}-${dateComponent[0]}T${dateComponent[3]}:00"
     }
 
     //Отправка файла
@@ -243,5 +263,6 @@ class MyEventActivity: AppCompatActivity()  {
         myEventLocationText = findViewById(R.id.myEventLocationText)
         eventPageButton = findViewById(R.id.event_page_button)
         cancelButton = findViewById(R.id.cancel_button)
+        calendarButton = findViewById(R.id.calendarButton)
     }
 }

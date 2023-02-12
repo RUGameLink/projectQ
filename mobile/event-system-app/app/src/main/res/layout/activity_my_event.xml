@@ -103,6 +103,16 @@
 
                         app:backgroundTint="@color/purple_200"
                         app:srcCompat="@drawable/share_icon" />
+
+                    <com.google.android.material.floatingactionbutton.FloatingActionButton
+                        android:id="@+id/calendarButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:layout_weight="1"
+                        android:clickable="true"
+                        app:backgroundTint="@color/purple_200"
+                        app:srcCompat="@drawable/calendar_icon" />
                 </LinearLayout>
 
                 <LinearLayout
