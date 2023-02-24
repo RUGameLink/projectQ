@@ -35,4 +35,12 @@
     <string name="date_of_end_text">Регистрация доступна до</string>
     <string name="location_text">Место проведения</string>
     <string name="human_count_text">Уже участвуют:</string>
+
+    <string name="theme_text">Темная тема приложения:</string>
+    <string name="translate_text">Изменить язык приложения</string>
+    <string name="translate_header">Сменить язык</string>
+    <string name="russian_text">Русский</string>
+    <string name="english_text">English</string>
+
+    <string name="create_event_button_text">Создать мероприятие</string>
 </resources>

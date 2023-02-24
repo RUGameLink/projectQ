@@ -68,8 +68,8 @@ class EventActivity: AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.settings_item -> {
-//                val i = Intent(this, SettingsActivity::class.java)
-//                startActivity(i)
+                val i = Intent(this, SettingsActivity::class.java)
+                startActivity(i)
                 true
             }
             else -> super.onOptionsItemSelected(item)

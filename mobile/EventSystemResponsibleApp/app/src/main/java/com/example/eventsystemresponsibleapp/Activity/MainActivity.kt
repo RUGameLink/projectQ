@@ -10,9 +10,7 @@ import android.view.MenuItem
 import android.widget.FrameLayout
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.fragment.app.Fragment
-import com.example.eventsystemresponsibleapp.Fragment.EventsFragment
-import com.example.eventsystemresponsibleapp.Fragment.ProfileCleanFragment
-import com.example.eventsystemresponsibleapp.Fragment.ProfileFragment
+import com.example.eventsystemresponsibleapp.Fragment.*
 import com.example.eventsystemresponsibleapp.R
 import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -22,8 +20,9 @@ class MainActivity : AppCompatActivity() {
     private lateinit var menu: BottomNavigationView
     private lateinit var frameLayout: FrameLayout
     private lateinit var profileFragment: ProfileFragment
+    private lateinit var createAnEventFragment: CreateAnEventFragment
     private lateinit var eventsFragment: EventsFragment
-  //  private lateinit var myEventsFragment: MyEventsFragment
+    private lateinit var presenceFragment: PresenceFragment
     private lateinit var profileCleanFragment: ProfileCleanFragment
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -41,8 +40,8 @@ class MainActivity : AppCompatActivity() {
             when(item.itemId) {
                 R.id.create_item -> {
                     title = getString(R.string.create_event_text)
-//                    myEventsFragment = Ev()
-//                    replaceFragment(myEventsFragment)
+                    createAnEventFragment = CreateAnEventFragment()
+                    replaceFragment(createAnEventFragment)
                     true
                 }
                 R.id.event_item -> {
@@ -53,8 +52,8 @@ class MainActivity : AppCompatActivity() {
                 }
                 R.id.presence_item -> {
                     title = getString(R.string.presence_confirmation_text)
-//                    eventsFragment = EventsFragment()
-//                    replaceFragment(eventsFragment)
+                    presenceFragment = PresenceFragment()
+                    replaceFragment(presenceFragment)
                     true
                 }
                 R.id.profile_item -> {
@@ -112,8 +111,8 @@ class MainActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.settings_item -> {
-//                val i = Intent(this, SettingsActivity::class.java)
-//                startActivity(i)
+                val i = Intent(this, SettingsActivity::class.java)
+                startActivity(i)
                 true
             }
             else -> super.onOptionsItemSelected(item)

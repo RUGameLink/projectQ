@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="ThemeSwitch" parent="Theme.Material3.Dark">
+        <item name="colorPrimary">@color/purple_200</item>
+        <item name="colorSurfaceVariant">@color/grey_white</item>
+    </style>
+</resources>
