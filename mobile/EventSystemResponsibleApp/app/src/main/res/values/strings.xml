@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Event System Responsible App</string>
+
+    <string name="nav_create">Создать</string>
+    <string name="nav_event">Мероприятия</string>
+    <string name="nav_presence">Присутствие</string>
+    <string name="nav_profile">Профиль</string>
+</resources>
