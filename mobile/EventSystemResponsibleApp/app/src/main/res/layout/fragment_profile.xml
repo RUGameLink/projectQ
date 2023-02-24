@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_horizontal|center_vertical"
+    android:orientation="vertical">
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/image_card"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="-30dp"
+        android:layout_marginBottom="50dp"
+        android:visibility="visible"
+        app:cardCornerRadius="50dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/userImage"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@color/purple_200" />
+    </com.google.android.material.card.MaterialCardView>
+
+    <TextView
+        android:id="@+id/nameUserText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingStart="15dp"
+        android:paddingEnd="15dp"
+        android:text="@string/clean_profile_text"
+        android:textAlignment="center"
+        android:textAllCaps="false"
+        android:textSize="16dp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/userRoleText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="10dp"
+        android:paddingStart="15dp"
+        android:paddingEnd="15dp"
+        android:text="@string/clean_profile_text"
+        android:textAlignment="center"
+        android:textAllCaps="false"
+        android:textSize="16dp"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/logOutButton"
+        style="@style/Widget.Material3.Button.OutlinedButton.Icon"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:paddingTop="15dp"
+        android:paddingBottom="15dp"
+        android:text="@string/logout_button_text"
+        android:textColor="@color/purple_200"
+        android:textSize="16sp"
+        app:icon="@drawable/icon_logout"
+        app:iconPadding="10dp"
+        app:iconTint="@color/purple_200"
+        app:strokeColor="@color/grey_white"
+        app:strokeWidth="2dp" />
+</LinearLayout>

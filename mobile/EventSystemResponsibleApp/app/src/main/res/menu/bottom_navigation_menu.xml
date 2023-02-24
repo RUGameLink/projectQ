@@ -3,21 +3,21 @@
     <item
         android:id="@+id/create_item"
         android:enabled="true"
-        android:icon="@drawable/create_event_icon"
+        android:icon="@drawable/icon_create_event"
         android:title="@string/nav_create"/>
     <item
         android:id="@+id/event_item"
         android:enabled="true"
-        android:icon="@drawable/events_icon"
+        android:icon="@drawable/icon_events"
         android:title="@string/nav_event"/>
     <item
         android:id="@+id/presence_item"
         android:enabled="true"
-        android:icon="@drawable/presence_icon"
+        android:icon="@drawable/icon_presence"
         android:title="@string/nav_presence"/>
     <item
         android:id="@+id/profile_item"
         android:enabled="true"
-        android:icon="@drawable/profile_icon"
+        android:icon="@drawable/icon_profile"
         android:title="@string/nav_profile"/>
 </menu>

@@ -1,8 +1,38 @@
 <resources>
     <string name="app_name">Event System Responsible App</string>
 
+    <string name="settings_text">Настройки</string>
+    <string name="events_text">Мероприятия</string>
+    <string name="event_text">Мероприятие</string>
+    <string name="presence_confirmation_text">Подтверждение присутствия</string>
+    <string name="create_event_text">Создание мероприятия</string>
+    <string name="profile_text">Профиль</string>
+
     <string name="nav_create">Создать</string>
     <string name="nav_event">Мероприятия</string>
     <string name="nav_presence">Присутствие</string>
     <string name="nav_profile">Профиль</string>
+
+    <string name="clean_profile_text">Для взаимодействия с системой необходима авторизация</string>
+    <string name="sing_in_text">Войти через личный кабинет</string>
+    <string name="logout_button_text">Выйти из аккаунта</string>
+
+    <string name="logout_text">Выход</string>
+    <string name="logout_body_text">Вы действительно хотите выйти из аккаунта?</string>
+    <string name="yes_text">Да</string>
+    <string name="no_text">Нет</string>
+
+    <string name="filters_text">Фильтры</string>
+    <string name="education_text">Учебное</string>
+    <string name="sport_text">Спортивное</string>
+    <string name="society_text">Общественное</string>
+    <string name="science_text">Научное</string>
+    <string name="culture_text">Культурное</string>
+    <string name="any_tag_text">Любое</string>
+    <string name="search_events_hint">Поиск мероприятия</string>
+    <string name="description_text">Открыть описание</string>
+
+    <string name="date_of_end_text">Регистрация доступна до</string>
+    <string name="location_text">Место проведения</string>
+    <string name="human_count_text">Уже участвуют:</string>
 </resources>
