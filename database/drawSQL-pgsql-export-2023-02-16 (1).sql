@@ -1,10 +1,10 @@
 CREATE TABLE "event"(
-    "id" bigserial NOT NULL,
-    "id_organisator" BIGINT[] NOT NULL,
+    "id" BIGINT NOT NULL,
+    "id_organisator" BIGINT NOT NULL,
     "title" TEXT NOT NULL,
     "description" TEXT NOT NULL,
     "eventImage" TEXT NOT NULL,
-    "tags" smallint ARRAY NOT NULL,
+    "tags" SMALLINT NOT NULL,
     "date" DATE NOT NULL,
     "location" TEXT NOT NULL,
     "isOpen" BOOLEAN NOT NULL,
@@ -20,8 +20,6 @@ ALTER TABLE
     "event" ADD PRIMARY KEY("id");
 ALTER TABLE
     "event" ADD CONSTRAINT "event_id_organisator_unique" UNIQUE("id_organisator");
-ALTER TABLE
-    "event" ADD CONSTRAINT "event_tags_unique" UNIQUE("tags");
 COMMENT
 ON COLUMN
     "event"."id" IS 'bigserial';
@@ -29,7 +27,7 @@ COMMENT
 ON COLUMN
     "event"."tags" IS 'тут массив';
 CREATE TABLE "user"(
-    "id" bigserial NOT NULL,
+    "id" BIGINT NOT NULL,
     "id_istu" BIGINT NULL,
     "fullname" TEXT NOT NULL,
     "studentGroup" TEXT NULL,
@@ -45,7 +43,7 @@ COMMENT
 ON COLUMN
     "user"."id" IS 'bigserial';
 CREATE TABLE "my_event"(
-    "id" bigserial NOT NULL,
+    "id" BIGINT NOT NULL,
     "id_event" BIGINT NOT NULL,
     "id_user" BIGINT NOT NULL,
     "presence" BOOLEAN NOT NULL,
@@ -61,7 +59,7 @@ COMMENT
 ON COLUMN
     "my_event"."id" IS 'bigserial';
 CREATE TABLE "user_status"(
-    "id_status" smallserial NOT NULL,
+    "id_status" SMALLINT NOT NULL,
     "status" TEXT NOT NULL
 );
 ALTER TABLE
@@ -71,24 +69,22 @@ ALTER TABLE
 COMMENT
 ON COLUMN
     "user_status"."id_status" IS 'smallserial';
-CREATE TABLE "Tags"(
-    "id" smallserial NOT NULL,
-    "tag" VARCHAR(20) NOT NULL
+CREATE TABLE "tags"(
+    "id" SMALLINT NOT NULL,
+    "tag" VARCHAR(255) NOT NULL
 );
 ALTER TABLE
-    "Tags" ADD PRIMARY KEY("id");
+    "tags" ADD PRIMARY KEY("id");
 ALTER TABLE
-    "Tags" ADD CONSTRAINT "tags_tag_unique" UNIQUE("tag");
+    "tags" ADD CONSTRAINT "tags_tag_unique" UNIQUE("tag");
 COMMENT
 ON COLUMN
-    "Tags"."id" IS 'smallserial';
+    "tags"."id" IS 'smallserial';
 ALTER TABLE
     "my_event" ADD CONSTRAINT "my_event_id_event_foreign" FOREIGN KEY("id_event") REFERENCES "event"("id");
 ALTER TABLE
     "my_event" ADD CONSTRAINT "my_event_id_user_foreign" FOREIGN KEY("id_user") REFERENCES "user"("id");
 ALTER TABLE
     "event" ADD CONSTRAINT "event_id_organisator_foreign" FOREIGN KEY("id_organisator") REFERENCES "user"("id");
-ALTER TABLE
-    "user" ADD CONSTRAINT "user_id_status_foreign" FOREIGN KEY("id_status") REFERENCES "user_status"("id_status");
 ALTER TABLE
     "user" ADD CONSTRAINT "user_id_status_foreign" FOREIGN KEY("id_status") REFERENCES "user_status"("id_status");
