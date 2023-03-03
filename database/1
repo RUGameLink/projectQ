@@ -1,0 +1,6 @@
+/*
+триггер insert users before -> insert event_orgs (main, not main)
+тригер insert event before 
+insert is_org -> select * from event_orgs where id == insert.id return new; else return null;
+return new = 1; return null = 0;
+*/

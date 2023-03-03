@@ -43,4 +43,5 @@
     <string name="english_text">English</string>
 
     <string name="create_event_button_text">Создать мероприятие</string>
+    <string name="scanner_text">QR-код должен находиться в рамке для сканирования</string>
 </resources>
