@@ -14,6 +14,7 @@ import com.budiyev.android.codescanner.CodeScannerView
 import com.budiyev.android.codescanner.DecodeCallback
 import com.budiyev.android.codescanner.ErrorCallback
 import com.budiyev.android.codescanner.ScanMode
+import com.example.eventsystemresponsibleapp.Model.User
 import com.example.eventsystemresponsibleapp.R
 import com.google.android.material.appbar.MaterialToolbar
 
@@ -72,6 +73,10 @@ class ScannerActivity : AppCompatActivity() {
         codeScanner.decodeCallback = DecodeCallback {
             runOnUiThread {
                 Toast.makeText(this, "Scan result: ${it.text}", Toast.LENGTH_LONG).show()
+                val i = Intent(this, ResultScannerActivity::class.java)
+                val user = User(123, "Иванов Иван Иванович", "https://bans.avexa-project.ru/theme/img/profile-pics/2.jpg","ИУКб-18-1", it.text)
+                i.putExtra("user", user)
+                startActivity(i)
             }
         }
         codeScanner.errorCallback = ErrorCallback { // or ErrorCallback.SUPPRESS
