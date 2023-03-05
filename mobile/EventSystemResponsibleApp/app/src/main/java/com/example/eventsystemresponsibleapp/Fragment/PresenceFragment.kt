@@ -1,6 +1,7 @@
 package com.example.eventsystemresponsibleapp.Fragment
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -10,6 +11,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.eventsystemresponsibleapp.Activity.ScannerActivity
 import com.example.eventsystemresponsibleapp.Adapter.PresenceAdapter
 import com.example.eventsystemresponsibleapp.Model.Event
 import com.example.eventsystemresponsibleapp.Model.MyEvent
@@ -141,11 +143,11 @@ class PresenceFragment: Fragment() {
         recyclerView.adapter = presenceAdapter //внесение данных из листа в адаптер (заполнение данными)
 
         presenceAdapter.onItemClick = {
-            val myEvent = MyEvent(1212, it.id, it.title, "https://ixbt.online/live/images/original/24/67/86/2022/07/19/c145c2d9c7.jpg", it.tags, it.date, it.location)
-            Toast.makeText(context, "Будет QR ивента ${myEvent.title}", Toast.LENGTH_SHORT).show()
-//            val i = Intent(context, MyEventActivity::class.java)
-//            i.putExtra("myEvent", myEvent)
-//            context.startActivity(i)
+//            val myEvent = MyEvent(1212, it.id, it.title, "https://ixbt.online/live/images/original/24/67/86/2022/07/19/c145c2d9c7.jpg", it.tags, it.date, it.location)
+//            Toast.makeText(context, "Будет QR ивента ${myEvent.title}", Toast.LENGTH_SHORT).show()
+            val i = Intent(context, ScannerActivity::class.java)
+            i.putExtra("event_title", it.title)
+            context.startActivity(i)
         }
     }
 
