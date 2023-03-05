@@ -44,4 +44,12 @@
 
     <string name="create_event_button_text">Создать мероприятие</string>
     <string name="scanner_text">QR-код должен находиться в рамке для сканирования</string>
+    <string name="confirm_participation">Подтвердить присутствие</string>
+
+    <string name="confirmation_error_title">Ошибка</string>
+    <string name="confirmation_error_body">Не удалось подтвердить участие пользователя в данном мероприятии.</string>
+    <string name="ok_text">ОК</string>
+
+    <string name="confirmation_successful_title">Успех</string>
+    <string name="confirmation_successful_body">Участие в мероприятии успешно подтверждено.</string>
 </resources>

@@ -18,11 +18,13 @@ class ScannerActivity : AppCompatActivity() {
     private lateinit var codeScanner: CodeScanner
     private lateinit var toolbar: MaterialToolbar
 
+    private lateinit var eventTitle: String
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_scanner)
         init()
-        val eventTitle = intent.getStringExtra("event_title")
+        eventTitle = intent.getStringExtra("event_title")!!
         if (ContextCompat.checkSelfPermission(this@ScannerActivity, Manifest.permission.CAMERA) == PackageManager.PERMISSION_DENIED) {
             ActivityCompat.requestPermissions(this@ScannerActivity, arrayOf(Manifest.permission.CAMERA), 123)
         } else {
@@ -82,6 +84,7 @@ class ScannerActivity : AppCompatActivity() {
                         it.text
                     )
                     i.putExtra("user", user)
+                    i.putExtra("event_title", eventTitle)
                     startActivity(i)
                 }
                 else{
