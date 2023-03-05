@@ -52,4 +52,6 @@
 
     <string name="confirmation_successful_title">Успех</string>
     <string name="confirmation_successful_body">Участие в мероприятии успешно подтверждено.</string>
+
+    <string name="event_info_text">Информация о мероприятии</string>
 </resources>
