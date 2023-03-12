@@ -1,19 +1,15 @@
-![](vertopal_33b0f098d43e40bea73b2afdf0fc8bfe/media/image1.png){width="6.491666666666666in"
-height="4.3875in"}
+![](vertopal_33b0f098d43e40bea73b2afdf0fc8bfe/media/image1.png)
 
 Рисунок 1 -- Подсистема «Мероприятия»
 
-![](vertopal_33b0f098d43e40bea73b2afdf0fc8bfe/media/image2.png){width="6.497222222222222in"
-height="4.629861111111111in"}
+![](vertopal_33b0f098d43e40bea73b2afdf0fc8bfe/media/image2.png)
 
 Рисунок 2 -- Подсистема «Мои мероприятия»
 
-![](vertopal_33b0f098d43e40bea73b2afdf0fc8bfe/media/image3.png){width="6.491666666666666in"
-height="3.1791666666666667in"}
+![](vertopal_33b0f098d43e40bea73b2afdf0fc8bfe/media/image3.png)
 
 Рисунок 3 -- Подсистема «Пользователь»
 
-![](vertopal_33b0f098d43e40bea73b2afdf0fc8bfe/media/image4.png){width="5.2659722222222225in"
-height="2.6590277777777778in"}
+![](vertopal_33b0f098d43e40bea73b2afdf0fc8bfe/media/image4.png)
 
 Рисунок 4 -- Подсистема «Присутствие»
