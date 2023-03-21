@@ -1,0 +1,36 @@
+<resources>
+    <string name="app_name">event-system-app</string>
+    <string name="events_text">Мероприятия</string>
+    <string name="event_text">Мероприятие</string>
+    <string name="my_events_text">Мои мероприятия</string>
+    <string name="profile_text">Профиль</string>
+    <string name="settings_text">Настройки</string>
+    <string name="theme_text">Темная тема приложения:</string>
+    <string name="translate_text">Изменить язык приложения</string>
+    <string name="translate_header">Сменить язык</string>
+    <string name="russian_text">Русский</string>
+    <string name="english_text">English</string>
+    <string name="search_events_hint">Поиск мероприятия</string>
+    <string name="run_text">Участвовать</string>
+    <string name="description_text">Открыть описание</string>
+    <string name="filters_text">Фильтры</string>
+    <string name="education_text">Учебное</string>
+    <string name="sport_text">Спортивное</string>
+    <string name="society_text">Общественное</string>
+    <string name="science_text">Научное</string>
+    <string name="culture_text">Культурное</string>
+    <string name="any_tag_text">Любое</string>
+    <string name="logout_text">Выход</string>
+    <string name="logout_body_text">Вы действительно хотите выйти из аккаунта?</string>
+    <string name="yes_text">Да</string>
+    <string name="no_text">Нет</string>
+    <string name="warning_text">Внимание</string>
+    <string name="warning_body_text">Вы действительно хотите отменить регистрацию на данное мероприятие?</string>
+    <string name="location_text">Место проведения</string>
+    <string name="human_count_text">Уже участвуют:</string>
+    <string name="event_page_text">Страница мероприятия</string>
+    <string name="cancel_event_text">Отменить регистрацию</string>
+    <string name="clean_profile_text">Для регистрации на мероприятия необходима авторизация в систему</string>
+    <string name="sing_in_text">Войти через личный кабинет</string>
+    <string name="logout_button_text">Выйти из аккаунта</string>
+</resources>
