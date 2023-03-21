@@ -33,4 +33,16 @@
     <string name="clean_profile_text">Для регистрации на мероприятия необходима авторизация в систему</string>
     <string name="sing_in_text">Войти через личный кабинет</string>
     <string name="logout_button_text">Выйти из аккаунта</string>
+    <string name="scanner_text">QR-код должен находиться в рамке для сканирования</string>
+    <string name="confirm_participation">Подтвердить присутствие</string>
+
+    <string name="confirmation_error_title">Ошибка</string>
+    <string name="confirmation_error_body">Не удалось подтвердить участие пользователя в данном мероприятии.</string>
+    <string name="ok_text">ОК</string>
+
+    <string name="confirmation_successful_title">Успех</string>
+    <string name="confirmation_successful_body">Участие в мероприятии успешно подтверждено.</string>
+
+    <string name="nav_presence">Присутствие</string>
+    <string name="nav_create">Создать</string>
 </resources>
