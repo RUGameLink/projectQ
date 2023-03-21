@@ -1,0 +1,15 @@
+![](vertopal_33b0f098d43e40bea73b2afdf0fc8bfe/media/image1.png)
+
+Рисунок 1 -- Подсистема «Мероприятия»
+
+![](vertopal_33b0f098d43e40bea73b2afdf0fc8bfe/media/image2.png)
+
+Рисунок 2 -- Подсистема «Мои мероприятия»
+
+![](vertopal_33b0f098d43e40bea73b2afdf0fc8bfe/media/image3.png)
+
+Рисунок 3 -- Подсистема «Пользователь»
+
+![](vertopal_33b0f098d43e40bea73b2afdf0fc8bfe/media/image4.png)
+
+Рисунок 4 -- Подсистема «Присутствие»

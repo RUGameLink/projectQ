@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/create_item"
+        android:enabled="true"
+        android:icon="@drawable/icon_create_event"
+        android:title="@string/nav_create"/>
+    <item
+        android:id="@+id/event_item"
+        android:enabled="true"
+        android:icon="@drawable/events_icon"
+        android:title="@string/events_text"/>
+    <item
+        android:id="@+id/presence_item"
+        android:enabled="true"
+        android:icon="@drawable/icon_presence"
+        android:title="@string/nav_presence"/>
+    <item
+        android:id="@+id/profile_item"
+        android:enabled="true"
+        android:icon="@drawable/profile_icon"
+        android:title="@string/profile_text"/>
+</menu>
