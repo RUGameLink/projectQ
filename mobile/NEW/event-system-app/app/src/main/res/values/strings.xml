@@ -45,4 +45,6 @@
 
     <string name="nav_presence">Присутствие</string>
     <string name="nav_create">Создать</string>
+    <string name="presence_confirmation_text">Подтверждение присутствия</string>
+    <string name="create_event_text">Создание мероприятия</string>
 </resources>

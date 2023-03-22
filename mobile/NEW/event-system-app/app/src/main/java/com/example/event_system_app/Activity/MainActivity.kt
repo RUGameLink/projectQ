@@ -11,10 +11,7 @@ import android.view.MenuItem
 import android.widget.FrameLayout
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.fragment.app.Fragment
-import com.example.event_system_app.Fragment.EventsFragment
-import com.example.event_system_app.Fragment.MyEventsFragment
-import com.example.event_system_app.Fragment.ProfileCleanFragment
-import com.example.event_system_app.Fragment.ProfileFragment
+import com.example.event_system_app.Fragment.*
 import com.example.event_system_app.R
 import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -26,8 +23,11 @@ class MainActivity : AppCompatActivity() {
     private lateinit var frameLayout: FrameLayout
     private lateinit var profileFragment: ProfileFragment
     private lateinit var eventsFragment: EventsFragment
+    private lateinit var eventsResponsibleFragment: EventsResponsibleFragment
+    private lateinit var createAnEventFragment: CreateAnEventFragment
     private lateinit var myEventsFragment: MyEventsFragment
     private lateinit var profileCleanFragment: ProfileCleanFragment
+    private lateinit var presenceFragment: PresenceFragment
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -52,6 +52,24 @@ class MainActivity : AppCompatActivity() {
                     title = getString(R.string.events_text)
                     eventsFragment = EventsFragment()
                     replaceFragment(eventsFragment)
+                    true
+                }
+                R.id.create_item -> {
+                    title = getString(R.string.create_event_text)
+                    createAnEventFragment = CreateAnEventFragment()
+                    replaceFragment(createAnEventFragment)
+                    true
+                }
+                R.id.event_responsible_item -> {
+                    title = getString(R.string.events_text)
+                    eventsResponsibleFragment = EventsResponsibleFragment()
+                    replaceFragment(eventsResponsibleFragment)
+                    true
+                }
+                R.id.presence_item -> {
+                    title = getString(R.string.presence_confirmation_text)
+                    presenceFragment = PresenceFragment()
+                    replaceFragment(presenceFragment)
                     true
                 }
                 R.id.profile_item -> {
