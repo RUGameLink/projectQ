@@ -8,11 +8,9 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
-import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.event_system_app.Activity.EventActivity
-import com.example.event_system_app.Activity.MainActivity
 import com.example.event_system_app.Model.Event
 import com.example.event_system_app.R
 import com.google.android.material.button.MaterialButton
@@ -46,7 +44,7 @@ class EventAdapter(private val events: ArrayList<Event>, private val context: Co
         val imgUrl = events[position].imgUrl
         Glide.with(context)
             .load(imgUrl)
-            .placeholder(R.drawable.events_icon)
+            .placeholder(R.drawable.icon_events)
             .into(holder.eventImg);
 
         holder.descButton.setOnClickListener {

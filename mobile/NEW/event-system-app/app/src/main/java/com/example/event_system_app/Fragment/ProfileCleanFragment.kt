@@ -1,4 +1,4 @@
-package com.example.event_system_app.Fragments
+package com.example.event_system_app.Fragment
 
 import android.content.Context
 import android.os.Bundle

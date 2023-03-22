@@ -62,8 +62,8 @@ class MyEventActivity: AppCompatActivity()  {
         setSupportActionBar(toolbar)
         toolbar.isTitleCentered = true
         title = getString(R.string.event_text)
-        supportActionBar?.setHomeAsUpIndicator(R.drawable.back_icon)
-        toolbar.navigationIcon = getDrawable(R.drawable.back_icon)
+        supportActionBar?.setHomeAsUpIndicator(R.drawable.icon_back)
+        toolbar.navigationIcon = getDrawable(R.drawable.icon_back)
         event = intent.getSerializableExtra("myEvent") as MyEvent
         toolbar.setNavigationOnClickListener {
             val i = Intent(this, MainActivity::class.java)
@@ -223,7 +223,7 @@ class MyEventActivity: AppCompatActivity()  {
         Glide.with(this)
             .load(event.qrImg)
             .asBitmap()
-            .placeholder(R.drawable.events_icon)
+            .placeholder(R.drawable.icon_events)
             .into(qrImg)
 
         headerMyText.text = event.title

@@ -19,7 +19,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingTop="30dp"
-                app:srcCompat="@drawable/translate_icon" />
+                app:srcCompat="@drawable/icon_translate" />
 
             <TextView
                 android:id="@+id/textView"

@@ -1,4 +1,4 @@
-package com.example.event_system_app.Fragments
+package com.example.event_system_app.Fragment
 
 import android.content.Context
 import android.content.pm.ActivityInfo
@@ -13,8 +13,6 @@ import com.example.event_system_app.Adapter.EventAdapter
 import com.example.event_system_app.Model.Event
 import com.example.event_system_app.R
 import android.widget.SearchView
-import android.widget.Toast
-import com.google.android.material.button.MaterialButtonToggleGroup
 import com.nex3z.togglebuttongroup.SingleSelectToggleGroup
 
 class EventsFragment: Fragment() {

@@ -1,7 +1,6 @@
 package com.example.event_system_app.Adapter
 
 import android.content.Context
-import android.text.TextUtils.split
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -44,7 +43,7 @@ class MyEventAdapter(private val events: ArrayList<Event>, private val context: 
         val imgUrl = events[position].imgUrl
         Glide.with(context)
             .load(imgUrl)
-            .placeholder(R.drawable.events_icon)
+            .placeholder(R.drawable.icon_events)
             .into(holder.eventSmallImg);
     }
 

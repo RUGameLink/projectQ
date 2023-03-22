@@ -8,7 +8,7 @@
     <item
         android:id="@+id/event_item"
         android:enabled="true"
-        android:icon="@drawable/events_icon"
+        android:icon="@drawable/icon_events"
         android:title="@string/events_text"/>
     <item
         android:id="@+id/presence_item"
@@ -18,6 +18,6 @@
     <item
         android:id="@+id/profile_item"
         android:enabled="true"
-        android:icon="@drawable/profile_icon"
+        android:icon="@drawable/icon_profile"
         android:title="@string/profile_text"/>
 </menu>

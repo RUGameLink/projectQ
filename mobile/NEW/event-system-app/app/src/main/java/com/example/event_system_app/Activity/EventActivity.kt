@@ -8,7 +8,6 @@ import android.view.MenuItem
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.app.AppCompatDelegate
 import com.bumptech.glide.Glide
 import com.example.event_system_app.Model.Event
 import com.example.event_system_app.R
@@ -32,8 +31,8 @@ class EventActivity: AppCompatActivity() {
         setSupportActionBar(toolbar)
         toolbar.isTitleCentered = true
         title = getString(R.string.event_text)
-        supportActionBar?.setHomeAsUpIndicator(R.drawable.back_icon)
-        toolbar.navigationIcon = getDrawable(R.drawable.back_icon)
+        supportActionBar?.setHomeAsUpIndicator(R.drawable.icon_back)
+        toolbar.navigationIcon = getDrawable(R.drawable.icon_back)
         val event = intent.getSerializableExtra("event") as Event
         toolbar.setNavigationOnClickListener {
             val i = Intent(this, MainActivity::class.java)
@@ -47,7 +46,7 @@ class EventActivity: AppCompatActivity() {
     private fun setContent(event: Event) {
         Glide.with(this)
             .load(event.imgUrl)
-            .placeholder(R.drawable.events_icon)
+            .placeholder(R.drawable.icon_events)
             .into(eventImage)
 
         headerText.text = event.title

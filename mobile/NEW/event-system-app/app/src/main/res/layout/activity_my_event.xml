@@ -102,7 +102,7 @@
                         android:clickable="true"
 
                         app:backgroundTint="@color/purple_200"
-                        app:srcCompat="@drawable/share_icon" />
+                        app:srcCompat="@drawable/icon_share" />
 
                     <com.google.android.material.floatingactionbutton.FloatingActionButton
                         android:id="@+id/calendarButton"
@@ -112,7 +112,7 @@
                         android:layout_weight="1"
                         android:clickable="true"
                         app:backgroundTint="@color/purple_200"
-                        app:srcCompat="@drawable/calendar_icon" />
+                        app:srcCompat="@drawable/icon_calendar" />
                 </LinearLayout>
 
                 <LinearLayout

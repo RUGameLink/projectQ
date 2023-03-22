@@ -11,10 +11,10 @@ import android.view.MenuItem
 import android.widget.FrameLayout
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.fragment.app.Fragment
-import com.example.event_system_app.Fragments.EventsFragment
-import com.example.event_system_app.Fragments.MyEventsFragment
-import com.example.event_system_app.Fragments.ProfileCleanFragment
-import com.example.event_system_app.Fragments.ProfileFragment
+import com.example.event_system_app.Fragment.EventsFragment
+import com.example.event_system_app.Fragment.MyEventsFragment
+import com.example.event_system_app.Fragment.ProfileCleanFragment
+import com.example.event_system_app.Fragment.ProfileFragment
 import com.example.event_system_app.R
 import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.bottomnavigation.BottomNavigationView

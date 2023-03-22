@@ -1,6 +1,5 @@
 package com.example.event_system_app.Activity
 
-import android.content.Intent
 import android.os.Bundle
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
@@ -18,8 +17,8 @@ class QrActivity: AppCompatActivity()  {
         init()
         setSupportActionBar(toolbar)
         toolbar.isTitleCentered = true
-        supportActionBar?.setHomeAsUpIndicator(R.drawable.back_icon)
-        toolbar.navigationIcon = getDrawable(R.drawable.back_icon)
+        supportActionBar?.setHomeAsUpIndicator(R.drawable.icon_back)
+        toolbar.navigationIcon = getDrawable(R.drawable.icon_back)
         val qrImage = intent.getStringExtra("qr")
 
         toolbar.setNavigationOnClickListener {
@@ -29,7 +28,7 @@ class QrActivity: AppCompatActivity()  {
 
         Glide.with(this)
             .load(qrImage)
-            .placeholder(R.drawable.events_icon)
+            .placeholder(R.drawable.icon_events)
             .into(qrFullscreen)
     }
 

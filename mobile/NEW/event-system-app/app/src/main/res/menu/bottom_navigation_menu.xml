@@ -3,16 +3,16 @@
     <item
         android:id="@+id/my_events_item"
         android:enabled="true"
-        android:icon="@drawable/my_events_icon"
+        android:icon="@drawable/icon_my_events"
         android:title="@string/my_events_text"/>
     <item
         android:id="@+id/events_item"
         android:enabled="true"
-        android:icon="@drawable/events_icon"
+        android:icon="@drawable/icon_events"
         android:title="@string/events_text"/>
     <item
         android:id="@+id/profile_item"
         android:enabled="true"
-        android:icon="@drawable/profile_icon"
+        android:icon="@drawable/icon_profile"
         android:title="@string/profile_text"/>
 </menu>

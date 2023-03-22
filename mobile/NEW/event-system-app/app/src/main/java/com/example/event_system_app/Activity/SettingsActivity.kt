@@ -11,7 +11,6 @@ import android.widget.RadioButton
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
-import androidx.core.app.ActivityCompat.recreate
 import com.example.event_system_app.R
 import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.button.MaterialButton
@@ -32,8 +31,8 @@ class SettingsActivity: AppCompatActivity()  {
         setSupportActionBar(toolbar)
         toolbar.isTitleCentered = true
         title = getString(R.string.settings_text)
-        supportActionBar?.setHomeAsUpIndicator(R.drawable.back_icon)
-        toolbar.navigationIcon = getDrawable(R.drawable.back_icon)
+        supportActionBar?.setHomeAsUpIndicator(R.drawable.icon_back)
+        toolbar.navigationIcon = getDrawable(R.drawable.icon_back)
 
         toolbar.setNavigationOnClickListener {
             val i = Intent(this, MainActivity::class.java)

@@ -1,4 +1,4 @@
-package com.example.event_system_app.Fragments
+package com.example.event_system_app.Fragment
 
 import android.content.Context
 import android.content.Intent
@@ -7,20 +7,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.SearchView
-
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.event_system_app.Activity.EventActivity
-import com.example.event_system_app.Activity.MyEventActivity
-import com.example.event_system_app.Adapter.EventAdapter
+import com.example.event_system_app.Activity.ScannerActivity
 import com.example.event_system_app.Adapter.MyEventAdapter
 import com.example.event_system_app.Model.Event
-import com.example.event_system_app.Model.MyEvent
 import com.example.event_system_app.R
 
-class MyEventsFragment: Fragment() {
-    private lateinit var myEventsSearchView: SearchView
+class PresenceFragment: Fragment() {
+    private lateinit var presenceEventsSearchView: SearchView
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
@@ -30,7 +26,7 @@ class MyEventsFragment: Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        val view = inflater.inflate(R.layout.fragment_myevents, container, false)
+        val view = inflater.inflate(R.layout.fragment_presence, container, false)
         init(view)
 
         val eventList = ArrayList<Event>()
@@ -112,7 +108,7 @@ class MyEventsFragment: Fragment() {
         setMyEventAdapter(eventList, view, requireContext())
 
         //Слушатель поисковика
-        myEventsSearchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+        presenceEventsSearchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean { //Поиск по карточкам
 
                 val searchEventList = ArrayList<Event>()
@@ -137,24 +133,24 @@ class MyEventsFragment: Fragment() {
     }
 
     private fun setMyEventAdapter(events: ArrayList<Event>, view: View, context: Context){ //Адаптер текущих игр
-        val recyclerView: RecyclerView = view.findViewById(R.id.myEventsRecyclerView) //Подвязка ресайклера к объекту
+        val recyclerView: RecyclerView = view.findViewById(R.id.presenceEventsRecyclerView) //Подвязка ресайклера к объекту
         val linearLayoutManager = LinearLayoutManager(context) //Подготовка лайаут менеджера
         linearLayoutManager.orientation = LinearLayoutManager.VERTICAL
         recyclerView.layoutManager = linearLayoutManager //Инициализация лайаут менеджера
-        val myEventAdapter = MyEventAdapter(events, context) //внесение данных из листа в адаптер (заполнение данными)
-        recyclerView.adapter = myEventAdapter //внесение данных из листа в адаптер (заполнение данными)
+        val presenceAdapter = MyEventAdapter(events, context) //внесение данных из листа в адаптер (заполнение данными)
+        recyclerView.adapter = presenceAdapter //внесение данных из листа в адаптер (заполнение данными)
 
-        myEventAdapter.onItemClick = {
-            val myEvent = MyEvent(1212, it.id, it.title, "https://ixbt.online/live/images/original/24/67/86/2022/07/19/c145c2d9c7.jpg", it.tags, it.date, it.location)
-
-            val i = Intent(context, MyEventActivity::class.java)
-            i.putExtra("myEvent", myEvent)
+        presenceAdapter.onItemClick = {
+//            val myEvent = MyEvent(1212, it.id, it.title, "https://ixbt.online/live/images/original/24/67/86/2022/07/19/c145c2d9c7.jpg", it.tags, it.date, it.location)
+//            Toast.makeText(context, "Будет QR ивента ${myEvent.title}", Toast.LENGTH_SHORT).show()
+            val i = Intent(context, ScannerActivity::class.java)
+            i.putExtra("event_title", it.title)
             context.startActivity(i)
         }
     }
 
     //Инициализация компонентов
     private fun init(view: View) {
-        myEventsSearchView = view.findViewById(R.id.myEventsSearchView)
+        presenceEventsSearchView = view.findViewById(R.id.presenceEventsSearchView)
     }
 }
