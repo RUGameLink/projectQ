@@ -5,7 +5,7 @@
  - [Варианты использования](https://github.com/RUGameLink/projectQ/tree/main/md/Проектирование/NEW/Варианты%20использования)
  - [Текущее представление модели](https://github.com/RUGameLink/projectQ/tree/main/md/Проектирование/NEW/Текущее%20представление%20модели)
  - [Будущее представление модели](https://github.com/RUGameLink/projectQ/tree/main/md/Проектирование/NEW/Будущее%20представление%20модели)
- - [Требования к ролям и правам доступа](https://github.com/RUGameLink/projectQ/tree/main/md/Проектирование/OLD/Требования%20к%20ролям%20и%20правам%20доступа)
+ - [Требования к ролям и правам доступа](https://github.com/RUGameLink/projectQ/tree/main/md/Проектирование/NEW/Требования%20к%20ролям%20и%20правам%20доступа)
  - [Запросы для Backend'a](https://github.com/RUGameLink/projectQ/tree/main/md/Проектирование/NEW/Запросы)
  - [Архитектура системы](https://github.com/RUGameLink/projectQ/tree/main/md/Проектирование/NEW/Архитектура%20системы)
 <details>
