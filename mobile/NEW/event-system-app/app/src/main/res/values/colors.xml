@@ -1,17 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="purple_200">#FFBB86FC</color>
-    <color name="grey_white">#D9D9D9</color>
-    <color name="purple_700">#FF3700B3</color>
-    <color name="teal_200">#FF03DAC5</color>
-    <color name="nav_active">#CAD1D8</color>
-    <color name="grey">#49454F</color>
-    <color name="white">#FFFFFFFF</color>
-    <color name="black">#000000</color>
-    <color name="elem_color">#49454F</color>
-    <color name="text_baw">#ffffff</color>
-    <color name="elem_bg_menu">#D9D9D9</color>
-    <color name="dialog_color">#eee8f4</color>
-    <color name="black_and_white">#000000</color>
-    <color name="purple">#6750A4</color>
+    <color name="bg_color">#F9F5F5</color>
+    <color name="bg_menu_color">#FFFFFF</color>
+    <color name="menu_text_color">#348498</color>
+    <color name="green_color">#348498</color>
+    <color name="orange_color">#FF502F</color>
+    <color name="grey_text_color">#49454F</color>
+    <color name="bg_dialog_color">#eee8f4</color>
+    <color name="bg_nav_active_color">#cad1d8</color>
+    <color name="black_white_color">#1C1B1F</color>
+    <color name="filter_stroke_color">#348498</color>
+    <color name="bg_filter_color">#b7eaed</color>
 </resources>
