@@ -1,2 +1,2 @@
-- [Версия 1](https://github.com/RUGameLink/projectQ/tree/rework/md/Проектирование/NEW/Варианты%20использования/v1)
-- [Версия 2 *(актуальная)*](https://github.com/RUGameLink/projectQ/tree/rework/md/Проектирование/NEW/Варианты%20использования/v2)
+- [Версия 1](https://github.com/RUGameLink/projectQ/tree/main/md/Проектирование/NEW/Варианты%20использования/v1)
+- [Версия 2 *(актуальная)*](https://github.com/RUGameLink/projectQ/tree/main/md/Проектирование/NEW/Варианты%20использования/v2)
