@@ -5,12 +5,15 @@
         <item name="colorPrimary">@color/bg_menu_color</item>
         <item name="colorPrimaryVariant">@color/white</item>
         <item name="colorOnPrimary">@color/bg_color</item>
+        <item name="android:windowBackground">@color/bg_color</item>
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/bg_menu_color</item>
         <item name="colorSecondaryVariant">@color/white</item>
         <item name="colorOnSecondary">@color/bg_color</item>
         <!-- Status bar color. -->
-        <item name="android:statusBarColor">@color/bg_color</item>
+
+        <item name="android:statusBarColor">@color/green_color</item>
+
         <!-- Customize your theme here. -->
 
         <item name="android:textColor">@color/grey_text_color</item>

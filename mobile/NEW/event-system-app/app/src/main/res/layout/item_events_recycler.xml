@@ -96,6 +96,7 @@
                 app:iconPadding="10dp"
                 app:iconTint="@color/green_color"
                 app:strokeColor="@color/green_color"
+                android:backgroundTint="@color/green_color"
                 app:strokeWidth="2dp" />
 
             <Button
