@@ -12,7 +12,8 @@
         layout="@layout/toolbar_layout"
         app:layout_constraintBottom_toTopOf="@+id/frame"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"></include>
+        app:layout_constraintStart_toStartOf="parent">
+    </include>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -29,7 +30,7 @@
             android:layout_height="wrap_content"
             android:checked="false"
             android:text="@string/theme_text"
-            android:textColor="@color/elem_color"
+            android:textColor="@color/bg_menu_color"
             android:textSize="16sp"
             android:textStyle="bold"
             android:theme="@style/ThemeSwitch">
@@ -44,12 +45,12 @@
             android:paddingTop="15dp"
             android:paddingBottom="15dp"
             android:text="@string/translate_text"
-            android:textColor="@color/purple_200"
+            android:textColor="@color/orange_color"
             android:textSize="16sp"
             app:icon="@drawable/icon_translate"
             app:iconPadding="10dp"
-            app:iconTint="@color/purple_200"
-            app:strokeColor="@color/grey_white"
+            app:iconTint="@color/white"
+            app:strokeColor="@color/orange_color"
             app:strokeWidth="2dp" />
     </LinearLayout>
 

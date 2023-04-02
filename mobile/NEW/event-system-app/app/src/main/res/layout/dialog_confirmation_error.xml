@@ -5,7 +5,7 @@
     android:id="@+id/card"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:backgroundTint="@color/dialog_color"
+    android:backgroundTint="@color/bg_dialog_color"
     app:cardCornerRadius="15dp">
 
     <LinearLayout
@@ -27,7 +27,7 @@
             android:paddingTop="15dp"
             android:text="@string/confirmation_error_title"
             android:textAlignment="center"
-            android:textColor="@color/black"
+            android:textColor="@color/green_color"
             android:textSize="24sp"
             android:textStyle="bold" />
 
@@ -37,7 +37,7 @@
             android:paddingTop="15dp"
             android:text="@string/confirmation_error_body"
             android:textAlignment="center"
-            android:textColor="@color/black"
+            android:textColor="@color/green_color"
             android:textSize="16sp" />
 
         <LinearLayout
@@ -55,9 +55,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="15dp"
                 android:text="@string/ok_text"
-                android:textColor="@color/purple_200"
+                android:textColor="@color/orange_color"
                 android:textSize="12sp"
-                app:backgroundTint="@color/dialog_color"></com.google.android.material.button.MaterialButton>
+                app:backgroundTint="@color/bg_dialog_color">
+            </com.google.android.material.button.MaterialButton>
 
         </LinearLayout>
 

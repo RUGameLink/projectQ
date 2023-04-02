@@ -11,4 +11,6 @@
     <color name="black_white_color">#1C1B1F</color>
     <color name="filter_stroke_color">#348498</color>
     <color name="bg_filter_color">#b7eaed</color>
+    <color name="black">#000000</color>
+    <color name="white">#ffffff</color>
 </resources>

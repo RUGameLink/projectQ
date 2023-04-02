@@ -8,7 +8,7 @@
     android:orientation="horizontal"
     app:cardCornerRadius="15dp"
     app:cardElevation="2dp"
-    app:strokeColor="@color/elem_bg_menu"
+    app:strokeColor="@color/bg_menu_color"
     app:strokeWidth="2dp">
 
     <LinearLayout

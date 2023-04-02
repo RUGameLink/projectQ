@@ -2,17 +2,17 @@
     <!-- Base application theme. -->
     <style name="Theme.Eventsystemapp" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/grey_white</item>
-        <item name="colorPrimaryVariant">@color/grey_white</item>
-        <item name="colorOnPrimary">@color/white</item>
+        <item name="colorPrimary">@color/bg_menu_color</item>
+        <item name="colorPrimaryVariant">@color/white</item>
+        <item name="colorOnPrimary">@color/bg_color</item>
         <!-- Secondary brand color. -->
-        <item name="colorSecondary">@color/teal_200</item>
-        <item name="colorSecondaryVariant">@color/grey</item>
-        <item name="colorOnSecondary">@color/grey</item>
+        <item name="colorSecondary">@color/bg_menu_color</item>
+        <item name="colorSecondaryVariant">@color/white</item>
+        <item name="colorOnSecondary">@color/bg_color</item>
         <!-- Status bar color. -->
-        <item name="android:statusBarColor">@color/black</item>
+        <item name="android:statusBarColor">@color/bg_color</item>
         <!-- Customize your theme here. -->
 
-        <item name="android:textColor">@color/elem_color</item>
+        <item name="android:textColor">@color/grey_text_color</item>
     </style>
 </resources>
