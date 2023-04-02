@@ -27,7 +27,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@color/purple_200" />
+            app:srcCompat="@color/orange_color" />
     </com.google.android.material.card.MaterialCardView>
 
     <TextView
@@ -63,12 +63,15 @@
         android:layout_marginTop="30dp"
         android:paddingTop="15dp"
         android:paddingBottom="15dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginStart="15dp"
         android:text="@string/logout_button_text"
-        android:textColor="@color/purple_200"
+        android:textColor="@color/white"
         android:textSize="16sp"
         app:icon="@drawable/icon_logout"
         app:iconPadding="10dp"
-        app:iconTint="@color/purple_200"
-        app:strokeColor="@color/grey_white"
+        app:iconTint="@color/white"
+        app:strokeColor="@color/orange_color"
+        android:backgroundTint="@color/orange_color"
         app:strokeWidth="2dp" />
 </LinearLayout>

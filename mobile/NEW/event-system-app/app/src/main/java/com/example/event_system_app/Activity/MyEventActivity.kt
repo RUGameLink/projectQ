@@ -94,6 +94,7 @@ class MyEventActivity: AppCompatActivity()  {
         qrImg.setOnClickListener {
             val i = Intent(this, QrActivity::class.java)
             i.putExtra("qr", event.qrImg)
+            i.putExtra("eventTitle", event.title)
             startActivity(i)
         }
 

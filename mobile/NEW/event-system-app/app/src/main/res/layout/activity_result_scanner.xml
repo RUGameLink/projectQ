@@ -42,7 +42,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@color/purple_200" />
+                app:srcCompat="@color/orange_color" />
         </com.google.android.material.card.MaterialCardView>
 
         <TextView
@@ -79,11 +79,11 @@
             android:layout_marginTop="60dp"
             android:layout_marginEnd="10dp"
             android:layout_marginBottom="10dp"
-            android:backgroundTint="@color/purple_200"
+            android:backgroundTint="@color/orange_color"
             android:text="@string/confirm_participation"
             android:textSize="16sp"
             app:icon="@drawable/icon_confirm_participation"
-            app:strokeColor="@color/grey_white"></com.google.android.material.button.MaterialButton>
+            app:strokeColor="@color/orange_color"></com.google.android.material.button.MaterialButton>
 
     </LinearLayout>
 

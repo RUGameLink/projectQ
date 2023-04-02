@@ -91,7 +91,8 @@
                         android:layout_marginEnd="20dp"
                         android:layout_weight="1"
                         android:clickable="true"
-                        app:backgroundTint="@color/purple_200"
+                        app:backgroundTint="@color/orange_color"
+                        app:elevation="0dp"
                         app:srcCompat="@drawable/download_icon" />
 
                     <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -101,7 +102,8 @@
                         android:layout_weight="1"
                         android:clickable="true"
 
-                        app:backgroundTint="@color/purple_200"
+                        app:backgroundTint="@color/orange_color"
+                        app:elevation="0dp"
                         app:srcCompat="@drawable/icon_share" />
 
                     <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -111,7 +113,8 @@
                         android:layout_marginStart="20dp"
                         android:layout_weight="1"
                         android:clickable="true"
-                        app:backgroundTint="@color/purple_200"
+                        app:backgroundTint="@color/orange_color"
+                        app:elevation="0dp"
                         app:srcCompat="@drawable/icon_calendar" />
                 </LinearLayout>
 
@@ -142,7 +145,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginTop="20dp"
-                    android:layout_marginEnd="20dp"
+                    android:gravity="center"
                     android:orientation="vertical">
 
                     <Button
@@ -151,27 +154,30 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="10dp"
+                        android:backgroundTint="@color/green_color"
+                        android:gravity="center_horizontal"
                         android:paddingTop="15dp"
-                        android:paddingEnd="10dp"
                         android:paddingBottom="15dp"
                         android:text="@string/event_page_text"
-                        android:textColor="@color/black_and_white"
+                        android:textColor="@color/white"
                         android:textSize="16sp"
                         app:iconPadding="10dp"
-                        app:iconTint="@color/purple_200"
-                        app:strokeColor="@color/grey_white"
+                        app:iconTint="@color/green_color"
+                        app:strokeColor="@color/green_color"
                         app:strokeWidth="2dp" />
 
-                    <com.google.android.material.button.MaterialButton
+                    <Button
                         android:id="@+id/cancel_button"
                         style="@style/Widget.Material3.Button.OutlinedButton"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="15dp"
-                        android:backgroundTint="@color/purple_200"
+                        android:backgroundTint="@color/orange_color"
+                        android:gravity="center_horizontal"
                         android:text="@string/cancel_event_text"
                         android:textSize="16sp"
-                        app:strokeColor="@color/grey_white"></com.google.android.material.button.MaterialButton>
+                        app:strokeColor="@color/orange_color">
+                    </Button>
                 </LinearLayout>
 
             </LinearLayout>

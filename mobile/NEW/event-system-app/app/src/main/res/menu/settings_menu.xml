@@ -5,7 +5,7 @@
         android:id="@+id/more"
         android:enabled="true"
         android:icon="@drawable/icon_more"
-        android:iconTint="@color/elem_bg_menu"
+        android:iconTint="@color/bg_menu_color"
         app:showAsAction="always">
 
         <menu>

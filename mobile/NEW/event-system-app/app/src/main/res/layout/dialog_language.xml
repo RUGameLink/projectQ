@@ -5,7 +5,7 @@
         android:id="@+id/card"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:backgroundTint="@color/dialog_color"
+        android:backgroundTint="@color/bg_dialog_color"
         app:cardCornerRadius="15dp">
 
         <LinearLayout
@@ -28,7 +28,7 @@
                 android:paddingTop="15dp"
                 android:text="@string/translate_header"
                 android:textAlignment="center"
-                android:textColor="@color/black"
+                android:textColor="@color/green_color"
                 android:textSize="24sp"
                 android:textStyle="bold" />
 
@@ -42,7 +42,7 @@
                 android:drawableEnd="@drawable/russia"
                 android:text="@string/russian_text"
                 android:textAlignment="textStart"
-                android:textColor="@color/black"
+                android:textColor="@color/green_color"
                 android:textSize="16dp" />
 
             <RadioButton
@@ -54,7 +54,7 @@
                 android:layout_marginBottom="15dp"
                 android:drawableEnd="@drawable/united_kingdom"
                 android:text="@string/english_text"
-                android:textColor="@color/black"
+                android:textColor="@color/green_color"
                 android:textSize="16dp" />
 
         </LinearLayout>

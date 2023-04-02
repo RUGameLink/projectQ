@@ -11,7 +11,7 @@
     android:paddingBottom="30dp"
     app:cardCornerRadius="15dp"
     app:cardElevation="2dp"
-    app:strokeColor="@color/elem_bg_menu"
+    app:strokeColor="@color/bg_menu_color"
     app:strokeWidth="2dp">
 
 
@@ -35,7 +35,7 @@
             android:paddingTop="10dp"
             android:paddingEnd="15dp"
             android:text="efefefef"
-            android:textColor="@color/black_and_white"
+            android:textColor="@color/black_white_color"
             android:textSize="16sp"
             android:textStyle="bold" />
 
@@ -91,11 +91,12 @@
                 android:paddingEnd="10dp"
                 android:paddingBottom="15dp"
                 android:text="@string/description_text"
-                android:textColor="@color/black_and_white"
+                android:textColor="@color/white"
                 android:textSize="16sp"
                 app:iconPadding="10dp"
-                app:iconTint="@color/purple_200"
-                app:strokeColor="@color/grey_white"
+                app:iconTint="@color/green_color"
+                app:strokeColor="@color/green_color"
+                android:backgroundTint="@color/green_color"
                 app:strokeWidth="2dp" />
 
             <Button
@@ -106,7 +107,7 @@
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginEnd="10dp"
-                android:backgroundTint="@color/purple_200"
+                android:backgroundTint="@color/orange_color"
                 android:gravity="end"
                 android:paddingStart="20dp"
                 android:paddingTop="15dp"
@@ -115,8 +116,8 @@
                 android:textColor="@color/white"
                 android:textSize="16sp"
                 app:iconPadding="10dp"
-                app:iconTint="@color/purple_200"
-                app:strokeColor="@color/grey_white"
+                app:iconTint="@color/white"
+                app:strokeColor="@color/orange_color"
                 app:strokeWidth="2dp" />
 
         </LinearLayout>

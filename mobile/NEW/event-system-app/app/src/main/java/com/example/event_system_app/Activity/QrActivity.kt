@@ -20,6 +20,8 @@ class QrActivity: AppCompatActivity()  {
         supportActionBar?.setHomeAsUpIndicator(R.drawable.icon_back)
         toolbar.navigationIcon = getDrawable(R.drawable.icon_back)
         val qrImage = intent.getStringExtra("qr")
+        val eventTitle = intent.getStringExtra("eventTitle")
+        title = eventTitle
 
         toolbar.setNavigationOnClickListener {
             super.onBackPressed();

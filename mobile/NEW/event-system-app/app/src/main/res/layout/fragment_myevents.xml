@@ -18,10 +18,11 @@
         android:layout_marginRight="10dp"
         android:layout_marginBottom="15dp"
         android:background="@drawable/bg_rounded"
-        android:backgroundTint="@color/elem_bg_menu"
+        android:backgroundTint="@color/bg_menu_color"
         android:iconifiedByDefault="false"
         android:paddingStart="-10dp"
-        android:queryHint="@string/search_events_hint"></SearchView>
+        android:queryHint="@string/search_events_hint">
+    </SearchView>
 
     <RelativeLayout
         android:layout_width="match_parent"

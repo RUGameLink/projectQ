@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:orientation="vertical"
     android:layout_height="match_parent"
-    android:backgroundTint="@color/elem_bg_menu"
+    android:backgroundTint="@color/bg_color"
     tools:context=".Activity.ScannerActivity">
 
     <include
@@ -31,13 +31,13 @@
         android:id="@+id/scanner_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:autoFocusButtonColor="@color/black_and_white"
+        app:autoFocusButtonColor="@color/black_white_color"
         app:autoFocusButtonVisible="true"
-        app:flashButtonColor="@color/black_and_white"
+        app:flashButtonColor="@color/black_white_color"
         app:flashButtonVisible="true"
         app:frameAspectRatioHeight="1"
         app:frameAspectRatioWidth="1"
-        app:frameColor="@color/purple"
+        app:frameColor="@color/green_color"
         app:frameCornersRadius="0dp"
         app:frameCornersSize="50dp"
         app:frameSize="0.75"
