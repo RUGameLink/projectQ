@@ -13,4 +13,5 @@
     <color name="bg_filter_color">#b7eaed</color>
     <color name="black">#000000</color>
     <color name="white">#ffffff</color>
+    <color name="grey">#49454F</color>
 </resources>

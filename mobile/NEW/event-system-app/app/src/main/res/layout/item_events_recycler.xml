@@ -11,8 +11,8 @@
     android:paddingBottom="30dp"
     app:cardCornerRadius="15dp"
     app:cardElevation="2dp"
-    app:strokeColor="@color/bg_menu_color"
-    app:strokeWidth="2dp">
+    app:strokeColor="@color/grey"
+    app:strokeWidth="1dp">
 
 
     <LinearLayout
@@ -86,6 +86,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
+                android:backgroundTint="@color/green_color"
                 android:gravity="start"
                 android:paddingTop="15dp"
                 android:paddingEnd="10dp"
@@ -96,7 +97,6 @@
                 app:iconPadding="10dp"
                 app:iconTint="@color/green_color"
                 app:strokeColor="@color/green_color"
-                android:backgroundTint="@color/green_color"
                 app:strokeWidth="2dp" />
 
             <Button

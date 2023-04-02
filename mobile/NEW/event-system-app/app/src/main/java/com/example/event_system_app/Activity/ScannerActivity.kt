@@ -16,6 +16,7 @@ import com.example.event_system_app.R
 class ScannerActivity : AppCompatActivity() {
     private lateinit var codeScanner: CodeScanner
     private lateinit var toolbar: MaterialToolbar
+    private lateinit var scannerView: CodeScannerView
 
     private lateinit var eventTitle: String
 
@@ -59,16 +60,7 @@ class ScannerActivity : AppCompatActivity() {
     }
 
     private fun startScanning() {
-        // Parameters (default values)
-        val scannerView: CodeScannerView = findViewById(R.id.scanner_view)
-        codeScanner = CodeScanner(this, scannerView)
-        codeScanner.camera = CodeScanner.CAMERA_BACK // or CAMERA_FRONT or specific camera id
-        codeScanner.formats = CodeScanner.ALL_FORMATS // list of type BarcodeFormat,
-        // ex. listOf(BarcodeFormat.QR_CODE)
-        codeScanner.autoFocusMode = AutoFocusMode.SAFE // or CONTINUOUS
-        codeScanner.scanMode = ScanMode.SINGLE // or CONTINUOUS or PREVIEW
-        codeScanner.isAutoFocusEnabled = true // Whether to enable auto focus or not
-        codeScanner.isFlashEnabled = true // Whether to enable flash or not
+
 
         // Callbacks
         codeScanner.decodeCallback = DecodeCallback {
@@ -119,5 +111,16 @@ class ScannerActivity : AppCompatActivity() {
     //Инициализация компонентов
     private fun init(){
         toolbar = findViewById(R.id.toolbar)
+
+        // Parameters (default values)
+        scannerView = findViewById(R.id.scanner_view)
+        codeScanner = CodeScanner(this, scannerView)
+        codeScanner.camera = CodeScanner.CAMERA_BACK // or CAMERA_FRONT or specific camera id
+        codeScanner.formats = CodeScanner.ALL_FORMATS // list of type BarcodeFormat,
+        // ex. listOf(BarcodeFormat.QR_CODE)
+        codeScanner.autoFocusMode = AutoFocusMode.SAFE // or CONTINUOUS
+        codeScanner.scanMode = ScanMode.SINGLE // or CONTINUOUS or PREVIEW
+        codeScanner.isAutoFocusEnabled = true // Whether to enable auto focus or not
+        codeScanner.isFlashEnabled = true // Whether to enable flash or not
     }
 }
