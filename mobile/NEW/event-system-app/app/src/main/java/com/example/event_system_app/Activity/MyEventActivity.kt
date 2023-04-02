@@ -3,6 +3,7 @@ package com.example.event_system_app.Activity
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
+import android.graphics.Color
 import android.graphics.drawable.BitmapDrawable
 import android.os.Build
 import android.os.Bundle
@@ -13,6 +14,8 @@ import android.view.MenuItem
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
+import androidmads.library.qrgenearator.QRGContents
+import androidmads.library.qrgenearator.QRGEncoder
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.FileProvider
@@ -22,6 +25,7 @@ import com.example.event_system_app.R
 import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.google.zxing.WriterException
 import com.itextpdf.text.Element.ALIGN_CENTER
 import com.itextpdf.text.Font
 import com.itextpdf.text.Image
@@ -72,6 +76,8 @@ class MyEventActivity: AppCompatActivity()  {
         }
         setContent(event)
 
+        generateQRCode(event.qrImg)
+
         eventPageButton.setOnClickListener {
             Toast.makeText(this, "Я открою страницу мероприятия", Toast.LENGTH_SHORT).show()
         }
@@ -112,6 +118,8 @@ class MyEventActivity: AppCompatActivity()  {
             mIntent.putExtra("title", "${event.title}")
             startActivity(mIntent)
         }
+
+
     }
 
     private fun replaceDate(date: String): String {
@@ -119,8 +127,21 @@ class MyEventActivity: AppCompatActivity()  {
         return "${dateComponent[2]}-${dateComponent[1]}-${dateComponent[0]}T${dateComponent[3]}:00"
     }
 
+    private fun generateQRCode(uid: String){
+        val qrCode = QRGEncoder(uid, null, QRGContents.Type.TEXT, 300)
+        qrCode.colorBlack = Color.WHITE
+        qrCode.colorWhite = Color.BLACK
+        try {
+            val bitMap = qrCode.bitmap
+            qrImg.setImageBitmap(bitMap)
+        }
+        catch (e: WriterException){
+            println(e)
+        }
+    }
+
     //Отправка файла
-    fun startFileShareIntent() {
+    private fun startFileShareIntent() {
         val shareIntent = Intent(Intent.ACTION_SEND).apply {
             type = "*/*"
             flags = Intent.FLAG_GRANT_READ_URI_PERMISSION
@@ -221,12 +242,6 @@ class MyEventActivity: AppCompatActivity()  {
 
     //Установка информации в компоненты
     private fun setContent(event: MyEvent) {
-        Glide.with(this)
-            .load(event.qrImg)
-            .asBitmap()
-            .placeholder(R.drawable.icon_events)
-            .into(qrImg)
-
         headerMyText.text = event.title
         myTagListText.text = event.tags
         myEventDateText.text = event.date
