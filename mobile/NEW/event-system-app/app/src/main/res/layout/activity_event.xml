@@ -150,7 +150,8 @@
                             android:layout_weight="1"
                             android:clickable="true"
                             app:backgroundTint="@color/green_color"
-                            app:elevation="0dp"></com.google.android.material.floatingactionbutton.FloatingActionButton>
+                            app:elevation="0dp">
+                        </com.google.android.material.floatingactionbutton.FloatingActionButton>
 
                         <TextView
                             android:id="@+id/human_count_text"

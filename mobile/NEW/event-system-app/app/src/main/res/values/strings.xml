@@ -45,4 +45,14 @@
 
     <string name="nav_presence">Присутствие</string>
     <string name="presence_confirmation_text">Подтверждение присутствия</string>
+
+    <string name="event_name">Название мероприятия:</string>
+    <string name="event_tags">Теги мероприятия:</string>
+    <string name="event_date">Дата и время проведения:</string>
+    <string name="event_desc">Описание мероприятия:</string>
+    <string name="event_location">Место проведения:</string>
+    <string name="event_reg_from">Регистрация доступна c:</string>
+    <string name="event_reg_to">Регистрация доступна до:</string>
+    <string name="event_org">Организаторы:</string>
+    <string name="stats_text">Статистика мероприятия</string>
 </resources>
