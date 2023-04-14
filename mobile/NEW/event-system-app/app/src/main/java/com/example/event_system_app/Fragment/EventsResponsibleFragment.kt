@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.event_system_app.Adapter.EventAdapter
+import com.example.event_system_app.Adapter.EventResponsibleAdapter
 import com.example.event_system_app.Model.Event
 import com.example.event_system_app.R
 import com.nex3z.togglebuttongroup.SingleSelectToggleGroup
@@ -34,7 +35,7 @@ class EventsResponsibleFragment: Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        val view = inflater.inflate(R.layout.fragment_events, container, false)
+        val view = inflater.inflate(R.layout.fragment_events_responsible, container, false)
         init(view)
         tagsGroup.check(R.id.anyToggle)
 
@@ -201,7 +202,7 @@ class EventsResponsibleFragment: Fragment() {
         val linearLayoutManager = LinearLayoutManager(context) //Подготовка лайаут менеджера
         linearLayoutManager.orientation = LinearLayoutManager.VERTICAL
         recyclerView.layoutManager = linearLayoutManager //Инициализация лайаут менеджера
-        recyclerView.adapter = EventAdapter(events, context) //внесение данных из листа в адаптер (заполнение данными)
+        recyclerView.adapter = EventResponsibleAdapter(events, context) //внесение данных из листа в адаптер (заполнение данными)
     }
 
     //Инициализация компонентов

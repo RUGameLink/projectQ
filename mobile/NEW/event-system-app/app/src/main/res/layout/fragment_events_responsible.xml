@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:screenOrientation="portrait"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:text="@string/filters_text"
+            android:textStyle="bold" />
+
+        <com.nex3z.togglebuttongroup.SingleSelectToggleGroup
+            android:id="@+id/tags_group"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:foregroundGravity="center_horizontal"
+            android:paddingStart="10dp"
+            android:paddingEnd="10dp"
+            app:tbgChildSpacing="auto"
+            app:tbgChildSpacingForLastRow="align"
+            app:tbgFlow="true"
+            app:tbgRowSpacing="8dp">
+
+            <com.nex3z.togglebuttongroup.button.LabelToggle
+                android:id="@+id/cultureToggle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/culture_text" />
+
+            <com.nex3z.togglebuttongroup.button.LabelToggle
+                android:id="@+id/societyToggle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/society_text" />
+
+            <com.nex3z.togglebuttongroup.button.LabelToggle
+                android:id="@+id/educationalToggle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/education_text" />
+
+            <com.nex3z.togglebuttongroup.button.LabelToggle
+                android:id="@+id/sportToggle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/sport_text" />
+
+            <com.nex3z.togglebuttongroup.button.LabelToggle
+                android:id="@+id/scienceToggle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/science_text" />
+
+            <com.nex3z.togglebuttongroup.button.LabelToggle
+                android:id="@+id/anyToggle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/any_tag_text" />
+
+        </com.nex3z.togglebuttongroup.SingleSelectToggleGroup>
+
+        <SearchView
+            android:id="@+id/eventsSearchView"
+            style="@android:style/Widget.Material.SearchView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="15dp"
+            android:background="@drawable/bg_rounded"
+            android:backgroundTint="@color/bg_menu_color"
+            android:iconifiedByDefault="false"
+            android:paddingStart="-10dp"
+            android:queryHint="@string/search_events_hint">
+
+        </SearchView>
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/eventsRecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="8dp">
+
+        </androidx.recyclerview.widget.RecyclerView>
+    </RelativeLayout>
+
+</LinearLayout>
