@@ -50,4 +50,5 @@ dependencies {
     implementation 'com.github.androidmads:QRGenerator:1.0.1' //Генератор QR
     implementation 'com.android.volley:volley:1.2.1' //Библиотека для работы с запросами
     implementation 'com.synnapps:carouselview:0.1.5' //Карусель изображений
+    implementation 'com.github.salehyarahmadi:DataTable:v1.0.1' //Таблицы
 }

@@ -25,7 +25,7 @@ class EventsFragment: Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         getActivity()?.setRequestedOrientation(
-            ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+            ActivityInfo.SCREEN_ORIENTATION_PORTRAIT)
         super.onCreate(savedInstanceState)
     }
 

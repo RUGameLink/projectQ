@@ -55,4 +55,9 @@
     <string name="event_reg_to">Регистрация доступна до:</string>
     <string name="event_org">Организаторы:</string>
     <string name="stats_text">Статистика мероприятия</string>
+
+    <string name="table_num_text">№</string>
+    <string name="table_name_text">ФИО Студента</string>
+    <string name="table_group_text">Группа</string>
+    <string name="table_pres_text">Присутствует</string>
 </resources>

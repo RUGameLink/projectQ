@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".Activity.EventStatsActivity">
+
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar_layout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+    </include>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <ir.androidexception.datatable.DataTable
+                android:id="@+id/eventStats"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="8dp"
+                app:corner_radius="8dp"
+                app:direction="ltr"
+                app:header_background_color="@color/green_color"
+                app:header_gravity="center"
+                app:header_horizontal_padding="0dp"
+                app:header_text_color="@color/white"
+                app:header_vertical_padding="16dp"
+                app:persian_number="false"
+                app:row_background_color="@color/bg_menu_color"
+                app:row_gravity="center"
+                app:row_text_color="@color/grey_text_color"
+                app:row_vertical_padding="16dp"
+                app:shadow="8dp" />
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

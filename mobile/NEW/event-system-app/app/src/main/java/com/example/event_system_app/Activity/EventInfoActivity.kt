@@ -2,6 +2,8 @@ package com.example.event_system_app.Activity
 
 import android.app.Activity
 import android.content.Context
+import android.content.Intent
+import android.content.pm.ActivityInfo
 import android.os.Bundle
 import android.widget.ImageView
 import android.widget.TextView
@@ -34,11 +36,18 @@ class EventInfoActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_event_info)
-
+        requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
         init()
         event = intent.getSerializableExtra("event") as Event
         setImages()
         setInfo()
+
+        statsButton.setOnClickListener {
+            val i = Intent(this, EventStatsActivity::class.java)
+            i.putExtra("eventName", event.title)
+            i.putExtra("eventId", event.id)
+            startActivity(i)
+        }
     }
 
     private fun setImages() {
