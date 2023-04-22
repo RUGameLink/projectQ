@@ -13,5 +13,8 @@ data class Event(
     val tags: String,
     val date: String,
     val location: String,
-    val humanCount: Int
+    val humanCount: Int,
+    val regStart: String,
+    val regEnd: String,
+    val organizers: String
 ) : Serializable
