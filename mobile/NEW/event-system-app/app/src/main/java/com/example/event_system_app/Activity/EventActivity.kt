@@ -12,16 +12,20 @@ import com.bumptech.glide.Glide
 import com.example.event_system_app.Model.Event
 import com.example.event_system_app.R
 import com.google.android.material.appbar.MaterialToolbar
+import com.synnapps.carouselview.CarouselView
+import com.synnapps.carouselview.ImageListener
 
 class EventActivity: AppCompatActivity() {
     private lateinit var toolbar: MaterialToolbar
-    private lateinit var eventImage: ImageView
+    private lateinit var eventImage: CarouselView
     private lateinit var headerText: TextView
     private lateinit var tagListText: TextView
     private lateinit var eventDateText: TextView
     private lateinit var bodyEventText: TextView
     private lateinit var eventLocationText: TextView
     private lateinit var human_count_text: TextView
+
+    private lateinit var event: Event
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -33,21 +37,18 @@ class EventActivity: AppCompatActivity() {
         title = getString(R.string.event_text)
         supportActionBar?.setHomeAsUpIndicator(R.drawable.icon_back)
         toolbar.navigationIcon = getDrawable(R.drawable.icon_back)
-        val event = intent.getSerializableExtra("event") as Event
+        event = intent.getSerializableExtra("event") as Event
         toolbar.setNavigationOnClickListener {
             val i = Intent(this, MainActivity::class.java)
             startActivity(i)
             true
         }
-        setContent(event)
+        setContent()
     }
 
     //Заполнение компонентов информацией
-    private fun setContent(event: Event) {
-        Glide.with(this)
-            .load(event.imgUrl)
-            .placeholder(R.drawable.icon_events)
-            .into(eventImage)
+    private fun setContent() {
+        setImages()
 
         headerText.text = event.title
         tagListText.text = event.tags
@@ -55,6 +56,22 @@ class EventActivity: AppCompatActivity() {
         bodyEventText.text = event.description
         eventLocationText.text = event.location
         human_count_text.text = event.humanCount.toString()
+    }
+
+    private fun setImages() {
+        eventImage = findViewById(R.id.eventImage);
+        eventImage.setPageCount(event.imgUrl.size);
+
+        eventImage.setImageListener(imageListener);
+    }
+
+    var imageListener: ImageListener = object : ImageListener {
+        override fun setImageForPosition(position: Int, imageView: ImageView) {
+            Glide.with(this@EventActivity)
+                .load(event.imgUrl.get(position))
+                .placeholder(R.drawable.icon_events)
+                .into(imageView)
+        }
     }
 
     //Создание меню настроек
@@ -78,7 +95,6 @@ class EventActivity: AppCompatActivity() {
     //Инициализация компонентов
     private fun init(){
         toolbar = findViewById(R.id.toolbar)
-        eventImage = findViewById(R.id.eventImage)
         headerText= findViewById(R.id.headerText)
         tagListText= findViewById(R.id.tagListText)
         eventDateText= findViewById(R.id.eventDateText)

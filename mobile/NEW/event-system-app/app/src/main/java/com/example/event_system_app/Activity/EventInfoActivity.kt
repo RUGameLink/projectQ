@@ -72,7 +72,9 @@ class EventInfoActivity : AppCompatActivity() {
         dateInfoText.text = event.date
         descInfoText.text = event.description
         locationInfoText.text = event.location
-    //    regFromInfoText.text = event.
+        regFromInfoText.text = event.regStart
+        regToInfoText.text = event.regEnd
+        orgInfoText.text = event.organizers
     }
 
     private fun init(){

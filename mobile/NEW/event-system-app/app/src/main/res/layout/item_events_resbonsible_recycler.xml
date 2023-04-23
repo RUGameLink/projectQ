@@ -86,6 +86,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
+                android:layout_marginEnd="10dp"
                 android:backgroundTint="@color/green_color"
                 android:gravity="start"
                 android:paddingTop="15dp"
