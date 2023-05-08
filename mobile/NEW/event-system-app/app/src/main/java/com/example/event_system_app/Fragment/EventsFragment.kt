@@ -160,24 +160,12 @@ class EventsFragment: Fragment() {
         //Слушатель кнопок фильтра
         tagsGrpup.setOnCheckedChangeListener { group, checkedId ->
             when(checkedId){
-                R.id.scienceToggle -> {
-                    tags = "Научное"
+                R.id.internallToggle -> {
+                    tags = "Внутреннее"
                     searchTag(view)
                 }
-                R.id.sportToggle -> {
-                    tags = "Спортивное"
-                    searchTag(view)
-                }
-                R.id.cultureToggle -> {
-                    tags = "Культурное"
-                    searchTag(view)
-                }
-                R.id.educationalToggle -> {
-                    tags = "Учебное"
-                    searchTag(view)
-                }
-                R.id.societyToggle -> {
-                    tags = "Общественное"
+                R.id.externalToggle -> {
+                    tags = "Внешнее"
                     searchTag(view)
                 }
                 R.id.anyToggle -> {

@@ -25,56 +25,28 @@
             android:id="@+id/tags_group"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
             android:foregroundGravity="center_horizontal"
-            android:paddingStart="10dp"
-            android:paddingEnd="10dp"
             app:tbgChildSpacing="auto"
             app:tbgChildSpacingForLastRow="align"
             app:tbgFlow="true"
             app:tbgRowSpacing="8dp">
 
             <com.nex3z.togglebuttongroup.button.LabelToggle
-                android:id="@+id/cultureToggle"
+                android:id="@+id/internallToggle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/culture_text"
+                android:text="@string/internal_text"
                 android:textColor="@color/menu_text_color"
                 app:tbgMarkerColor="@color/bg_filter_color" />
 
             <com.nex3z.togglebuttongroup.button.LabelToggle
-                android:id="@+id/societyToggle"
+                android:id="@+id/externalToggle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
 
-                android:text="@string/society_text"
-                android:textColor="@color/menu_text_color"
-                app:tbgMarkerColor="@color/bg_filter_color" />
-
-            <com.nex3z.togglebuttongroup.button.LabelToggle
-                android:id="@+id/educationalToggle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-
-                android:text="@string/education_text"
-                android:textColor="@color/menu_text_color"
-                app:tbgMarkerColor="@color/bg_filter_color" />
-
-            <com.nex3z.togglebuttongroup.button.LabelToggle
-                android:id="@+id/sportToggle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-
-                android:text="@string/sport_text"
-                android:textColor="@color/menu_text_color"
-                app:tbgMarkerColor="@color/bg_filter_color" />
-
-            <com.nex3z.togglebuttongroup.button.LabelToggle
-                android:id="@+id/scienceToggle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-
-                android:text="@string/science_text"
+                android:text="@string/external_text"
                 android:textColor="@color/menu_text_color"
                 app:tbgMarkerColor="@color/bg_filter_color" />
 

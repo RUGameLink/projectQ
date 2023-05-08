@@ -10,7 +10,6 @@ import android.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.event_system_app.Adapter.EventAdapter
 import com.example.event_system_app.Adapter.EventResponsibleAdapter
 import com.example.event_system_app.Model.Event
 import com.example.event_system_app.R
@@ -169,7 +168,7 @@ class EventsResponsibleFragment: Fragment() {
                     tags = "Спортивное"
                     searchTag(view)
                 }
-                R.id.cultureToggle -> {
+                R.id.internallToggle -> {
                     tags = "Культурное"
                     searchTag(view)
                 }
@@ -177,7 +176,7 @@ class EventsResponsibleFragment: Fragment() {
                     tags = "Учебное"
                     searchTag(view)
                 }
-                R.id.societyToggle -> {
+                R.id.externalToggle -> {
                     tags = "Общественное"
                     searchTag(view)
                 }

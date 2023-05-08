@@ -35,13 +35,13 @@
             app:tbgRowSpacing="8dp">
 
             <com.nex3z.togglebuttongroup.button.LabelToggle
-                android:id="@+id/cultureToggle"
+                android:id="@+id/internallToggle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/culture_text" />
 
             <com.nex3z.togglebuttongroup.button.LabelToggle
-                android:id="@+id/societyToggle"
+                android:id="@+id/externalToggle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/society_text" />
