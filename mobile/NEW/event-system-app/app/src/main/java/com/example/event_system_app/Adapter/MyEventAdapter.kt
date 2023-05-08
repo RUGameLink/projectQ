@@ -40,7 +40,7 @@ class MyEventAdapter(private val events: ArrayList<Event>, private val context: 
             onItemClick?.invoke(events[position])
         }
 
-        val imgUrl = events[position].imgUrl
+        val imgUrl = events[position].imgUrl[0]
         Glide.with(context)
             .load(imgUrl)
             .placeholder(R.drawable.icon_events)

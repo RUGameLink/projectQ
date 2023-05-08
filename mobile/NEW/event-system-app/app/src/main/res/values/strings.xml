@@ -44,7 +44,23 @@
     <string name="confirmation_successful_body">Участие в мероприятии успешно подтверждено.</string>
 
     <string name="nav_presence">Присутствие</string>
-    <string name="nav_create">Создать</string>
     <string name="presence_confirmation_text">Подтверждение присутствия</string>
-    <string name="create_event_text">Создание мероприятия</string>
+
+    <string name="event_name">Название мероприятия:</string>
+    <string name="event_tags">Теги мероприятия:</string>
+    <string name="event_date">Дата и время проведения:</string>
+    <string name="event_desc">Описание мероприятия:</string>
+    <string name="event_location">Место проведения:</string>
+    <string name="event_reg_from">Регистрация доступна c:</string>
+    <string name="event_reg_to">Регистрация доступна до:</string>
+    <string name="event_org">Организаторы:</string>
+    <string name="stats_text">Статистика мероприятия</string>
+
+    <string name="table_num_text">№</string>
+    <string name="table_name_text">ФИО Студента</string>
+    <string name="table_group_text">Группа</string>
+    <string name="table_pres_text">Присутствует</string>
+
+    <string name="network_error_text">Ошибка подключения к сети.\nПопробуйте обновить страницу</string>
+    <string name="refresh_text">Обновить</string>
 </resources>

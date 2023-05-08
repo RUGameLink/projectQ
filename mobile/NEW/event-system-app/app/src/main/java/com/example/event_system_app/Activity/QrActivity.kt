@@ -1,11 +1,15 @@
 package com.example.event_system_app.Activity
 
+import android.graphics.Color
 import android.os.Bundle
 import android.widget.ImageView
+import androidmads.library.qrgenearator.QRGContents
+import androidmads.library.qrgenearator.QRGEncoder
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
 import com.example.event_system_app.R
 import com.google.android.material.appbar.MaterialToolbar
+import com.google.zxing.WriterException
 
 class QrActivity: AppCompatActivity()  {
     private lateinit var toolbar: MaterialToolbar
@@ -28,10 +32,20 @@ class QrActivity: AppCompatActivity()  {
             true
         }
 
-        Glide.with(this)
-            .load(qrImage)
-            .placeholder(R.drawable.icon_events)
-            .into(qrFullscreen)
+        generateQRCode(qrImage!!)
+    }
+
+    private fun generateQRCode(uid: String){
+        val qrCode = QRGEncoder(uid, null, QRGContents.Type.TEXT, 600)
+        qrCode.colorBlack = Color.WHITE
+        qrCode.colorWhite = Color.BLACK
+        try {
+            val bitMap = qrCode.bitmap
+            qrFullscreen.setImageBitmap(bitMap)
+        }
+        catch (e: WriterException){
+            println(e)
+        }
     }
 
     //Инициализация компонентов

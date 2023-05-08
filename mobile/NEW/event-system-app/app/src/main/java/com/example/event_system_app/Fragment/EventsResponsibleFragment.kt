@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.event_system_app.Adapter.EventAdapter
+import com.example.event_system_app.Adapter.EventResponsibleAdapter
 import com.example.event_system_app.Model.Event
 import com.example.event_system_app.R
 import com.nex3z.togglebuttongroup.SingleSelectToggleGroup
@@ -34,7 +35,7 @@ class EventsResponsibleFragment: Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        val view = inflater.inflate(R.layout.fragment_events, container, false)
+        val view = inflater.inflate(R.layout.fragment_events_responsible, container, false)
         init(view)
         tagsGroup.check(R.id.anyToggle)
 
@@ -56,11 +57,14 @@ class EventsResponsibleFragment: Fragment() {
                     "▫️Баркемп 2023\n" +
                     "\n" +
                     "А также, ключевые темы года.",
-            "https://leader-id.storage.yandexcloud.net/upload/436356/7cc889c7-b2da-4077-883a-36b9111c930f.jpeg",
+            arrayOf("https://leader-id.storage.yandexcloud.net/upload/436356/7cc889c7-b2da-4077-883a-36b9111c930f.jpeg", "https://leader-id.storage.yandexcloud.net/upload/1041496/f6223668-0b69-4b18-bc16-13a4ac4a5a45.png"),
             "Общественное",
             "1 февраля, с 10:00 до 11:30",
             "Онлайн при поддержке Точка кипения - Москва",
-            12
+            12,
+            "1 февраля, с 10:00 до 11:30",
+            "1 февраля, с 10:00 до 11:30",
+            "Иванов Иван\nКириченко Андрей\nПроскофья Смолина"
         )
         eventList.add(event1)
         val event2 = Event(
@@ -73,11 +77,14 @@ class EventsResponsibleFragment: Fragment() {
                     "Мероприятия проходит в рамках реализации Федерального проекта \"Платформа университетского технологического предпринимательства\" - Предпринимательская точка кипения при поддержке АНО Национальной технологической инициативы и Министерства науки и высшего образования РФ.\n" +
                     "\n" +
                     "#ПТК #Предпринимательская_ТК #ПТК_РЭУ #ТочкаКипенияРЭУ #ПУТП",
-            "https://leader-id.storage.yandexcloud.net/upload/1041496/f6223668-0b69-4b18-bc16-13a4ac4a5a45.png",
+            arrayOf("https://leader-id.storage.yandexcloud.net/upload/1041496/f6223668-0b69-4b18-bc16-13a4ac4a5a45.png"),
             "Общественное",
             "31 января, с 17:00 до 18:00",
             "Москва, Точка кипения РЭУ им. Г.В. Плеханова",
-            24
+            24,
+            "1 февраля, с 10:00 до 11:30",
+            "1 февраля, с 10:00 до 11:30",
+            "Иванов Иван\nКириченко Андрей\nПроскофья Смолина"
         )
         eventList.add(event2)
         val event3 = Event(
@@ -95,22 +102,28 @@ class EventsResponsibleFragment: Fragment() {
                     "выбирает дату проведение турнира;\n" +
                     "регистрирует до 4-х команд.\n" +
                     "Участники бизнес-турнира награждаются сертификатами и дипломами победителя, которые размещаются в личных кабинетах педагогов-наставников на сайте spo.mosmetod.ru.",
-            "https://leader-id.storage.yandexcloud.net/event_photo/304147/629db788ecb23224720337.jpg",
+            arrayOf("https://leader-id.storage.yandexcloud.net/event_photo/304147/629db788ecb23224720337.jpg"),
             "Учебное",
             "31 января, с 14:00 до 18:00",
             "Москва, Точка кипения РЭУ им. Г.В. Плеханова",
-            24
+            24,
+            "1 февраля, с 10:00 до 11:30",
+            "1 февраля, с 10:00 до 11:30",
+            "Иванов Иван\nКириченко Андрей\nПроскофья Смолина"
         )
         eventList.add(event3)
         val event4 = Event(
             2323,
             "Методологический семинар для аспирантов 1 года обучения",
             "Научные руководители и аспиранты, имеющие значимые научные достижения, расскажут о траектории научного развития и выборе оптимальной научной методики, а также обсудят основные направления научных исследований.",
-            "https://leader-id.storage.yandexcloud.net/upload/91121/5a290da8-8f0c-4fd6-a1f6-fa3a08f6605b.jpg",
+            arrayOf("https://leader-id.storage.yandexcloud.net/upload/91121/5a290da8-8f0c-4fd6-a1f6-fa3a08f6605b.jpg"),
             "Учебное, Культурное",
             "3 февраля, с 15:30 до 17:30",
             "Москва, Точка кипения Тимирязевка",
-            24
+            24,
+            "1 февраля, с 10:00 до 11:30",
+            "1 февраля, с 10:00 до 11:30",
+            "Иванов Иван\nКириченко Андрей\nПроскофья Смолина"
         )
         eventList.add(event4)
         setEventAdapter(eventList, view, requireContext())
@@ -201,7 +214,7 @@ class EventsResponsibleFragment: Fragment() {
         val linearLayoutManager = LinearLayoutManager(context) //Подготовка лайаут менеджера
         linearLayoutManager.orientation = LinearLayoutManager.VERTICAL
         recyclerView.layoutManager = linearLayoutManager //Инициализация лайаут менеджера
-        recyclerView.adapter = EventAdapter(events, context) //внесение данных из листа в адаптер (заполнение данными)
+        recyclerView.adapter = EventResponsibleAdapter(events, context) //внесение данных из листа в адаптер (заполнение данными)
     }
 
     //Инициализация компонентов

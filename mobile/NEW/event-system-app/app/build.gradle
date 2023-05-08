@@ -43,8 +43,12 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
 
-    implementation 'com.github.bumptech.glide:glide:3.7.0'
-    implementation 'com.itextpdf:itextg:5.5.10' //https://github.com/itext/itextpdf
-    implementation 'com.nex3z:toggle-button-group:1.2.3'
+    implementation 'com.github.bumptech.glide:glide:3.7.0' //Библиотека для работы с изображениями
+    implementation 'com.itextpdf:itextg:5.5.10' //https://github.com/itext/itextpdf создание pdf-файла
+    implementation 'com.nex3z:toggle-button-group:1.2.3' //Необычные toggle button
     implementation 'com.github.yuriy-budiyev:code-scanner:2.3.2' //Библиотека сканера QR-кодов
+    implementation 'com.github.androidmads:QRGenerator:1.0.1' //Генератор QR
+    implementation 'com.android.volley:volley:1.2.1' //Библиотека для работы с запросами
+    implementation 'com.synnapps:carouselview:0.1.5' //Карусель изображений
+    implementation 'com.github.salehyarahmadi:DataTable:v1.0.1' //Таблицы
 }

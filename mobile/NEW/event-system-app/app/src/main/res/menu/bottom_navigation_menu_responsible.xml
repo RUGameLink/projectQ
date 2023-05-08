@@ -4,7 +4,7 @@
         android:id="@+id/create_item"
         android:enabled="true"
         android:icon="@drawable/icon_create_event"
-        android:title="@string/nav_create"/>
+        android:title="@string/my_events_text"/>
     <item
         android:id="@+id/event_responsible_item"
         android:enabled="true"

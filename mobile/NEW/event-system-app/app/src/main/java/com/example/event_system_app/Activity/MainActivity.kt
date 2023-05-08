@@ -55,7 +55,7 @@ class MainActivity : AppCompatActivity() {
                     true
                 }
                 R.id.create_item -> {
-                    title = getString(R.string.create_event_text)
+                    title = getString(R.string.my_events_text)
                     createAnEventFragment = CreateAnEventFragment()
                     replaceFragment(createAnEventFragment)
                     true

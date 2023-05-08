@@ -29,11 +29,16 @@
                 android:paddingStart="10dp"
                 android:paddingEnd="10dp">
 
-                <ImageView
+                <com.synnapps.carouselview.CarouselView
                     android:id="@+id/eventImage"
                     android:layout_width="match_parent"
                     android:layout_height="300dp"
-                    tools:srcCompat="@tools:sample/avatars" />
+                    app:fillColor="#FFFFFFFF"
+                    app:pageColor="#00000000"
+                    app:radius="6dp"
+                    app:slideInterval="3000"
+                    app:strokeColor="#FF777777"
+                    app:strokeWidth="1dp" />
 
                 <TextView
                     android:id="@+id/headerText"
@@ -150,7 +155,8 @@
                             android:layout_weight="1"
                             android:clickable="true"
                             app:backgroundTint="@color/green_color"
-                            app:elevation="0dp"></com.google.android.material.floatingactionbutton.FloatingActionButton>
+                            app:elevation="0dp">
+                        </com.google.android.material.floatingactionbutton.FloatingActionButton>
 
                         <TextView
                             android:id="@+id/human_count_text"
@@ -179,9 +185,9 @@
                         android:layout_marginTop="15dp"
                         android:backgroundTint="@color/orange_color"
                         android:text="@string/run_text"
+                        android:textColor="@color/white"
                         android:textSize="16sp"
-                        app:strokeColor="@color/orange_color">
-                    </com.google.android.material.button.MaterialButton>
+                        app:strokeColor="@color/orange_color"></com.google.android.material.button.MaterialButton>
                 </LinearLayout>
             </LinearLayout>
         </ScrollView>

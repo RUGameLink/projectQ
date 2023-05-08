@@ -1,6 +1,7 @@
 package com.example.event_system_app.Fragment
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -10,6 +11,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.event_system_app.Activity.EventInfoActivity
 import com.example.event_system_app.Adapter.MyEventAdapter
 import com.example.event_system_app.Model.Event
 import com.example.event_system_app.Model.MyEvent
@@ -50,11 +52,14 @@ class CreateAnEventFragment: Fragment() {
                     "▫️Баркемп 2023\n" +
                     "\n" +
                     "А также, ключевые темы года.",
-            "https://leader-id.storage.yandexcloud.net/upload/436356/7cc889c7-b2da-4077-883a-36b9111c930f.jpeg",
+            (arrayOf("https://leader-id.storage.yandexcloud.net/upload/436356/7cc889c7-b2da-4077-883a-36b9111c930f.jpeg")),
             "Общественное",
             "02.03.2023 15:30",
             "Онлайн при поддержке Точка кипения - Москва",
-            12
+            12,
+            "1 февраля, с 10:00 до 11:30",
+            "1 февраля, с 10:00 до 11:30",
+            "Иванов Иван\nКириченко Андрей\nПроскофья Смолина"
         )
         eventList.add(event1)
         val event2 = Event(
@@ -67,11 +72,14 @@ class CreateAnEventFragment: Fragment() {
                     "Мероприятия проходит в рамках реализации Федерального проекта \"Платформа университетского технологического предпринимательства\" - Предпринимательская точка кипения при поддержке АНО Национальной технологической инициативы и Министерства науки и высшего образования РФ.\n" +
                     "\n" +
                     "#ПТК #Предпринимательская_ТК #ПТК_РЭУ #ТочкаКипенияРЭУ #ПУТП",
-            "https://leader-id.storage.yandexcloud.net/upload/1041496/f6223668-0b69-4b18-bc16-13a4ac4a5a45.png",
+            arrayOf("https://leader-id.storage.yandexcloud.net/upload/1041496/f6223668-0b69-4b18-bc16-13a4ac4a5a45.png"),
             "Общественное",
             "11.02.2023 13:00",
             "Москва, Точка кипения РЭУ им. Г.В. Плеханова",
-            24
+            24,
+            "1 февраля, с 10:00 до 11:30",
+            "1 февраля, с 10:00 до 11:30",
+            "Иванов Иван\nКириченко Андрей\nПроскофья Смолина"
         )
         eventList.add(event2)
         val event3 = Event(
@@ -89,22 +97,28 @@ class CreateAnEventFragment: Fragment() {
                     "выбирает дату проведение турнира;\n" +
                     "регистрирует до 4-х команд.\n" +
                     "Участники бизнес-турнира награждаются сертификатами и дипломами победителя, которые размещаются в личных кабинетах педагогов-наставников на сайте spo.mosmetod.ru.",
-            "https://leader-id.storage.yandexcloud.net/event_photo/304147/629db788ecb23224720337.jpg",
+            arrayOf("https://leader-id.storage.yandexcloud.net/event_photo/304147/629db788ecb23224720337.jpg"),
             "Учебное",
             "21.03.2023 16:00",
             "Москва, Точка кипения РЭУ им. Г.В. Плеханова",
-            24
+            24,
+            "1 февраля, с 10:00 до 11:30",
+            "1 февраля, с 10:00 до 11:30",
+            "Иванов Иван\nКириченко Андрей\nПроскофья Смолина"
         )
         eventList.add(event3)
         val event4 = Event(
             2323,
             "Методологический семинар для аспирантов 1 года обучения",
             "Научные руководители и аспиранты, имеющие значимые научные достижения, расскажут о траектории научного развития и выборе оптимальной научной методики, а также обсудят основные направления научных исследований.",
-            "https://leader-id.storage.yandexcloud.net/upload/91121/5a290da8-8f0c-4fd6-a1f6-fa3a08f6605b.jpg",
+            arrayOf("https://leader-id.storage.yandexcloud.net/upload/91121/5a290da8-8f0c-4fd6-a1f6-fa3a08f6605b.jpg"),
             "Учебное, Культурное",
             "02.03.2023 15:30",
             "Москва, Точка кипения Тимирязевка",
-            24
+            24,
+            "1 февраля, с 10:00 до 11:30",
+            "1 февраля, с 10:00 до 11:30",
+            "Иванов Иван\nКириченко Андрей\nПроскофья Смолина"
         )
         eventList.add(event4)
         setMyEventAdapter(eventList, view, requireContext())
@@ -143,11 +157,39 @@ class CreateAnEventFragment: Fragment() {
         recyclerView.adapter = presenceAdapter //внесение данных из листа в адаптер (заполнение данными)
 
         presenceAdapter.onItemClick = {
-            val myEvent = MyEvent(1212, it.id, it.title, "https://ixbt.online/live/images/original/24/67/86/2022/07/19/c145c2d9c7.jpg", it.tags, it.date, it.location)
-            Toast.makeText(context, "Открою ивент ${myEvent.title}", Toast.LENGTH_SHORT).show()
-//            val i = Intent(context, MyEventActivity::class.java)
-//            i.putExtra("myEvent", myEvent)
-//            context.startActivity(i)
+
+            val event1 = Event(
+                1,
+                "Встреча сети Точек кипения: 2023 год",
+                "1 февраля в 10:00 мск приглашаем команды Точек кипения на общую встречу Сети.\n" +
+                        "\n" +
+                        "Обсудим:\n" +
+                        "\n" +
+                        "▫️Ключевые события 2023 года\n" +
+                        "\n" +
+                        "▫️Апрельский съезд\n" +
+                        "\n" +
+                        "▫️Архипелаг 2023\n" +
+                        "\n" +
+                        "▫️Технопром\n" +
+                        "\n" +
+                        "▫️Баркемп 2023\n" +
+                        "\n" +
+                        "А также, ключевые темы года.",
+                arrayOf("https://leader-id.storage.yandexcloud.net/upload/436356/7cc889c7-b2da-4077-883a-36b9111c930f.jpeg", "https://leader-id.storage.yandexcloud.net/upload/1041496/f6223668-0b69-4b18-bc16-13a4ac4a5a45.png"),
+                "Общественное",
+                "1 февраля, с 10:00 до 11:30",
+                "Онлайн при поддержке Точка кипения - Москва",
+                12,
+                "1 февраля, с 10:00 до 11:30",
+                "1 февраля, с 10:00 до 11:30",
+                "Иванов Иван\nКириченко Андрей\nПроскофья Смолина"
+            )
+
+        //    Toast.makeText(context, "Открою ивент ${myEvent.title}", Toast.LENGTH_SHORT).show()
+            val i = Intent(context, EventInfoActivity::class.java)
+            i.putExtra("event", event1)
+            context.startActivity(i)
         }
     }
 
