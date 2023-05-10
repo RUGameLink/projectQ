@@ -133,14 +133,13 @@ class MainActivity : AppCompatActivity() {
     //Получение информации и смена темы
     private fun getPref() {
         var style = 0
-        val pref = PreferenceManager.getDefaultSharedPreferences(this)
-        pref.apply {
-            style = getInt("Theme", 0)
 
-            if (style != 0){
-                setStyle(style)
-            }
+        style = myPreference.getThemeCount()
+
+        if (style != 0){
+            setStyle(style)
         }
+
     }
 
 

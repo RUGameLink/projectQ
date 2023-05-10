@@ -4,7 +4,6 @@ import android.app.Activity
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
-import android.preference.PreferenceManager
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.RadioButton
@@ -25,7 +24,7 @@ class SettingsActivity: AppCompatActivity()  {
     private lateinit var switch: MaterialSwitch
     private lateinit var translateButton: MaterialButton
 
-    private lateinit var languagePrefs: SharedPrefs
+    private lateinit var appPrefs: SharedPrefs
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,7 +42,7 @@ class SettingsActivity: AppCompatActivity()  {
             true
         }
 
-        languagePrefs = SharedPrefs(this)
+        appPrefs = SharedPrefs(this)
 
         switch.isChecked = AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES
 
@@ -51,7 +50,7 @@ class SettingsActivity: AppCompatActivity()  {
             if(b){
                 try {
                     AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
-                    setPref(AppCompatDelegate.MODE_NIGHT_YES)
+                    appPrefs.setThemeCount(AppCompatDelegate.MODE_NIGHT_YES)
                 }
                 catch (ex: Exception){
                     println(ex)
@@ -61,7 +60,7 @@ class SettingsActivity: AppCompatActivity()  {
             }else{
                 try{
                     AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
-                    setPref(AppCompatDelegate.MODE_NIGHT_NO)
+                    appPrefs.setThemeCount(AppCompatDelegate.MODE_NIGHT_NO)
                 }
                 catch (ex: Exception){
                     println(ex)
@@ -75,12 +74,8 @@ class SettingsActivity: AppCompatActivity()  {
 
     //Перезагрузка графики активити
     fun restartActivity(activity: Activity) {
-        if (Build.VERSION.SDK_INT >= 11) {
-            activity.recreate()
-        } else {
-            activity.finish()
-            activity.startActivity(activity.intent)
-        }
+        val i = Intent(this, MainActivity::class.java)
+        startActivity(i)
     }
 
     //Слушатель кнопки перевода
@@ -97,7 +92,7 @@ class SettingsActivity: AppCompatActivity()  {
         val russianRadioButton = dialogView.findViewById<RadioButton>(R.id.rus_rbtn)
         val englishRadioButton = dialogView.findViewById<RadioButton>(R.id.eng_rbtn)
 
-        when(languagePrefs.getLanguageCount()){
+        when(appPrefs.getLanguageCount()){
             "en" -> {
                 englishRadioButton.isChecked = true
                 russianRadioButton.isChecked = false
@@ -128,14 +123,14 @@ class SettingsActivity: AppCompatActivity()  {
     }
 
     //Чтение префа темы
-    private fun setPref(delegate: Int){
+/*    private fun setPref(delegate: Int){
         val pref = PreferenceManager.getDefaultSharedPreferences(this)
         val editor = pref.edit()
         editor.putInt("Theme", delegate).apply()
-    }
+    }*/
 
     private fun changeLanguage(language: String){
-        languagePrefs.setLanguageCount(language)
+        appPrefs.setLanguageCount(language)
         val i = Intent(this, MainActivity::class.java)
         startActivity(i)
     }
