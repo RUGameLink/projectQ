@@ -1,6 +1,7 @@
 package com.example.event_system_app.Activity
 
 
+import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -12,6 +13,8 @@ import android.widget.FrameLayout
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.fragment.app.Fragment
 import com.example.event_system_app.Fragment.*
+import com.example.event_system_app.Helper.MyContextWrapper
+import com.example.event_system_app.Helper.SharedPrefs
 import com.example.event_system_app.R
 import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -28,6 +31,9 @@ class MainActivity : AppCompatActivity() {
     private lateinit var myEventsFragment: MyEventsFragment
     private lateinit var profileCleanFragment: ProfileCleanFragment
     private lateinit var presenceFragment: PresenceFragment
+
+    lateinit var myPreference: SharedPrefs
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -155,5 +161,11 @@ class MainActivity : AppCompatActivity() {
         toolbar = findViewById(R.id.toolbar)
         menu = findViewById(R.id.bottom_navigation)
         frameLayout = findViewById(R.id.frame)
+    }
+
+    override fun attachBaseContext(newBase: Context?) {
+        myPreference = SharedPrefs(newBase!!)
+        val lang = myPreference.getLanguageCount()
+        super.attachBaseContext(MyContextWrapper.wrap(newBase,lang))
     }
 }

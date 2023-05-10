@@ -38,37 +38,27 @@
                 android:id="@+id/internallToggle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/culture_text" />
+                android:text="@string/internal_text"
+                android:textColor="@color/menu_text_color"
+                app:tbgMarkerColor="@color/bg_filter_color" />
 
             <com.nex3z.togglebuttongroup.button.LabelToggle
                 android:id="@+id/externalToggle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/society_text" />
 
-            <com.nex3z.togglebuttongroup.button.LabelToggle
-                android:id="@+id/educationalToggle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/education_text" />
-
-            <com.nex3z.togglebuttongroup.button.LabelToggle
-                android:id="@+id/sportToggle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/sport_text" />
-
-            <com.nex3z.togglebuttongroup.button.LabelToggle
-                android:id="@+id/scienceToggle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/science_text" />
+                android:text="@string/external_text"
+                android:textColor="@color/menu_text_color"
+                app:tbgMarkerColor="@color/bg_filter_color" />
 
             <com.nex3z.togglebuttongroup.button.LabelToggle
                 android:id="@+id/anyToggle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/any_tag_text" />
+
+                android:text="@string/any_tag_text"
+                android:textColor="@color/menu_text_color"
+                app:tbgMarkerColor="@color/bg_filter_color" />
 
         </com.nex3z.togglebuttongroup.SingleSelectToggleGroup>
 

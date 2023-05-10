@@ -13,6 +13,8 @@ import com.google.android.material.button.MaterialButton
 
 class ProfileCleanFragment: Fragment() {
     private lateinit var singInButton: MaterialButton
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }

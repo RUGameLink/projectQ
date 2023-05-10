@@ -11,6 +11,7 @@ import android.widget.RadioButton
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
+import com.example.event_system_app.Helper.SharedPrefs
 import com.example.event_system_app.R
 import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.button.MaterialButton
@@ -23,6 +24,8 @@ class SettingsActivity: AppCompatActivity()  {
     private lateinit var toolbar: MaterialToolbar
     private lateinit var switch: MaterialSwitch
     private lateinit var translateButton: MaterialButton
+
+    private lateinit var languagePrefs: SharedPrefs
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,6 +42,8 @@ class SettingsActivity: AppCompatActivity()  {
             startActivity(i)
             true
         }
+
+        languagePrefs = SharedPrefs(this)
 
         switch.isChecked = AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES
 
@@ -90,19 +95,32 @@ class SettingsActivity: AppCompatActivity()  {
         builder.setView(dialogView)
 
         val russianRadioButton = dialogView.findViewById<RadioButton>(R.id.rus_rbtn)
-        russianRadioButton.isChecked = true
         val englishRadioButton = dialogView.findViewById<RadioButton>(R.id.eng_rbtn)
+
+        when(languagePrefs.getLanguageCount()){
+            "en" -> {
+                englishRadioButton.isChecked = true
+                russianRadioButton.isChecked = false
+            }
+            "ru" -> {
+                englishRadioButton.isChecked = false
+                russianRadioButton.isChecked = true
+            }
+
+        }
 
         russianRadioButton.setOnClickListener {
             englishRadioButton.isChecked = false
             russianRadioButton.isChecked = true
             Toast.makeText(this, "Будет русский", Toast.LENGTH_SHORT).show()
+            changeLanguage("ru")
         }
 
         englishRadioButton.setOnClickListener {
             russianRadioButton.isChecked = false
             englishRadioButton.isChecked = true
             Toast.makeText(this, "Будет английский", Toast.LENGTH_SHORT).show()
+            changeLanguage("en")
         }
 
         val dialog = builder.create()
@@ -114,6 +132,12 @@ class SettingsActivity: AppCompatActivity()  {
         val pref = PreferenceManager.getDefaultSharedPreferences(this)
         val editor = pref.edit()
         editor.putInt("Theme", delegate).apply()
+    }
+
+    private fun changeLanguage(language: String){
+        languagePrefs.setLanguageCount(language)
+        val i = Intent(this, MainActivity::class.java)
+        startActivity(i)
     }
 
     //Инициализация компонентов

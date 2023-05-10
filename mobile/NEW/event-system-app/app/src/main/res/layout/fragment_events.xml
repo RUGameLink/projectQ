@@ -38,7 +38,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/internal_text"
-                android:textColor="@color/menu_text_color"
+                android:textColor="@color/white"
                 app:tbgMarkerColor="@color/bg_filter_color" />
 
             <com.nex3z.togglebuttongroup.button.LabelToggle
@@ -47,7 +47,7 @@
                 android:layout_height="wrap_content"
 
                 android:text="@string/external_text"
-                android:textColor="@color/menu_text_color"
+                android:textColor="@color/white"
                 app:tbgMarkerColor="@color/bg_filter_color" />
 
             <com.nex3z.togglebuttongroup.button.LabelToggle
@@ -56,7 +56,7 @@
                 android:layout_height="wrap_content"
 
                 android:text="@string/any_tag_text"
-                android:textColor="@color/menu_text_color"
+                android:textColor="@color/white"
                 app:tbgMarkerColor="@color/bg_filter_color" />
 
         </com.nex3z.togglebuttongroup.SingleSelectToggleGroup>
