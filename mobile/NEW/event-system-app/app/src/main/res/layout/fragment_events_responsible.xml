@@ -25,7 +25,9 @@
             android:id="@+id/tags_group"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
             android:foregroundGravity="center_horizontal"
             android:paddingStart="10dp"
             android:paddingEnd="10dp"
@@ -39,7 +41,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/internal_text"
-                android:textColor="@color/menu_text_color"
+                android:textColor="@color/white"
                 app:tbgMarkerColor="@color/bg_filter_color" />
 
             <com.nex3z.togglebuttongroup.button.LabelToggle
@@ -48,7 +50,7 @@
                 android:layout_height="wrap_content"
 
                 android:text="@string/external_text"
-                android:textColor="@color/menu_text_color"
+                android:textColor="@color/white"
                 app:tbgMarkerColor="@color/bg_filter_color" />
 
             <com.nex3z.togglebuttongroup.button.LabelToggle
@@ -57,7 +59,7 @@
                 android:layout_height="wrap_content"
 
                 android:text="@string/any_tag_text"
-                android:textColor="@color/menu_text_color"
+                android:textColor="@color/white"
                 app:tbgMarkerColor="@color/bg_filter_color" />
 
         </com.nex3z.togglebuttongroup.SingleSelectToggleGroup>

@@ -1,6 +1,7 @@
 package com.example.event_system_app.Fragment
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.preference.PreferenceManager
 import android.view.LayoutInflater
@@ -10,6 +11,8 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
+import com.example.event_system_app.Activity.MainActivity
+import com.example.event_system_app.Helper.SharedPrefs
 import com.example.event_system_app.R
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
@@ -17,11 +20,14 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder
 class ProfileFragment: Fragment() {
     private lateinit var userImage: ImageView
     private lateinit var nameUserText: TextView
-    private lateinit var groupUserText: TextView
+    private lateinit var userRoleText: TextView
     private lateinit var logOutButton: MaterialButton
+
+    private lateinit var loginPrefs: SharedPrefs
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        loginPrefs = SharedPrefs(requireContext())
     }
 
     override fun onCreateView(
@@ -33,7 +39,7 @@ class ProfileFragment: Fragment() {
         init(view)
 
         nameUserText.text = "Иванов Иван Иванович"
-        groupUserText.text = "ИСМб-19-1"
+        userRoleText.text = "ИСМб-19-1"
 
         logOutButton.setOnClickListener {
             showLogOutDialog()
@@ -65,30 +71,20 @@ class ProfileFragment: Fragment() {
 
     //Смена фрагмента при выходе
     private fun logout() {
-        setPref(delegate = 0, context)
-        replaceFragment()
+        loginPrefs.setLoginCount(0)
+        goToMain()
     }
 
-    //Установка префа логина
-    private fun setPref(delegate: Int, context: Context?){
-        val pref = PreferenceManager.getDefaultSharedPreferences(context)
-        val editor = pref.edit()
-        editor.putInt("login", delegate).apply()
-    }
-
-    //Смена фрагмента
-    private fun replaceFragment(){
-        val profileFragment = ProfileCleanFragment()
-        var fragmentTransaction : FragmentTransaction = requireFragmentManager().beginTransaction()
-        fragmentTransaction.replace(R.id.frame, profileFragment)
-        fragmentTransaction.commit()
+    private fun goToMain(){
+        val i = Intent(context, MainActivity::class.java)
+        requireContext().startActivity(i)
     }
 
     //Инициализация компонентов
     private fun init(view: View) {
         userImage = view.findViewById(R.id.userImage)
         nameUserText = view.findViewById(R.id.nameUserText)
-        groupUserText = view.findViewById(R.id.groupUserText)
+        userRoleText = view.findViewById(R.id.userRoleText)
         logOutButton = view.findViewById(R.id.logOutButton)
     }
 }

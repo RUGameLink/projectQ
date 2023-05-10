@@ -43,7 +43,7 @@
         android:textStyle="bold" />
 
     <TextView
-        android:id="@+id/groupUserText"
+        android:id="@+id/userRoleText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingTop="10dp"

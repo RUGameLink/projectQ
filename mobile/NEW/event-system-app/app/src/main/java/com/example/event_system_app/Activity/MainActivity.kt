@@ -32,8 +32,8 @@ class MainActivity : AppCompatActivity() {
     private lateinit var profileCleanFragment: ProfileCleanFragment
     private lateinit var presenceFragment: PresenceFragment
 
-    lateinit var myPreference: SharedPrefs
-
+    private lateinit var myPreference: SharedPrefs
+    private val menuToChoose: Int = R.menu.bottom_navigation_menu
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,10 +42,8 @@ class MainActivity : AppCompatActivity() {
         setSupportActionBar(toolbar)
         toolbar.isTitleCentered = true
         title = getString(R.string.events_text)
+        setMenu()
         menu.setSelectedItemId(R.id.events_item);
-        eventsFragment = EventsFragment()
-        replaceFragment(eventsFragment)
-
         menu.setOnItemSelectedListener { item ->
             when(item.itemId) {
                 R.id.my_events_item -> {
@@ -80,9 +78,13 @@ class MainActivity : AppCompatActivity() {
                 }
                 R.id.profile_item -> {
                     title = getString(R.string.profile_text)
-                    var resp = checkUser()
+                    var resp = myPreference.getLoginCount()
                     when(resp){
                         1 -> {
+                            profileFragment = ProfileFragment()
+                            replaceFragment(profileFragment)
+                        }
+                        2 -> {
                             profileFragment = ProfileFragment()
                             replaceFragment(profileFragment)
                         }
@@ -101,14 +103,31 @@ class MainActivity : AppCompatActivity() {
         getPref()
     }
 
-    //Проверка входа юзера
-    private fun checkUser(): Int{
-        var user = 0
-        val pref  = PreferenceManager.getDefaultSharedPreferences(this)
-        pref.apply {
-            user = getInt("login", 0)
+    private fun setMenu() {
+        var resp = myPreference.getLoginCount()
+        when(resp){
+            1 -> {
+                profileFragment = ProfileFragment()
+                menu.inflateMenu(R.menu.bottom_navigation_menu);
+                eventsFragment = EventsFragment()
+                replaceFragment(eventsFragment)
+                menu.setSelectedItemId(R.id.events_item);
+            }
+            2 -> {
+                profileFragment = ProfileFragment()
+                menu.inflateMenu(R.menu.bottom_navigation_menu_responsible);
+                eventsResponsibleFragment = EventsResponsibleFragment()
+                replaceFragment(eventsResponsibleFragment)
+                menu.setSelectedItemId(R.id.event_responsible_item);
+            }
+            0 -> {
+                profileCleanFragment = ProfileCleanFragment()
+                menu.inflateMenu(R.menu.bottom_navigation_menu);
+                eventsFragment = EventsFragment()
+                replaceFragment(eventsFragment)
+                menu.setSelectedItemId(R.id.events_item);
+            }
         }
-        return user
     }
 
     //Получение информации и смена темы
@@ -123,6 +142,7 @@ class MainActivity : AppCompatActivity() {
             }
         }
     }
+
 
     //Установка темы
     private fun setStyle(themeStyle: Int) {

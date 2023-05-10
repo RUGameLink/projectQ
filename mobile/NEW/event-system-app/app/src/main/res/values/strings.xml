@@ -64,4 +64,10 @@
 
     <string name="network_error_text">Network connection error.\nTry refreshing the page</string>
     <string name="refresh_text">Refresh</string>
+
+    <string name="login_text">Login</string>
+    <string name="student_text">Student</string>
+    <string name="org_text">Organizer</string>
+
+    <string name="error">Error</string>
 </resources>

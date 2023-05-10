@@ -2,10 +2,12 @@ package com.example.event_system_app.Helper
 
 import android.content.Context
 import android.content.SharedPreferences
+import android.preference.PreferenceManager
 
 
 val PREFERENCE_NAME = "SharesPreference"
 val PREFERENCE_LANGUAGE = "Language"
+val PREFERENCE_LOGIN = "Login"
 
 class SharedPrefs(context: Context){
     val preferences = context.getSharedPreferences(PREFERENCE_NAME, Context.MODE_PRIVATE)
@@ -18,6 +20,16 @@ class SharedPrefs(context: Context){
         val editor = preferences.edit()
         editor.putString(PREFERENCE_LANGUAGE, language)
         editor.apply()
+    }
+
+    fun setLoginCount(login: Int){
+        val editor = preferences.edit()
+        editor.putInt(PREFERENCE_LOGIN, login)
+        editor.apply()
+    }
+
+    fun getLoginCount(): Int{
+        return preferences.getInt(PREFERENCE_LOGIN, 0)!!
     }
 
 }

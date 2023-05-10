@@ -63,4 +63,10 @@
 
     <string name="network_error_text">Ошибка подключения к сети.\nПопробуйте обновить страницу</string>
     <string name="refresh_text">Обновить</string>
+
+    <string name="login_text">Войти</string>
+    <string name="student_text">Студент</string>
+    <string name="org_text">Организатор</string>
+
+    <string name="error">Ошибка</string>
 </resources>
