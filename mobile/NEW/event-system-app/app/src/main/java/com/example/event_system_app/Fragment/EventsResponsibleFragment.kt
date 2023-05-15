@@ -115,7 +115,7 @@ class EventsResponsibleFragment: Fragment() {
             2323,
             "Методологический семинар для аспирантов 1 года обучения",
             "Научные руководители и аспиранты, имеющие значимые научные достижения, расскажут о траектории научного развития и выборе оптимальной научной методики, а также обсудят основные направления научных исследований.",
-            arrayOf("https://leader-id.storage.yandexcloud.net/upload/91121/5a290da8-8f0c-4fd6-a1f6-fa3a08f6605b.jpg"),
+            arrayOf("https://sun9-23.userapi.com/impg/vL1O2jRKfF6SAD3-yuV94T1mjq5rpveujxEzSw/OoyTm9iaHfk.jpg?size=2402x2160&quality=96&sign=96f9a64e3df758376239468ffaa279c7&type=album"),
             "Учебное, Культурное",
             "3 февраля, с 15:30 до 17:30",
             "Москва, Точка кипения Тимирязевка",

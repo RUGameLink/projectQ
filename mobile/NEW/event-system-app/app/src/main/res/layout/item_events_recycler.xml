@@ -24,6 +24,7 @@
             android:id="@+id/eventImg"
             android:layout_width="match_parent"
             android:layout_height="300dp"
+            app:strokeColor="@null"
             tools:srcCompat="@tools:sample/avatars" />
 
         <TextView

@@ -2,6 +2,7 @@ package com.example.event_system_app.Adapter
 
 import android.content.Context
 import android.content.Intent
+import android.os.Handler
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -42,10 +43,13 @@ class EventAdapter(private val events: ArrayList<Event>, private val context: Co
         holder.descEventText.text = events[position].description
 
         val imgUrl = events[position].imgUrl!![0]
-        Glide.with(context)
-            .load(imgUrl)
-            .placeholder(R.drawable.icon_events)
-            .into(holder.eventImg);
+        Handler().postDelayed({
+            Glide.with(context)
+                .load(imgUrl)
+                .placeholder(R.drawable.icon_events)
+                .into(holder.eventImg);
+        }, 2000)
+
 
         holder.descButton.setOnClickListener {
             val i = Intent(context, EventActivity::class.java)

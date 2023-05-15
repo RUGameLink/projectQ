@@ -29,11 +29,13 @@ class ServerHelper(context: Context) {
                 val title = obj.getJSONObject(i).getString("title")
                 val dateStart = obj.getJSONObject(i).getString("dateStart")
                 val description = obj.getJSONObject(i).getString("description")
-                val images = obj.getJSONObject(i).getString("images")
+                val images = obj.getJSONObject(i).getJSONArray("images").getString(0)
 
-                print("test obj: ${images}")
-                var im = images.drop(2).dropLast(2)
-                eventList.add(Event(id, title, description, arrayOf(im), type, dateStart, null, null, null, null, null))
+            //    print("test obj: ${images}")
+            //    var im = images.drop(2).dropLast(2)
+
+                println("\nsay me image: ${images}\n")
+                eventList.add(Event(id, title, description, arrayOf(images.toString()), type, dateStart, null, null, null, null, null))
             }
 
         }, {

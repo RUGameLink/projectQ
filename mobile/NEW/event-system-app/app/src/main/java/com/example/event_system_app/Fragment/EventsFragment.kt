@@ -3,6 +3,7 @@ package com.example.event_system_app.Fragment
 import android.content.Context
 import android.content.pm.ActivityInfo
 import android.os.Bundle
+import android.os.Handler
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,6 +16,9 @@ import com.example.event_system_app.R
 import android.widget.SearchView
 import com.example.event_system_app.Helper.ServerHelper
 import com.nex3z.togglebuttongroup.SingleSelectToggleGroup
+import java.util.*
+import kotlin.collections.ArrayList
+import kotlin.concurrent.schedule
 
 class EventsFragment: Fragment() {
     private lateinit var eventsSearchView: SearchView
@@ -39,9 +43,16 @@ class EventsFragment: Fragment() {
         init(view)
         serverHelper = ServerHelper(requireContext())
         tagsGrpup.check(R.id.anyToggle)
+
         eventList = serverHelper.getExternalEvents()
 
-        setEventAdapter(eventList, view, requireContext())
+        checkList(view, requireContext())
+/*        if(eventList.size == 0){
+            Timer().schedule(2000) {
+                println("world")
+            }
+        }
+        setEventAdapter(eventList, view, requireContext())*/
 
         eventsSearchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean { //Поиск в карточках
@@ -94,11 +105,23 @@ class EventsFragment: Fragment() {
         return view
     }
 
+    private fun checkList(view: View, context: Context) {
+        println("check List - is ${eventList.size}")
+        if(eventList.size == 0){
+            Handler().postDelayed({
+                checkList(view, context)
+            }, 2000)
+        }
+        else{
+            setEventAdapter(eventList, view, context)
+        }
+    }
+
     //Поиск по тегу
     private fun searchTag(view: View){
         if(tags.equals("Любое")){
             println("Размер листа ивентов ${eventList.size}")
-            context?.let { setEventAdapter(eventList, view, it) }
+            context?.let { checkList(view, requireContext()) }
         }
         else {
             val searchEventList = ArrayList<Event>()
@@ -107,7 +130,7 @@ class EventsFragment: Fragment() {
                     searchEventList.add(it)
                 }
 
-                setEventAdapter(searchEventList, view, requireContext())
+                checkList(view, requireContext())
             }
         }
     }
