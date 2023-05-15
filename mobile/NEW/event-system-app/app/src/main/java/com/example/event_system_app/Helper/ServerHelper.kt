@@ -7,8 +7,7 @@ import com.android.volley.toolbox.Volley
 import com.example.event_system_app.Model.Event
 import org.json.JSONArray
 import org.json.JSONObject
-
-
+import java.net.URL
 
 
 class ServerHelper(context: Context) {
@@ -24,18 +23,26 @@ class ServerHelper(context: Context) {
             print("check response ${obj}")
         //    val res = obj.getJSONObject("current") //Работа с заголовком current json
             for (i in 0 until obj.length()) {
+                try {
+
+
+                var images = obj.getJSONObject(i).optJSONArray("images").getString(0)
                 val id = obj.getJSONObject(i).getString("id").toString().toLong()
                 val type = obj.getJSONObject(i).getString("type")
                 val title = obj.getJSONObject(i).getString("title")
                 val dateStart = obj.getJSONObject(i).getString("dateStart")
                 val description = obj.getJSONObject(i).getString("description")
-                val images = obj.getJSONObject(i).getJSONArray("images").getString(0)
 
+                val res = images.toString()
             //    print("test obj: ${images}")
             //    var im = images.drop(2).dropLast(2)
-
+            //    val url = URL(im.toString()).toString()
                 println("\nsay me image: ${images}\n")
-                eventList.add(Event(id, title, description, arrayOf(images.toString()), type, dateStart, null, null, null, null, null))
+                eventList.add(Event(id, title, description, arrayOf(res), type, dateStart, null, null, null, null, null))
+                }
+                catch (ex: java.lang.NullPointerException){
+                    println(ex)
+                }
             }
 
         }, {
