@@ -132,12 +132,12 @@ class EventsResponsibleFragment: Fragment() {
                 val searchEventList = ArrayList<Event>()
                 eventList.forEach {
                     if (!tags.equals("Любое")){
-                        if(it.title.contains(query!!, ignoreCase = true) && it.tags.contains(tags!!, ignoreCase = true)){
+                        if(it.title!!.contains(query!!, ignoreCase = true) && it.tags!!.contains(tags!!, ignoreCase = true)){
                             searchEventList.add(it)
                         }
                     }
                     else{
-                        if(it.title.contains(query!!, ignoreCase = true)){
+                        if(it.title!!.contains(query!!, ignoreCase = true)){
                             searchEventList.add(it)
                         }
                     }
@@ -187,7 +187,7 @@ class EventsResponsibleFragment: Fragment() {
         else {
             val searchEventList = ArrayList<Event>()
             eventList.forEach {
-                if (it.tags.contains(tags!!, ignoreCase = true)) {
+                if (it.tags!!.contains(tags!!, ignoreCase = true)) {
                     searchEventList.add(it)
                 }
 

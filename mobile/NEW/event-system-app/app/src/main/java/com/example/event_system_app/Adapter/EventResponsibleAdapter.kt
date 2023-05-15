@@ -42,7 +42,7 @@ class EventResponsibleAdapter(private val events: ArrayList<Event>, private val 
         holder.dateEventText.text = events[position].date
         holder.descEventText.text = events[position].description
 
-        val imgUrl = events[position].imgUrl[0]
+        val imgUrl = events[position].imgUrl!![0]
         Glide.with(context)
             .load(imgUrl)
             .placeholder(R.drawable.icon_events)

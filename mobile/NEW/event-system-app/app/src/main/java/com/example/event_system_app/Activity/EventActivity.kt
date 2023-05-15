@@ -60,7 +60,7 @@ class EventActivity: AppCompatActivity() {
 
     private fun setImages() {
         eventImage = findViewById(R.id.eventImage);
-        eventImage.setPageCount(event.imgUrl.size);
+        eventImage.setPageCount(event.imgUrl!!.size);
 
         eventImage.setImageListener(imageListener);
     }
@@ -68,7 +68,7 @@ class EventActivity: AppCompatActivity() {
     var imageListener: ImageListener = object : ImageListener {
         override fun setImageForPosition(position: Int, imageView: ImageView) {
             Glide.with(this@EventActivity)
-                .load(event.imgUrl.get(position))
+                .load(event.imgUrl!!.get(position))
                 .placeholder(R.drawable.icon_events)
                 .into(imageView)
         }

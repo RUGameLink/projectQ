@@ -5,10 +5,10 @@ import android.content.SharedPreferences
 import android.preference.PreferenceManager
 
 
-val PREFERENCE_NAME = "SharesPreference"
-val PREFERENCE_LANGUAGE = "Language"
-val PREFERENCE_LOGIN = "Login"
-val PREFERENCE_THEME = "Theme"
+private val PREFERENCE_NAME = "SharesPreference"
+private val PREFERENCE_LANGUAGE = "Language"
+private val PREFERENCE_LOGIN = "Login"
+private val PREFERENCE_THEME = "Theme"
 
 class SharedPrefs(context: Context){
     val preferences = context.getSharedPreferences(PREFERENCE_NAME, Context.MODE_PRIVATE)

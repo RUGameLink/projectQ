@@ -127,7 +127,7 @@ class MyEventsFragment: Fragment() {
 
                 val searchEventList = ArrayList<Event>()
                 eventList.forEach {
-                    if(it.title.contains(query!!, ignoreCase = true)){
+                    if(it.title!!.contains(query!!, ignoreCase = true)){
                         searchEventList.add(it)
                     }
                 }
@@ -155,7 +155,11 @@ class MyEventsFragment: Fragment() {
         recyclerView.adapter = myEventAdapter //внесение данных из листа в адаптер (заполнение данными)
 
         myEventAdapter.onItemClick = {
-            val myEvent = MyEvent(1212, it.id, it.title, "https://ixbt.online/live/images/original/24/67/86/2022/07/19/c145c2d9c7.jpg", it.tags, it.date, it.location)
+            val myEvent = MyEvent(1212,
+                it.id!!,
+                it.title!!, "https://ixbt.online/live/images/original/24/67/86/2022/07/19/c145c2d9c7.jpg",
+                it.tags!!, it.date!!, it.location!!
+            )
 
             val i = Intent(context, MyEventActivity::class.java)
             i.putExtra("myEvent", myEvent)

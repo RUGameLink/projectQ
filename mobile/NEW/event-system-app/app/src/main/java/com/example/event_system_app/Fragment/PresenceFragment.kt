@@ -125,7 +125,7 @@ class PresenceFragment: Fragment() {
 
                 val searchEventList = ArrayList<Event>()
                 eventList.forEach {
-                    if(it.title.contains(query!!, ignoreCase = true)){
+                    if(it.title!!.contains(query!!, ignoreCase = true)){
                         searchEventList.add(it)
                     }
                 }

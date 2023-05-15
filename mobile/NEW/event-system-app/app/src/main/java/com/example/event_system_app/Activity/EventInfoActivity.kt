@@ -52,7 +52,7 @@ class EventInfoActivity : AppCompatActivity() {
 
     private fun setImages() {
         carouselView = findViewById(R.id.infoImagesVies);
-        carouselView.setPageCount(event.imgUrl.size);
+        carouselView.setPageCount(event.imgUrl!!.size);
 
         carouselView.setImageListener(imageListener);
     }
@@ -60,7 +60,7 @@ class EventInfoActivity : AppCompatActivity() {
     var imageListener: ImageListener = object : ImageListener {
         override fun setImageForPosition(position: Int, imageView: ImageView) {
             Glide.with(this@EventInfoActivity)
-                .load(event.imgUrl.get(position))
+                .load(event.imgUrl!!.get(position))
                 .placeholder(R.drawable.icon_events)
                 .into(imageView)
         }

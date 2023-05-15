@@ -29,7 +29,7 @@ class MyEventAdapter(private val events: ArrayList<Event>, private val context: 
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) { //Запись в айтем данных в заготовленные textview
-        var title = split(events[position].title, 25)
+        var title = split(events[position].title!!, 25)
         holder.titleText.text = title[0] + "..."
 //        var title = events[position].title
 //        holder.titleText.text = events[position].title
@@ -40,7 +40,7 @@ class MyEventAdapter(private val events: ArrayList<Event>, private val context: 
             onItemClick?.invoke(events[position])
         }
 
-        val imgUrl = events[position].imgUrl[0]
+        val imgUrl = events[position].imgUrl!![0]
         Glide.with(context)
             .load(imgUrl)
             .placeholder(R.drawable.icon_events)

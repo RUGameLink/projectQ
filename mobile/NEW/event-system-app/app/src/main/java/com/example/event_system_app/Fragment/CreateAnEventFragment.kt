@@ -7,16 +7,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.SearchView
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.event_system_app.Activity.EventInfoActivity
 import com.example.event_system_app.Adapter.MyEventAdapter
 import com.example.event_system_app.Model.Event
-import com.example.event_system_app.Model.MyEvent
 import com.example.event_system_app.R
-import com.google.android.material.button.MaterialButton
 
 class CreateAnEventFragment: Fragment() {
     private lateinit var myEventsSearchView: SearchView
@@ -129,7 +126,7 @@ class CreateAnEventFragment: Fragment() {
 
                 val searchEventList = ArrayList<Event>()
                 eventList.forEach {
-                    if(it.title.contains(query!!, ignoreCase = true)){
+                    if(it.title!!.contains(query!!, ignoreCase = true)){
                         searchEventList.add(it)
                     }
                 }
