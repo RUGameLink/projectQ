@@ -15,7 +15,7 @@ import com.example.event_system_app.Adapter.MyEventAdapter
 import com.example.event_system_app.Model.Event
 import com.example.event_system_app.R
 
-class CreateAnEventFragment: Fragment() {
+class ModerationFragment: Fragment() {
     private lateinit var myEventsSearchView: SearchView
 
     override fun onCreate(savedInstanceState: Bundle?) {

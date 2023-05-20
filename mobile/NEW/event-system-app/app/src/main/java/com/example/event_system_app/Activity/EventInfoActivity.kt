@@ -45,7 +45,7 @@ class EventInfoActivity : AppCompatActivity() {
         statsButton.setOnClickListener {
             val i = Intent(this, EventStatsActivity::class.java)
             i.putExtra("eventName", event.title)
-            i.putExtra("eventId", event.id)
+            i.putExtra("eventId", event.id.toString())
             startActivity(i)
         }
     }

@@ -61,6 +61,8 @@
     <string name="table_name_text">Name of the Student</string>
     <string name="table_group_text">Group</string>
     <string name="table_pres_text">Present</string>
+    <string name="table_role_text">Role</string>
+    <string name="table_pres_presence_noted_text">Presence noted</string>
 
     <string name="network_error_text">Network connection error.\nTry refreshing the page</string>
     <string name="refresh_text">Refresh</string>

@@ -1,14 +1,20 @@
 package com.example.event_system_app.Activity
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
+import android.view.View
 import android.widget.ImageView
+import android.widget.ProgressBar
+import android.widget.RelativeLayout
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
+import com.example.event_system_app.Helper.ServerHelper
 import com.example.event_system_app.Model.Event
 import com.example.event_system_app.R
 import com.google.android.material.appbar.MaterialToolbar
@@ -24,9 +30,11 @@ class EventActivity: AppCompatActivity() {
     private lateinit var bodyEventText: TextView
     private lateinit var eventLocationText: TextView
     private lateinit var human_count_text: TextView
+    private lateinit var progressBar: ProgressBar
+    private lateinit var eventLayout: RelativeLayout
 
     private lateinit var event: Event
-
+    private lateinit var serverHelper: ServerHelper
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,18 +45,40 @@ class EventActivity: AppCompatActivity() {
         title = getString(R.string.event_text)
         supportActionBar?.setHomeAsUpIndicator(R.drawable.icon_back)
         toolbar.navigationIcon = getDrawable(R.drawable.icon_back)
-        event = intent.getSerializableExtra("event") as Event
+
         toolbar.setNavigationOnClickListener {
             val i = Intent(this, MainActivity::class.java)
             startActivity(i)
             true
         }
-        setContent()
+
+        val eventId = intent.getStringExtra("eventId")
+        serverHelper = ServerHelper(this)
+
+        serverHelper.getEventInfo(eventId!!)
+        event = serverHelper.getEvent()
+
+        checkList()
+
+      //  setContent()
+    }
+
+    private fun checkList() {
+        println("check List - is ${event}")
+        if(event.id == null){
+            Handler().postDelayed({
+                event = serverHelper.getEvent()
+                checkList()
+            }, 2000)
+        }
+        else{
+            setContent()
+        }
     }
 
     //Заполнение компонентов информацией
     private fun setContent() {
-        setImages()
+
 
         headerText.text = event.title
         tagListText.text = event.tags
@@ -56,13 +86,15 @@ class EventActivity: AppCompatActivity() {
         bodyEventText.text = event.description
         eventLocationText.text = event.location
         human_count_text.text = event.humanCount.toString()
+        setImages()
+        eventLayout.visibility = View.VISIBLE
+        progressBar.visibility = View.INVISIBLE
     }
 
     private fun setImages() {
         eventImage = findViewById(R.id.eventImage);
-        eventImage.setPageCount(event.imgUrl!!.size);
-
         eventImage.setImageListener(imageListener);
+        eventImage.setPageCount(event.imgUrl!!.size);
     }
 
     var imageListener: ImageListener = object : ImageListener {
@@ -101,6 +133,7 @@ class EventActivity: AppCompatActivity() {
         bodyEventText= findViewById(R.id.bodyEventText)
         eventLocationText= findViewById(R.id.eventLocationText)
         human_count_text= findViewById(R.id.human_count_text)
-
+        progressBar = findViewById(R.id.progressBar)
+        eventLayout = findViewById(R.id.eventsLayout)
     }
 }

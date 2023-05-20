@@ -5,7 +5,6 @@ import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.preference.PreferenceManager
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
@@ -27,7 +26,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var profileFragment: ProfileFragment
     private lateinit var eventsFragment: EventsFragment
     private lateinit var eventsResponsibleFragment: EventsResponsibleFragment
-    private lateinit var createAnEventFragment: CreateAnEventFragment
+    private lateinit var moderationFragment: ModerationFragment
     private lateinit var myEventsFragment: MyEventsFragment
     private lateinit var profileCleanFragment: ProfileCleanFragment
     private lateinit var presenceFragment: PresenceFragment
@@ -60,8 +59,8 @@ class MainActivity : AppCompatActivity() {
                 }
                 R.id.create_item -> {
                     title = getString(R.string.my_events_text)
-                    createAnEventFragment = CreateAnEventFragment()
-                    replaceFragment(createAnEventFragment)
+                    moderationFragment = ModerationFragment()
+                    replaceFragment(moderationFragment)
                     true
                 }
                 R.id.event_responsible_item -> {

@@ -60,6 +60,8 @@
     <string name="table_name_text">ФИО Студента</string>
     <string name="table_group_text">Группа</string>
     <string name="table_pres_text">Присутствует</string>
+    <string name="table_role_text">Роль</string>
+    <string name="table_pres_presence_noted_text">Присутствие отметил</string>
 
     <string name="network_error_text">Ошибка подключения к сети.\nПопробуйте обновить страницу</string>
     <string name="refresh_text">Обновить</string>

@@ -13,10 +13,25 @@
         app:layout_constraintStart_toStartOf="parent">
     </include>
 
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="@android:style/Widget.DeviceDefault.Light.ProgressBar.Horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:indeterminate="true"
+        android:indeterminateTint="@color/green_color"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
     <RelativeLayout
+        android:id="@+id/eventsLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:visibility="invisible">
 
         <ScrollView
             android:layout_width="match_parent"
@@ -52,8 +67,8 @@
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="2dp"
-                    android:paddingTop="20dp"
-                    android:background="@color/grey_text_color"/>
+                    android:background="@color/grey_text_color"
+                    android:paddingTop="20dp" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -78,11 +93,13 @@
                         android:textAlignment="textEnd"
                         android:textStyle="bold" />
                 </LinearLayout>
+
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="2dp"
-                    android:paddingTop="20dp"
-                    android:background="@color/grey_text_color"/>
+                    android:background="@color/grey_text_color"
+                    android:paddingTop="20dp" />
+
                 <TextView
                     android:id="@+id/bodyEventText"
                     android:layout_width="match_parent"
@@ -94,8 +111,8 @@
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="2dp"
-                    android:paddingTop="20dp"
-                    android:background="@color/grey_text_color"/>
+                    android:background="@color/grey_text_color"
+                    android:paddingTop="20dp" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -124,8 +141,8 @@
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="2dp"
-                    android:paddingTop="20dp"
-                    android:background="@color/grey_text_color"/>
+                    android:background="@color/grey_text_color"
+                    android:paddingTop="20dp" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -155,8 +172,7 @@
                             android:layout_weight="1"
                             android:clickable="true"
                             app:backgroundTint="@color/green_color"
-                            app:elevation="0dp">
-                        </com.google.android.material.floatingactionbutton.FloatingActionButton>
+                            app:elevation="0dp"></com.google.android.material.floatingactionbutton.FloatingActionButton>
 
                         <TextView
                             android:id="@+id/human_count_text"

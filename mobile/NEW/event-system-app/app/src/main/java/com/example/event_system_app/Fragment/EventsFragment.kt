@@ -7,6 +7,8 @@ import android.os.Handler
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.LinearLayout
+import android.widget.ProgressBar
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -23,6 +25,9 @@ import kotlin.concurrent.schedule
 class EventsFragment: Fragment() {
     private lateinit var eventsSearchView: SearchView
     private lateinit var tagsGrpup: SingleSelectToggleGroup
+    private lateinit var progressBar: ProgressBar
+    private lateinit var EventsFrLin: LinearLayout
+
     private lateinit var serverHelper: ServerHelper
 
     private var tags: String = ""
@@ -113,6 +118,8 @@ class EventsFragment: Fragment() {
             }, 2000)
         }
         else{
+            progressBar.visibility = View.INVISIBLE
+            EventsFrLin.visibility = View.VISIBLE
             setEventAdapter(eventList, view, context)
         }
     }
@@ -147,5 +154,7 @@ class EventsFragment: Fragment() {
     private fun init(view: View) {
         eventsSearchView = view.findViewById(R.id.eventsSearchView)
         tagsGrpup = view.findViewById(R.id.tags_group)
+        progressBar = view.findViewById(R.id.progressBar)
+        EventsFrLin = view.findViewById(R.id.EventsFrLin)
     }
 }

@@ -24,7 +24,7 @@ class EventStatsActivity : AppCompatActivity() {
         init()
 
         val eventName = intent.getStringExtra("eventName")
-        val eventId = intent.getStringExtra("eventId")
+        val eventId = intent.getStringExtra("eventId")!!.toLong()
 
         setSupportActionBar(toolbar)
         toolbar.isTitleCentered = true
@@ -39,11 +39,14 @@ class EventStatsActivity : AppCompatActivity() {
             true
         }
 
-        val participant2 = Participant("Иванов Иван Иванович", "ИМп-12-2", "Да")
-        val participant3 = Participant("Иванов Иван Иванович", "ИМп-12-2", "Да")
-        val participant1 = Participant("Иванов Иван Иванович", "ИМп-12-2", "Да")
+        val participant1 = Participant(eventId, "Иванов Иван Иванович", "ИМп-12-2", "Да", "участник", "Иванов А.И")
+        val participant2 = Participant(eventId, "Иванов Иван Иванович", "ИМп-12-2", "Да", "участник", "Иванов А.И")
+        val participant3 = Participant(eventId, "Иванов Иван Иванович", "ИМп-12-2", "Да", "участник", "Иванов А.И")
         participantList.add(participant1)
         participantList.add(participant3)
+        participantList.add(participant2)
+        participantList.add(participant2)
+        participantList.add(participant2)
         participantList.add(participant2)
 
         setTable()
@@ -52,9 +55,11 @@ class EventStatsActivity : AppCompatActivity() {
     private fun setTable() {
         var header = DataTableHeader.Builder()
             .item(getString(R.string.table_num_text), 10)
-            .item(getString(R.string.table_name_text), 40)
-            .item(getString(R.string.table_group_text), 20)
-            .item(getString(R.string.table_pres_text), 30)
+            .item(getString(R.string.table_name_text), 30)
+            .item(getString(R.string.table_group_text), 10)
+            .item(getString(R.string.table_role_text), 10)
+            .item(getString(R.string.table_pres_presence_noted_text), 20)
+            .item(getString(R.string.table_pres_text), 20)
             .build()
 
         val rows: ArrayList<DataTableRow> = ArrayList()
@@ -64,6 +69,8 @@ class EventStatsActivity : AppCompatActivity() {
                 .value(i.toString())
                 .value(it.userName)
                 .value(it.studentGroup)
+                .value(it.role)
+                .value(it.presenceNoted)
                 .value(it.presence)
                 .build()
 

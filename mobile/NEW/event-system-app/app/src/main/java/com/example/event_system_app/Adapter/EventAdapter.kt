@@ -54,7 +54,7 @@ class EventAdapter(private val events: ArrayList<Event>, private val context: Co
         holder.descButton.setOnClickListener {
             val i = Intent(context, EventActivity::class.java)
             val event = events[position]
-            i.putExtra("event", event)
+            i.putExtra("eventId", event.id.toString())
             context.startActivity(i)
         }
 
