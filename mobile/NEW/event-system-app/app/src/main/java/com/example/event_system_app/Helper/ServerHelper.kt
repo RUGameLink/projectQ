@@ -1,14 +1,13 @@
 package com.example.event_system_app.Helper
 
 import android.content.Context
-import android.os.Handler
 import com.android.volley.Request
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.example.event_system_app.Model.Event
 import org.json.JSONArray
 import org.json.JSONObject
-import java.net.URL
+import java.text.SimpleDateFormat
 
 
 class ServerHelper(context: Context) {
@@ -34,7 +33,7 @@ class ServerHelper(context: Context) {
                 val id = obj.optJSONObject(i).optString("id").toString().toLong()
                 val type = obj.optJSONObject(i).optString("type")
                 val title = obj.optJSONObject(i).optString("title")
-                val dateStart = obj.optJSONObject(i).optString("dateStart")
+                val dateStart = dateParsing(obj.optJSONObject(i).optString("dateStart"))
                 val description = obj.optJSONObject(i).optString("description")
 
                 val res = images.toString()
@@ -66,7 +65,7 @@ class ServerHelper(context: Context) {
                     val id = obj.optString("id").toString().toLong()
                     val type = obj.optString("type")
                     val title = obj.optString("title")
-                    val dateStart = obj.optString("dateStart")
+                    val dateStart = dateParsing(obj.optString("dateStart"))
                     val description = obj.optString("description")
                     val location = obj.optString("location")
                     val humanCount = obj.optInt("count_people")
@@ -90,5 +89,13 @@ class ServerHelper(context: Context) {
 
     fun getEvent(): Event{
         return event
+    }
+
+    private fun dateParsing(date: String): String {
+        val parser = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss")
+        val formatter = SimpleDateFormat("dd.MM.yyyy HH:mm")
+
+
+        return formatter.format(parser.parse(date))
     }
 }
