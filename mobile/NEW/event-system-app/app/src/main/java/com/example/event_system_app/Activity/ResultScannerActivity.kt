@@ -11,6 +11,7 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
 import com.example.event_system_app.Helper.ServerHelper
+import com.example.event_system_app.Model.Event
 import com.example.event_system_app.Model.User
 import com.example.event_system_app.R
 import com.google.android.material.appbar.MaterialToolbar
@@ -51,10 +52,11 @@ class ResultScannerActivity : AppCompatActivity() {
             true
         }
 
-        confirmButton.setOnClickListener {
-            val rnd = (1..2).random()
+        val event = Event(null,null,null,null,null,null,null,null,null,null,null)
 
-            if(rnd == 1){
+        confirmButton.setOnClickListener {
+            var resultConfirm: Boolean = serverHelper.confirmPresence(user.id, event.id)
+            if(resultConfirm == true){
                 showSuccessfulDialog()
             }
             else{

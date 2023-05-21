@@ -10,16 +10,21 @@ import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.ProgressBar
 import android.widget.RelativeLayout
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
 import com.example.event_system_app.Helper.ServerHelper
+import com.example.event_system_app.Helper.SharedPrefs
 import com.example.event_system_app.Model.Event
+import com.example.event_system_app.Model.User
 import com.example.event_system_app.R
 import com.google.android.material.appbar.MaterialToolbar
+import com.google.android.material.button.MaterialButton
 import com.synnapps.carouselview.CarouselView
 import com.synnapps.carouselview.ImageListener
 
@@ -34,14 +39,17 @@ class EventActivity: AppCompatActivity() {
     private lateinit var human_count_text: TextView
     private lateinit var progressBar: ProgressBar
     private lateinit var eventLayout: RelativeLayout
+    private lateinit var regButton: MaterialButton
 
     private lateinit var event: Event
     private lateinit var serverHelper: ServerHelper
+    private lateinit var myPreference: SharedPrefs
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_event)
         init()
+        myPreference = SharedPrefs(this)
         setSupportActionBar(toolbar)
         toolbar.isTitleCentered = true
         title = getString(R.string.event_text)
@@ -49,7 +57,7 @@ class EventActivity: AppCompatActivity() {
         toolbar.navigationIcon = getDrawable(R.drawable.icon_back)
         serverHelper = ServerHelper(this)
         checkConnection()
-
+        val user = User(1, "efef", "efe", "efef", "efef")
         toolbar.setNavigationOnClickListener {
             val i = Intent(this, MainActivity::class.java)
             startActivity(i)
@@ -61,6 +69,21 @@ class EventActivity: AppCompatActivity() {
 
         serverHelper.getEventInfo(eventId!!)
         event = serverHelper.getEvent()
+        val resp = myPreference.getLoginCount()
+        if(resp == 2)
+            regButton.visibility = View.INVISIBLE
+
+        regButton.setOnClickListener {
+            var resp = myPreference.getLoginCount()
+            when(resp){
+                0 -> {
+                    Toast.makeText(this, getString(R.string.clean_profile_text), Toast.LENGTH_SHORT).show()
+                }
+                1 -> {
+                    serverHelper.regForEvent(user.id, event.id)
+                }
+            }
+        }
 
         checkList()
 
@@ -144,5 +167,6 @@ class EventActivity: AppCompatActivity() {
         human_count_text= findViewById(R.id.human_count_text)
         progressBar = findViewById(R.id.progressBar)
         eventLayout = findViewById(R.id.eventsLayout)
+        regButton = findViewById(R.id.go_to_event_button)
     }
 }

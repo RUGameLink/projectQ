@@ -125,4 +125,12 @@ class ServerHelper(context: Context) {
     fun cancellationRegistration() {
         TODO("Not yet implemented")
     }
+
+    fun regForEvent(id: Long, id1: Long?) {
+
+    }
+
+    fun confirmPresence(id: Long, id1: Long?): Boolean {
+        return true
+    }
 }

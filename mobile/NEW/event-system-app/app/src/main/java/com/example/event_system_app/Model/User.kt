@@ -7,5 +7,5 @@ data class User(
     val userName: String,
     val userImageURL: String,
     val userGroup: String,
-    val uid: String
+    val role: String
 ): Serializable

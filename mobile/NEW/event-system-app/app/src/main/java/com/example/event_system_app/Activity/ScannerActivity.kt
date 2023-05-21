@@ -74,8 +74,6 @@ class ScannerActivity : AppCompatActivity() {
     }
 
     private fun startScanning() {
-
-
         // Callbacks
         codeScanner.decodeCallback = DecodeCallback {
             runOnUiThread {

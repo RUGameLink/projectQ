@@ -71,6 +71,9 @@
         <activity
             android:name=".Activity.ScannerActivity"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".Activity.ResultScannerActivity"
+            android:screenOrientation="portrait" />
 
         <provider
             android:name="androidx.core.content.FileProvider"
