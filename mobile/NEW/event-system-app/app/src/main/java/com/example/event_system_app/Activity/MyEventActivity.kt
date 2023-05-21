@@ -11,6 +11,7 @@ import android.net.NetworkInfo
 import android.os.Build
 import android.os.Bundle
 import android.os.Environment
+import android.view.LayoutInflater
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
@@ -21,6 +22,7 @@ import androidmads.library.qrgenearator.QRGContents
 import androidmads.library.qrgenearator.QRGEncoder
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.core.content.FileProvider
 import com.bumptech.glide.Glide
 import com.example.event_system_app.Helper.ServerHelper
@@ -28,6 +30,7 @@ import com.example.event_system_app.Model.MyEvent
 import com.example.event_system_app.R
 import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.button.MaterialButton
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.zxing.WriterException
 import com.itextpdf.text.Element.ALIGN_CENTER
@@ -42,7 +45,6 @@ import java.io.File
 import java.io.FileOutputStream
 import java.text.SimpleDateFormat
 import java.util.*
-
 
 
 class MyEventActivity: AppCompatActivity()  {
@@ -91,7 +93,7 @@ class MyEventActivity: AppCompatActivity()  {
         }
 
         cancelButton.setOnClickListener {
-            Toast.makeText(this, "Я отменю регистрацию", Toast.LENGTH_SHORT).show()
+            showDialogUnreg()
         }
 
         downloadButton.setOnClickListener {
@@ -128,6 +130,27 @@ class MyEventActivity: AppCompatActivity()  {
         }
 
 
+    }
+
+    private fun showDialogUnreg() {
+        val builder = MaterialAlertDialogBuilder(this, R.style.MaterialAlertDialog_Rounded)
+        val dialogView = LayoutInflater.from(this).inflate(R.layout.dialog_warning, null)
+        builder.setView(dialogView)
+
+        val yes_button = dialogView.findViewById<MaterialButton>(R.id.yes_button)
+        val no_button = dialogView.findViewById<MaterialButton>(R.id.no_button)
+        val dialog = builder.create()
+
+        yes_button.setOnClickListener {
+            serverHelper.cancellationRegistration()
+            dialog.dismiss();
+        }
+
+        no_button.setOnClickListener {
+            dialog.dismiss();
+        }
+
+        dialog.show()
     }
 
     private fun checkConnection() {

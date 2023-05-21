@@ -72,8 +72,6 @@ class ServerHelper(context: Context) {
                     val description = obj.optString("description")
                     val location = obj.optString("location")
                     val humanCount = obj.optInt("count_people")
-
-
                     val res = images.toString()
 
                     println("\nsay me image: ${images}\n")
@@ -85,7 +83,7 @@ class ServerHelper(context: Context) {
                 }
         }, {
                 error -> //Случай неудачного результата отклика api
-            println("resp error ${error.toString()}")
+            println("resp error ${error}")
         })
         queue.add(stringRequest) //Добавление запроса в очередь
     }
@@ -122,5 +120,9 @@ class ServerHelper(context: Context) {
             }
         }
         return false
+    }
+
+    fun cancellationRegistration() {
+        TODO("Not yet implemented")
     }
 }

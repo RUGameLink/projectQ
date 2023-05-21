@@ -90,8 +90,6 @@ class EventActivity: AppCompatActivity() {
 
     //Заполнение компонентов информацией
     private fun setContent() {
-
-
         headerText.text = event.title
         tagListText.text = event.tags
         eventDateText.text = event.date
