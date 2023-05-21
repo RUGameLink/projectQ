@@ -1,12 +1,16 @@
 package com.example.event_system_app.Activity
 
+import android.content.Context
 import android.content.Intent
+import android.net.ConnectivityManager
+import android.net.NetworkInfo
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
+import com.example.event_system_app.Helper.ServerHelper
 import com.example.event_system_app.Model.User
 import com.example.event_system_app.R
 import com.google.android.material.appbar.MaterialToolbar
@@ -21,6 +25,7 @@ class ResultScannerActivity : AppCompatActivity() {
     private lateinit var toolbar: MaterialToolbar
 
     private lateinit var eventTitle: String
+    private lateinit var serverHelper: ServerHelper
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,6 +41,8 @@ class ResultScannerActivity : AppCompatActivity() {
         title = eventTitle
         supportActionBar?.setHomeAsUpIndicator(R.drawable.icon_back)
         toolbar.navigationIcon = getDrawable(R.drawable.icon_back)
+        serverHelper = ServerHelper(this)
+        checkConnection()
 
         toolbar.setNavigationOnClickListener {
             val i = Intent(this, ScannerActivity::class.java)
@@ -53,6 +60,13 @@ class ResultScannerActivity : AppCompatActivity() {
             else{
                 showErrorDialog()
             }
+        }
+    }
+
+    private fun checkConnection() {
+        if(!serverHelper.isOnline(this)){
+            val i = Intent(this, NetworkErrorActivity::class.java)
+            startActivity(i)
         }
     }
 

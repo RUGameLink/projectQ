@@ -1,10 +1,13 @@
 package com.example.event_system_app.Activity
 
+import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.graphics.Color
 import android.graphics.drawable.BitmapDrawable
+import android.net.ConnectivityManager
+import android.net.NetworkInfo
 import android.os.Build
 import android.os.Bundle
 import android.os.Environment
@@ -20,6 +23,7 @@ import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.FileProvider
 import com.bumptech.glide.Glide
+import com.example.event_system_app.Helper.ServerHelper
 import com.example.event_system_app.Model.MyEvent
 import com.example.event_system_app.R
 import com.google.android.material.appbar.MaterialToolbar
@@ -57,6 +61,7 @@ class MyEventActivity: AppCompatActivity()  {
     private var STORAGE_CODE = 1001
     private lateinit var event: MyEvent
     private var pathToShare = ""
+    private lateinit var serverHelper: ServerHelper
 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -67,6 +72,9 @@ class MyEventActivity: AppCompatActivity()  {
         toolbar.isTitleCentered = true
         title = getString(R.string.event_text)
         supportActionBar?.setHomeAsUpIndicator(R.drawable.icon_back)
+        serverHelper = ServerHelper(this)
+        checkConnection()
+
         toolbar.navigationIcon = getDrawable(R.drawable.icon_back)
         event = intent.getSerializableExtra("myEvent") as MyEvent
         toolbar.setNavigationOnClickListener {
@@ -120,6 +128,13 @@ class MyEventActivity: AppCompatActivity()  {
         }
 
 
+    }
+
+    private fun checkConnection() {
+        if(!serverHelper.isOnline(this)){
+            val i = Intent(this, NetworkErrorActivity::class.java)
+            startActivity(i)
+        }
     }
 
     private fun replaceDate(date: String): String {

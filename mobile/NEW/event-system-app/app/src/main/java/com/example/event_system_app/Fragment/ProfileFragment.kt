@@ -12,6 +12,8 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
 import com.example.event_system_app.Activity.MainActivity
+import com.example.event_system_app.Activity.NetworkErrorActivity
+import com.example.event_system_app.Helper.ServerHelper
 import com.example.event_system_app.Helper.SharedPrefs
 import com.example.event_system_app.R
 import com.google.android.material.button.MaterialButton
@@ -24,6 +26,7 @@ class ProfileFragment: Fragment() {
     private lateinit var logOutButton: MaterialButton
 
     private lateinit var loginPrefs: SharedPrefs
+    private lateinit var serverHelper: ServerHelper
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,7 +40,8 @@ class ProfileFragment: Fragment() {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_profile, container, false)
         init(view)
-
+        serverHelper = ServerHelper(requireContext())
+        checkConnection()
         nameUserText.text = "Иванов Иван Иванович"
         userRoleText.text = "ИСМб-19-1"
 
@@ -86,5 +90,12 @@ class ProfileFragment: Fragment() {
         nameUserText = view.findViewById(R.id.nameUserText)
         userRoleText = view.findViewById(R.id.userRoleText)
         logOutButton = view.findViewById(R.id.logOutButton)
+    }
+
+    private fun checkConnection() {
+        if(!serverHelper.isOnline(requireContext())){
+            val i = Intent(requireContext(), NetworkErrorActivity::class.java)
+            startActivity(i)
+        }
     }
 }

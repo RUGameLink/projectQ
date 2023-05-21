@@ -2,6 +2,8 @@ package com.example.event_system_app.Activity
 
 import android.content.Context
 import android.content.Intent
+import android.net.ConnectivityManager
+import android.net.NetworkInfo
 import android.os.Bundle
 import android.os.Handler
 import android.view.Menu
@@ -45,6 +47,8 @@ class EventActivity: AppCompatActivity() {
         title = getString(R.string.event_text)
         supportActionBar?.setHomeAsUpIndicator(R.drawable.icon_back)
         toolbar.navigationIcon = getDrawable(R.drawable.icon_back)
+        serverHelper = ServerHelper(this)
+        checkConnection()
 
         toolbar.setNavigationOnClickListener {
             val i = Intent(this, MainActivity::class.java)
@@ -53,7 +57,7 @@ class EventActivity: AppCompatActivity() {
         }
 
         val eventId = intent.getStringExtra("eventId")
-        serverHelper = ServerHelper(this)
+
 
         serverHelper.getEventInfo(eventId!!)
         event = serverHelper.getEvent()
@@ -61,6 +65,14 @@ class EventActivity: AppCompatActivity() {
         checkList()
 
       //  setContent()
+    }
+
+    private fun checkConnection() {
+
+        if(!serverHelper.isOnline(this)){
+            val i = Intent(this, NetworkErrorActivity::class.java)
+            startActivity(i)
+        }
     }
 
     private fun checkList() {

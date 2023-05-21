@@ -1,7 +1,10 @@
 package com.example.event_system_app.Activity
 
 import android.app.Activity
+import android.content.Context
 import android.content.Intent
+import android.net.ConnectivityManager
+import android.net.NetworkInfo
 import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -35,6 +38,8 @@ class SettingsActivity: AppCompatActivity()  {
         title = getString(R.string.settings_text)
         supportActionBar?.setHomeAsUpIndicator(R.drawable.icon_back)
         toolbar.navigationIcon = getDrawable(R.drawable.icon_back)
+
+        checkConnection()
 
         toolbar.setNavigationOnClickListener {
             val i = Intent(this, MainActivity::class.java)
@@ -70,6 +75,16 @@ class SettingsActivity: AppCompatActivity()  {
         }
 
         translateButton.setOnClickListener(translateListener)
+    }
+
+    private fun checkConnection() {
+        val connectionManager: ConnectivityManager = this.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        val activeNetwork: NetworkInfo = connectionManager.activeNetworkInfo!!
+        val isConnected: Boolean = activeNetwork?.isConnectedOrConnecting == true
+        if(!isConnected){
+            val i = Intent(this, NetworkErrorActivity::class.java)
+            startActivity(i)
+        }
     }
 
     //Перезагрузка графики активити

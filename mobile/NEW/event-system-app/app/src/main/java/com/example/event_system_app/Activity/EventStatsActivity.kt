@@ -1,9 +1,13 @@
 package com.example.event_system_app.Activity
 
+import android.content.Context
 import android.content.Intent
 import android.content.pm.ActivityInfo
+import android.net.ConnectivityManager
+import android.net.NetworkInfo
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import com.example.event_system_app.Helper.ServerHelper
 import com.example.event_system_app.Model.Participant
 import com.example.event_system_app.R
 import com.google.android.material.appbar.MaterialToolbar
@@ -15,6 +19,7 @@ class EventStatsActivity : AppCompatActivity() {
     private lateinit var eventStats: DataTable
     private val participantList = ArrayList<Participant>()
     private lateinit var toolbar: MaterialToolbar
+    private lateinit var serverHelper: ServerHelper
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -22,7 +27,8 @@ class EventStatsActivity : AppCompatActivity() {
         requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE
 
         init()
-
+        serverHelper = ServerHelper(this)
+        checkConnection()
         val eventName = intent.getStringExtra("eventName")
         val eventId = intent.getStringExtra("eventId")!!.toLong()
 
@@ -50,6 +56,13 @@ class EventStatsActivity : AppCompatActivity() {
         participantList.add(participant2)
 
         setTable()
+    }
+
+    private fun checkConnection() {
+        if(!serverHelper.isOnline(this)){
+            val i = Intent(this, NetworkErrorActivity::class.java)
+            startActivity(i)
+        }
     }
 
     private fun setTable() {

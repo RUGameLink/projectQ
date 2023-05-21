@@ -1,6 +1,7 @@
 package com.example.event_system_app.Fragment
 
 import android.content.Context
+import android.content.Intent
 import android.content.pm.ActivityInfo
 import android.os.Bundle
 import android.os.Handler
@@ -16,6 +17,7 @@ import com.example.event_system_app.Adapter.EventAdapter
 import com.example.event_system_app.Model.Event
 import com.example.event_system_app.R
 import android.widget.SearchView
+import com.example.event_system_app.Activity.NetworkErrorActivity
 import com.example.event_system_app.Helper.ServerHelper
 import com.nex3z.togglebuttongroup.SingleSelectToggleGroup
 import java.util.*
@@ -47,6 +49,7 @@ class EventsFragment: Fragment() {
         val view = inflater.inflate(R.layout.fragment_events, container, false)
         init(view)
         serverHelper = ServerHelper(requireContext())
+        checkConnection()
         tagsGrpup.check(R.id.anyToggle)
 
         eventList = serverHelper.getExternalEvents()
@@ -156,5 +159,12 @@ class EventsFragment: Fragment() {
         tagsGrpup = view.findViewById(R.id.tags_group)
         progressBar = view.findViewById(R.id.progressBar)
         EventsFrLin = view.findViewById(R.id.EventsFrLin)
+    }
+
+    private fun checkConnection() {
+        if(!serverHelper.isOnline(requireContext())){
+            val i = Intent(requireContext(), NetworkErrorActivity::class.java)
+            startActivity(i)
+        }
     }
 }

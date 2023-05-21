@@ -11,12 +11,15 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.event_system_app.Activity.EventInfoActivity
+import com.example.event_system_app.Activity.NetworkErrorActivity
 import com.example.event_system_app.Adapter.MyEventAdapter
+import com.example.event_system_app.Helper.ServerHelper
 import com.example.event_system_app.Model.Event
 import com.example.event_system_app.R
 
 class ModerationFragment: Fragment() {
     private lateinit var myEventsSearchView: SearchView
+    private lateinit var serverHelper: ServerHelper
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,7 +32,8 @@ class ModerationFragment: Fragment() {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_myevents, container, false)
         init(view)
-
+        serverHelper = ServerHelper(requireContext())
+        checkConnection()
         val eventList = ArrayList<Event>()
         val event1 = Event(
             1,
@@ -193,5 +197,12 @@ class ModerationFragment: Fragment() {
     //Инициализация компонентов
     private fun init(view: View) {
         myEventsSearchView = view.findViewById(R.id.myEventsSearchView)
+    }
+
+    private fun checkConnection() {
+        if(!serverHelper.isOnline(requireContext())){
+            val i = Intent(requireContext(), NetworkErrorActivity::class.java)
+            startActivity(i)
+        }
     }
 }

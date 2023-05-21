@@ -3,6 +3,8 @@ package com.example.event_system_app.Activity
 
 import android.content.Context
 import android.content.Intent
+import android.net.ConnectivityManager
+import android.net.NetworkInfo
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
@@ -13,6 +15,7 @@ import androidx.appcompat.app.AppCompatDelegate
 import androidx.fragment.app.Fragment
 import com.example.event_system_app.Fragment.*
 import com.example.event_system_app.Helper.MyContextWrapper
+import com.example.event_system_app.Helper.ServerHelper
 import com.example.event_system_app.Helper.SharedPrefs
 import com.example.event_system_app.R
 import com.google.android.material.appbar.MaterialToolbar
@@ -32,16 +35,19 @@ class MainActivity : AppCompatActivity() {
     private lateinit var presenceFragment: PresenceFragment
 
     private lateinit var myPreference: SharedPrefs
+    private lateinit var serverHelper: ServerHelper
     private val menuToChoose: Int = R.menu.bottom_navigation_menu
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         init()
+        serverHelper = ServerHelper(this)
         setSupportActionBar(toolbar)
         toolbar.isTitleCentered = true
         title = getString(R.string.events_text)
         setMenu()
+        checkConnection()
         menu.setSelectedItemId(R.id.events_item);
         menu.setOnItemSelectedListener { item ->
             when(item.itemId) {
@@ -100,6 +106,13 @@ class MainActivity : AppCompatActivity() {
         }
 
         getPref()
+    }
+
+    private fun checkConnection() {
+        if(!serverHelper.isOnline(this)){
+            val i = Intent(this, NetworkErrorActivity::class.java)
+            startActivity(i)
+        }
     }
 
     private fun setMenu() {

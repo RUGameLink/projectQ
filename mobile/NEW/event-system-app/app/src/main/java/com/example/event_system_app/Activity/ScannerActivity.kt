@@ -1,14 +1,18 @@
 package com.example.event_system_app.Activity
 
 import android.Manifest
+import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.net.ConnectivityManager
+import android.net.NetworkInfo
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.budiyev.android.codescanner.*
+import com.example.event_system_app.Helper.ServerHelper
 import com.example.event_system_app.Model.User
 import com.google.android.material.appbar.MaterialToolbar
 import com.example.event_system_app.R
@@ -19,6 +23,7 @@ class ScannerActivity : AppCompatActivity() {
     private lateinit var scannerView: CodeScannerView
 
     private lateinit var eventTitle: String
+    private lateinit var serverHelper: ServerHelper
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,6 +41,8 @@ class ScannerActivity : AppCompatActivity() {
         title = eventTitle
         supportActionBar?.setHomeAsUpIndicator(R.drawable.icon_back)
         toolbar.navigationIcon = getDrawable(R.drawable.icon_back)
+        serverHelper = ServerHelper(this)
+        checkConnection()
 
         toolbar.setNavigationOnClickListener {
             val i = Intent(this, MainActivity::class.java)
@@ -46,6 +53,13 @@ class ScannerActivity : AppCompatActivity() {
         codeScanner.isAutoFocusEnabled = false // Whether to enable auto focus or not
         codeScanner.isFlashEnabled = false // Whether to enable flash or not
 
+    }
+
+    private fun checkConnection() {
+        if(!serverHelper.isOnline(this)){
+            val i = Intent(this, NetworkErrorActivity::class.java)
+            startActivity(i)
+        }
     }
 
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String>, grantResults: IntArray) {

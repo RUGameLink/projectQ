@@ -10,13 +10,16 @@ import android.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.event_system_app.Activity.NetworkErrorActivity
 import com.example.event_system_app.Activity.ScannerActivity
 import com.example.event_system_app.Adapter.MyEventAdapter
+import com.example.event_system_app.Helper.ServerHelper
 import com.example.event_system_app.Model.Event
 import com.example.event_system_app.R
 
 class PresenceFragment: Fragment() {
     private lateinit var presenceEventsSearchView: SearchView
+    private lateinit var serverHelper: ServerHelper
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
@@ -28,7 +31,8 @@ class PresenceFragment: Fragment() {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_presence, container, false)
         init(view)
-
+        serverHelper = ServerHelper(requireContext())
+        checkConnection()
         val eventList = ArrayList<Event>()
         val event1 = Event(
             1,
@@ -164,5 +168,12 @@ class PresenceFragment: Fragment() {
     //Инициализация компонентов
     private fun init(view: View) {
         presenceEventsSearchView = view.findViewById(R.id.presenceEventsSearchView)
+    }
+
+    private fun checkConnection() {
+        if(!serverHelper.isOnline(requireContext())){
+            val i = Intent(requireContext(), NetworkErrorActivity::class.java)
+            startActivity(i)
+        }
     }
 }

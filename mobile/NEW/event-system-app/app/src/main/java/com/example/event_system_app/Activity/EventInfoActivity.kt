@@ -4,12 +4,15 @@ import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.content.pm.ActivityInfo
+import android.net.ConnectivityManager
+import android.net.NetworkInfo
 import android.os.Bundle
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContentProviderCompat.requireContext
 import com.bumptech.glide.Glide
+import com.example.event_system_app.Helper.ServerHelper
 import com.example.event_system_app.Model.Event
 import com.example.event_system_app.R
 import com.google.android.material.button.MaterialButton
@@ -31,13 +34,15 @@ class EventInfoActivity : AppCompatActivity() {
     private lateinit var statsButton: MaterialButton
 
     private lateinit var event: Event
-
+    private lateinit var serverHelper: ServerHelper
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_event_info)
         requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
         init()
+        serverHelper = ServerHelper(this)
+        checkConnection()
         event = intent.getSerializableExtra("event") as Event
         setImages()
         setInfo()
@@ -63,6 +68,13 @@ class EventInfoActivity : AppCompatActivity() {
                 .load(event.imgUrl!!.get(position))
                 .placeholder(R.drawable.icon_events)
                 .into(imageView)
+        }
+    }
+
+    private fun checkConnection() {
+        if(!serverHelper.isOnline(this)){
+            val i = Intent(this, NetworkErrorActivity::class.java)
+            startActivity(i)
         }
     }
 

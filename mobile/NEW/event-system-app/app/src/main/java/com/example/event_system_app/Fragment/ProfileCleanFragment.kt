@@ -12,6 +12,8 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
 import com.example.event_system_app.Activity.MainActivity
+import com.example.event_system_app.Activity.NetworkErrorActivity
+import com.example.event_system_app.Helper.ServerHelper
 import com.example.event_system_app.Helper.SharedPrefs
 import com.example.event_system_app.R
 import com.google.android.material.button.MaterialButton
@@ -28,6 +30,7 @@ class ProfileCleanFragment: Fragment() {
     private lateinit var singInButtonLK: MaterialButton
 
     private lateinit var loginPrefs: SharedPrefs
+    private lateinit var serverHelper: ServerHelper
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,7 +44,8 @@ class ProfileCleanFragment: Fragment() {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_profile_clean, container, false)
         init(view)
-
+        serverHelper = ServerHelper(requireContext())
+        checkConnection()
         login_text_view = TextInputLayout(requireContext())
         password_text_view = TextInputLayout(requireContext())
 
@@ -112,5 +116,12 @@ class ProfileCleanFragment: Fragment() {
         passwordText = view.findViewById(R.id.passwordText)
         loginText = view.findViewById(R.id.loginText)
         singInButtonLK = view.findViewById(R.id.singInButtonLK)
+    }
+
+    private fun checkConnection() {
+        if(!serverHelper.isOnline(requireContext())){
+            val i = Intent(requireContext(), NetworkErrorActivity::class.java)
+            startActivity(i)
+        }
     }
 }

@@ -1,6 +1,7 @@
 package com.example.event_system_app.Fragment
 
 import android.content.Context
+import android.content.Intent
 import android.content.pm.ActivityInfo
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,7 +11,9 @@ import android.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.event_system_app.Activity.NetworkErrorActivity
 import com.example.event_system_app.Adapter.EventResponsibleAdapter
+import com.example.event_system_app.Helper.ServerHelper
 import com.example.event_system_app.Model.Event
 import com.example.event_system_app.R
 import com.nex3z.togglebuttongroup.SingleSelectToggleGroup
@@ -19,7 +22,7 @@ class EventsResponsibleFragment: Fragment() {
     private lateinit var eventsSearchView: SearchView
     private lateinit var tagsGroup: SingleSelectToggleGroup
 
-
+    private lateinit var serverHelper: ServerHelper
     private var tags: String = ""
     val eventList = ArrayList<Event>()
 
@@ -36,6 +39,10 @@ class EventsResponsibleFragment: Fragment() {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_events_responsible, container, false)
         init(view)
+
+        serverHelper = ServerHelper(requireContext())
+        checkConnection()
+
         tagsGroup.check(R.id.anyToggle)
 
         val event1 = Event(
@@ -208,5 +215,12 @@ class EventsResponsibleFragment: Fragment() {
     private fun init(view: View) {
         eventsSearchView = view.findViewById(R.id.eventsSearchView)
         tagsGroup = view.findViewById(R.id.tags_group)
+    }
+
+    private fun checkConnection() {
+        if(!serverHelper.isOnline(requireContext())){
+            val i = Intent(requireContext(), NetworkErrorActivity::class.java)
+            startActivity(i)
+        }
     }
 }
