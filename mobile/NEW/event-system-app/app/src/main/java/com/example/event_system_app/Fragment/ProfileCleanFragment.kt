@@ -50,8 +50,6 @@ class ProfileCleanFragment: Fragment() {
         password_text_view = TextInputLayout(requireContext())
 
         singInButton.setOnClickListener {
-
-
             if (loginText.text.toString().isEmpty()){
                 loginText.error = getString(R.string.error)
             }

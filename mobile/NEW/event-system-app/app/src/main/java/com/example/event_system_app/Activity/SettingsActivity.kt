@@ -13,6 +13,7 @@ import android.widget.RadioButton
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
+import com.example.event_system_app.Helper.ServerHelper
 import com.example.event_system_app.Helper.SharedPrefs
 import com.example.event_system_app.R
 import com.google.android.material.appbar.MaterialToolbar
@@ -28,11 +29,13 @@ class SettingsActivity: AppCompatActivity()  {
     private lateinit var translateButton: MaterialButton
 
     private lateinit var appPrefs: SharedPrefs
+    private lateinit var serverHelper: ServerHelper
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_settings)
         init()
+        serverHelper = ServerHelper(this)
         setSupportActionBar(toolbar)
         toolbar.isTitleCentered = true
         title = getString(R.string.settings_text)
@@ -78,10 +81,7 @@ class SettingsActivity: AppCompatActivity()  {
     }
 
     private fun checkConnection() {
-        val connectionManager: ConnectivityManager = this.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
-        val activeNetwork: NetworkInfo = connectionManager.activeNetworkInfo!!
-        val isConnected: Boolean = activeNetwork?.isConnectedOrConnecting == true
-        if(!isConnected){
+        if(!serverHelper.isOnline(this)){
             val i = Intent(this, NetworkErrorActivity::class.java)
             startActivity(i)
         }
@@ -122,27 +122,18 @@ class SettingsActivity: AppCompatActivity()  {
         russianRadioButton.setOnClickListener {
             englishRadioButton.isChecked = false
             russianRadioButton.isChecked = true
-            Toast.makeText(this, "Будет русский", Toast.LENGTH_SHORT).show()
             changeLanguage("ru")
         }
 
         englishRadioButton.setOnClickListener {
             russianRadioButton.isChecked = false
             englishRadioButton.isChecked = true
-            Toast.makeText(this, "Будет английский", Toast.LENGTH_SHORT).show()
             changeLanguage("en")
         }
 
         val dialog = builder.create()
         dialog.show()
     }
-
-    //Чтение префа темы
-/*    private fun setPref(delegate: Int){
-        val pref = PreferenceManager.getDefaultSharedPreferences(this)
-        val editor = pref.edit()
-        editor.putInt("Theme", delegate).apply()
-    }*/
 
     private fun changeLanguage(language: String){
         appPrefs.setLanguageCount(language)

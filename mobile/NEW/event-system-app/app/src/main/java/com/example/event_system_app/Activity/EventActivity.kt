@@ -68,7 +68,6 @@ class EventActivity: AppCompatActivity() {
     }
 
     private fun checkConnection() {
-
         if(!serverHelper.isOnline(this)){
             val i = Intent(this, NetworkErrorActivity::class.java)
             startActivity(i)
