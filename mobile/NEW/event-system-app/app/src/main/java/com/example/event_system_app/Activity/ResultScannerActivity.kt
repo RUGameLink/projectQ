@@ -124,4 +124,5 @@ class ResultScannerActivity : AppCompatActivity() {
         confirmButton = findViewById(R.id.confirm_participation_button)
         toolbar = findViewById(R.id.toolbar)
     }
+    ////////
 }

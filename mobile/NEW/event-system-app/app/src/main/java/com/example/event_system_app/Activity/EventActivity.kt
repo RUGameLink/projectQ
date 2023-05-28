@@ -169,4 +169,7 @@ class EventActivity: AppCompatActivity() {
         eventLayout = findViewById(R.id.eventsLayout)
         regButton = findViewById(R.id.go_to_event_button)
     }
+
+    ////////////////////////////////////////////////////////////////////////////////
+
 }

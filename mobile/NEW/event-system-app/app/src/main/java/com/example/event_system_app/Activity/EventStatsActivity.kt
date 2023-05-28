@@ -101,4 +101,5 @@ class EventStatsActivity : AppCompatActivity() {
         eventStats = findViewById(R.id.eventStats)
         toolbar = findViewById(R.id.toolbar)
     }
+    /////////////////////////////
 }

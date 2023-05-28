@@ -100,4 +100,6 @@ class EventInfoActivity : AppCompatActivity() {
         orgInfoText = findViewById(R.id.orgInfoText)
         statsButton = findViewById(R.id.statsButton)
     }
+
+    //////////////////////////////////////
 }

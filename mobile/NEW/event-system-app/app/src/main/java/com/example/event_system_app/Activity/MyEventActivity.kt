@@ -319,4 +319,5 @@ class MyEventActivity: AppCompatActivity()  {
         cancelButton = findViewById(R.id.cancel_button)
         calendarButton = findViewById(R.id.calendarButton)
     }
+    ////////////////////////////////
 }

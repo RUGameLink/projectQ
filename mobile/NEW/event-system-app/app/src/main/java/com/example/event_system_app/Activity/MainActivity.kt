@@ -199,4 +199,5 @@ class MainActivity : AppCompatActivity() {
         val lang = myPreference.getLanguageCount()
         super.attachBaseContext(MyContextWrapper.wrap(newBase,lang))
     }
+    //////////////////////////////
 }

@@ -147,4 +147,5 @@ class SettingsActivity: AppCompatActivity()  {
         switch = findViewById(R.id.theme_switch)
         translateButton = findViewById(R.id.translateButton)
     }
+    /////////////////////////
 }

@@ -69,4 +69,5 @@ class QrActivity: AppCompatActivity()  {
         toolbar = findViewById(R.id.toolbar)
         qrFullscreen = findViewById(R.id.qrFullscreen)
     }
+    //////////////////////
 }

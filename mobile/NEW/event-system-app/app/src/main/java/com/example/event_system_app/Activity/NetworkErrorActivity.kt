@@ -35,4 +35,6 @@ class NetworkErrorActivity : AppCompatActivity() {
     }
 
     override fun onBackPressed() {}
+
+    ///////////////////////////////
 }
