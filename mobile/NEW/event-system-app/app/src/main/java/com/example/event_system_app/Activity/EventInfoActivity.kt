@@ -7,7 +7,13 @@ import android.content.pm.ActivityInfo
 import android.net.ConnectivityManager
 import android.net.NetworkInfo
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
+import android.view.View
 import android.widget.ImageView
+import android.widget.ProgressBar
+import android.widget.RelativeLayout
+import android.widget.ScrollView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContentProviderCompat.requireContext
@@ -36,6 +42,9 @@ class EventInfoActivity : AppCompatActivity() {
     private lateinit var event: Event
     private lateinit var serverHelper: ServerHelper
 
+    private lateinit var progressBar: ProgressBar
+    private lateinit var eventLayout: ScrollView
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_event_info)
@@ -53,6 +62,16 @@ class EventInfoActivity : AppCompatActivity() {
             i.putExtra("eventId", event.id.toString())
             startActivity(i)
         }
+
+        val rnds = (1000..3000).random()
+        Handler(Looper.getMainLooper()).postDelayed(
+            {
+                eventLayout.visibility = View.VISIBLE
+                progressBar.visibility = View.GONE
+
+            },
+            rnds.toLong() // value in milliseconds
+        )
     }
 
     private fun setImages() {
@@ -99,6 +118,8 @@ class EventInfoActivity : AppCompatActivity() {
         regToInfoText = findViewById(R.id.regToInfoText)
         orgInfoText = findViewById(R.id.orgInfoText)
         statsButton = findViewById(R.id.statsButton)
+        progressBar = findViewById(R.id.progressBar)
+        eventLayout = findViewById(R.id.eventsLayout)
     }
 
     //////////////////////////////////////

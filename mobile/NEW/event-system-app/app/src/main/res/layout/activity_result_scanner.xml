@@ -16,11 +16,27 @@
         app:layout_constraintStart_toStartOf="parent">
     </include>
 
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="@android:style/Widget.DeviceDefault.Light.ProgressBar.Horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:indeterminate="true"
+        android:indeterminateTint="@color/green_color"
+        android:visibility="visible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
     <LinearLayout
+        android:id="@+id/eventsLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:visibility="invisible">
 
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/image_card"
@@ -81,12 +97,11 @@
             android:layout_marginBottom="10dp"
             android:backgroundTint="@color/orange_color"
             android:text="@string/confirm_participation"
+            android:textColor="@color/white"
             android:textSize="16sp"
             app:icon="@drawable/icon_confirm_participation"
             app:iconTint="@color/white"
-            android:textColor="@color/white"
-            app:strokeColor="@color/orange_color">
-        </com.google.android.material.button.MaterialButton>
+            app:strokeColor="@color/orange_color"></com.google.android.material.button.MaterialButton>
 
     </LinearLayout>
 

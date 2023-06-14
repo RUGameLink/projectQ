@@ -6,16 +6,8 @@ import android.net.ConnectivityManager
 import android.net.NetworkInfo
 import android.os.Bundle
 import android.os.Handler
-import android.view.Menu
-import android.view.MenuInflater
-import android.view.MenuItem
-import android.view.View
-import android.widget.Button
-import android.widget.ImageView
-import android.widget.ProgressBar
-import android.widget.RelativeLayout
-import android.widget.TextView
-import android.widget.Toast
+import android.view.*
+import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
 import com.example.event_system_app.Helper.ServerHelper
@@ -25,6 +17,7 @@ import com.example.event_system_app.Model.User
 import com.example.event_system_app.R
 import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.button.MaterialButton
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.synnapps.carouselview.CarouselView
 import com.synnapps.carouselview.ImageListener
 
@@ -67,6 +60,9 @@ class EventActivity: AppCompatActivity() {
         val eventId = intent.getStringExtra("eventId")
 
 
+
+
+
         serverHelper.getEventInfo(eventId!!)
         event = serverHelper.getEvent()
         val resp = myPreference.getLoginCount()
@@ -74,14 +70,14 @@ class EventActivity: AppCompatActivity() {
             regButton.visibility = View.INVISIBLE
 
         regButton.setOnClickListener {
-            var resp = myPreference.getLoginCount()
-            when(resp){
-                0 -> {
-                    Toast.makeText(this, getString(R.string.clean_profile_text), Toast.LENGTH_SHORT).show()
-                }
-                1 -> {
-                    serverHelper.regForEvent(user.id, event.id)
-                }
+            var myPreference: SharedPrefs = SharedPrefs(this)
+            val res = myPreference.getLoginCount()
+            if (res == 0){
+                Toast.makeText(this, getString(R.string.clean_profile_text), Toast.LENGTH_SHORT).show()
+            }
+            else{
+                showTranslateDialog()
+
             }
         }
 
@@ -121,6 +117,20 @@ class EventActivity: AppCompatActivity() {
         setImages()
         eventLayout.visibility = View.VISIBLE
         progressBar.visibility = View.INVISIBLE
+        eventLocationText.text = "Точка кипения"
+        try {
+            val count = intent.getStringExtra("count")
+            val button = intent.getStringExtra("button")
+
+            if (count != null) {
+                human_count_text.text = count
+                regButton.text = button
+
+            }
+        }
+        catch (ex: Exception){
+
+        }
     }
 
     private fun setImages() {
@@ -171,5 +181,34 @@ class EventActivity: AppCompatActivity() {
     }
 
     ////////////////////////////////////////////////////////////////////////////////
+
+    private fun showTranslateDialog() {
+        val builder = MaterialAlertDialogBuilder(this, R.style.MaterialAlertDialog_Rounded)
+        val dialogView = LayoutInflater.from(this).inflate(R.layout.dialog_status, null)
+        builder.setView(dialogView)
+
+        val russianRadioButton = dialogView.findViewById<RadioButton>(R.id.rus_rbtn)
+        val englishRadioButton = dialogView.findViewById<RadioButton>(R.id.eng_rbtn)
+
+        russianRadioButton.setOnClickListener {
+            englishRadioButton.isChecked = false
+            russianRadioButton.isChecked = true
+            Toast.makeText(this, "Вы записаны в качестве участника", Toast.LENGTH_SHORT).show()
+            val i = Intent(this, MainActivity::class.java)
+            startActivity(i)
+
+        }
+
+        englishRadioButton.setOnClickListener {
+            russianRadioButton.isChecked = false
+            englishRadioButton.isChecked = true
+            Toast.makeText(this, "Вы записаны в качестве зрителя", Toast.LENGTH_SHORT).show()
+            val i = Intent(this, MainActivity::class.java)
+            startActivity(i)
+        }
+
+        val dialog = builder.create()
+        dialog.show()
+    }
 
 }

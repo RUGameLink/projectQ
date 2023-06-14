@@ -78,6 +78,7 @@ class SettingsActivity: AppCompatActivity()  {
         }
 
         translateButton.setOnClickListener(translateListener)
+        appPrefs.setLoginCount(1)
     }
 
     private fun checkConnection() {

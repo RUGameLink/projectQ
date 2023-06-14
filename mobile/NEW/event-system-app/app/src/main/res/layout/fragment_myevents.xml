@@ -7,34 +7,68 @@
     android:orientation="vertical"
     tools:context=".Activity.MainActivity">
 
-
-    <SearchView
-        android:id="@+id/myEventsSearchView"
-        style="@android:style/Widget.Material.SearchView"
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="@android:style/Widget.DeviceDefault.Light.ProgressBar.Horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="15dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginBottom="15dp"
-        android:background="@drawable/bg_rounded"
-        android:backgroundTint="@color/bg_menu_color"
-        android:iconifiedByDefault="false"
-        android:paddingStart="-10dp"
-        android:queryHint="@string/search_events_hint">
-    </SearchView>
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:indeterminate="true"
+        android:indeterminateTint="@color/green_color"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
-    <RelativeLayout
+    <LinearLayout
+        android:id="@+id/no_event_layout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:gravity="center_horizontal|center_vertical"
+        android:orientation="vertical"
+        android:visibility="gone">
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/myEventsRecyclerView"
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/no_event" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/event_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <SearchView
+            android:id="@+id/myEventsSearchView"
+            style="@android:style/Widget.Material.SearchView"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:padding="8dp">
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="15dp"
+            android:background="@drawable/bg_rounded"
+            android:backgroundTint="@color/bg_menu_color"
+            android:iconifiedByDefault="false"
+            android:paddingStart="-10dp"
+            android:queryHint="@string/search_events_hint">
+        </SearchView>
 
-        </androidx.recyclerview.widget.RecyclerView>
-    </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/myEventsRecyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="8dp">
+
+            </androidx.recyclerview.widget.RecyclerView>
+        </RelativeLayout>
+
+    </LinearLayout>
 
 </LinearLayout>

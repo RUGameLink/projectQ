@@ -8,14 +8,11 @@ import android.graphics.Color
 import android.graphics.drawable.BitmapDrawable
 import android.net.ConnectivityManager
 import android.net.NetworkInfo
-import android.os.Build
-import android.os.Bundle
-import android.os.Environment
-import android.view.LayoutInflater
-import android.view.Menu
-import android.view.MenuInflater
-import android.view.MenuItem
+import android.os.*
+import android.view.*
 import android.widget.ImageView
+import android.widget.LinearLayout
+import android.widget.ProgressBar
 import android.widget.TextView
 import android.widget.Toast
 import androidmads.library.qrgenearator.QRGContents
@@ -26,6 +23,7 @@ import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.core.content.FileProvider
 import com.bumptech.glide.Glide
 import com.example.event_system_app.Helper.ServerHelper
+import com.example.event_system_app.Helper.SharedPrefs
 import com.example.event_system_app.Model.MyEvent
 import com.example.event_system_app.R
 import com.google.android.material.appbar.MaterialToolbar
@@ -47,6 +45,7 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 
+
 class MyEventActivity: AppCompatActivity()  {
     private lateinit var toolbar: MaterialToolbar
     private lateinit var headerMyText: TextView
@@ -59,11 +58,14 @@ class MyEventActivity: AppCompatActivity()  {
     private lateinit var myEventLocationText: TextView
     private lateinit var eventPageButton: MaterialButton
     private lateinit var cancelButton: MaterialButton
+    private lateinit var my_event_linear: LinearLayout
 
     private var STORAGE_CODE = 1001
     private lateinit var event: MyEvent
     private var pathToShare = ""
     private lateinit var serverHelper: ServerHelper
+    private lateinit var progressBar: ProgressBar
+    private lateinit var sharedPrefs: SharedPrefs
 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -84,12 +86,30 @@ class MyEventActivity: AppCompatActivity()  {
             startActivity(i)
             true
         }
-        setContent(event)
 
-        generateQRCode(event.qrImg)
+        progressBar.visibility = View.VISIBLE
+        val rnds = (1000..3000).random()
+        Handler(Looper.getMainLooper()).postDelayed(
+            {
+                my_event_linear.visibility = View.VISIBLE
+                setContent(event)
+                generateQRCode(event.qrImg)
+                progressBar.visibility = View.INVISIBLE
+
+            },
+            rnds.toLong() // value in milliseconds
+        )
+
+
+
 
         eventPageButton.setOnClickListener {
-            Toast.makeText(this, "Я открою страницу мероприятия", Toast.LENGTH_SHORT).show()
+            val i = Intent(this, EventActivity::class.java)
+            i.putExtra("eventId", event.id.toString())
+            i.putExtra("button", "Показать QR-код")
+            i.putExtra("count", "71")
+            startActivity(i)
+
         }
 
         cancelButton.setOnClickListener {
@@ -142,7 +162,12 @@ class MyEventActivity: AppCompatActivity()  {
         val dialog = builder.create()
 
         yes_button.setOnClickListener {
-            serverHelper.cancellationRegistration()
+        //    serverHelper.cancellationRegistration()
+            sharedPrefs = SharedPrefs(this)
+            sharedPrefs.setLoginCount(0)
+            val i = Intent(this, MainActivity::class.java)
+            startActivity(i)
+
             dialog.dismiss();
         }
 
@@ -318,6 +343,9 @@ class MyEventActivity: AppCompatActivity()  {
         eventPageButton = findViewById(R.id.event_page_button)
         cancelButton = findViewById(R.id.cancel_button)
         calendarButton = findViewById(R.id.calendarButton)
+        progressBar = findViewById(R.id.progressBar)
+        my_event_linear = findViewById(R.id.my_event_linear)
+        my_event_linear.visibility = View.INVISIBLE
     }
     ////////////////////////////////
 }

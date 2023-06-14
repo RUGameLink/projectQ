@@ -2,8 +2,14 @@ package com.example.event_system_app.Activity
 
 import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.view.LayoutInflater
+import android.view.View
 import android.widget.ImageView
+import android.widget.LinearLayout
+import android.widget.ProgressBar
+import android.widget.ScrollView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
@@ -24,6 +30,9 @@ class ResultScannerActivity : AppCompatActivity() {
 
     private lateinit var eventTitle: String
     private lateinit var serverHelper: ServerHelper
+
+    private lateinit var progressBar: ProgressBar
+    private lateinit var eventLayout: LinearLayout
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -52,14 +61,30 @@ class ResultScannerActivity : AppCompatActivity() {
         val event = Event(null,null,null,null,null,null,null,null,null,null,null)
 
         confirmButton.setOnClickListener {
-            var resultConfirm: Boolean = serverHelper.confirmPresence(user.id, event.id)
+        //    var resultConfirm: Boolean = serverHelper.confirmPresence(user.id, event.id)
+            var resultConfirm = true
+            Handler(Looper.getMainLooper()).postDelayed(
+                {
             if(resultConfirm == true){
                 showSuccessfulDialog()
             }
             else{
                 showErrorDialog()
             }
+                },
+                1000 // value in milliseconds
+            )
         }
+
+        val rnds = (1000..3000).random()
+        Handler(Looper.getMainLooper()).postDelayed(
+            {
+                eventLayout.visibility = View.VISIBLE
+                progressBar.visibility = View.GONE
+
+            },
+            rnds.toLong() // value in milliseconds
+        )
     }
 
     private fun checkConnection() {
@@ -120,6 +145,9 @@ class ResultScannerActivity : AppCompatActivity() {
         userGroupText = findViewById(R.id.userGroupText)
         confirmButton = findViewById(R.id.confirm_participation_button)
         toolbar = findViewById(R.id.toolbar)
+
+        progressBar = findViewById(R.id.progressBar)
+        eventLayout = findViewById(R.id.eventsLayout)
     }
     ////////
 }

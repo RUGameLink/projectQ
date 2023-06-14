@@ -6,6 +6,12 @@ import android.content.pm.ActivityInfo
 import android.net.ConnectivityManager
 import android.net.NetworkInfo
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
+import android.view.View
+import android.widget.ProgressBar
+import android.widget.RelativeLayout
+import android.widget.ScrollView
 import androidx.appcompat.app.AppCompatActivity
 import com.example.event_system_app.Helper.ServerHelper
 import com.example.event_system_app.Model.Participant
@@ -20,6 +26,9 @@ class EventStatsActivity : AppCompatActivity() {
     private val participantList = ArrayList<Participant>()
     private lateinit var toolbar: MaterialToolbar
     private lateinit var serverHelper: ServerHelper
+
+    private lateinit var progressBar: ProgressBar
+    private lateinit var eventLayout: ScrollView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -56,6 +65,17 @@ class EventStatsActivity : AppCompatActivity() {
         participantList.add(participant2)
 
         setTable()
+
+        progressBar.visibility = View.VISIBLE
+        val rnds = (1000..3000).random()
+        Handler(Looper.getMainLooper()).postDelayed(
+            {
+                eventLayout.visibility = View.VISIBLE
+                progressBar.visibility = View.GONE
+
+            },
+            rnds.toLong() // value in milliseconds
+        )
     }
 
     private fun checkConnection() {
@@ -100,6 +120,8 @@ class EventStatsActivity : AppCompatActivity() {
     private fun init(){
         eventStats = findViewById(R.id.eventStats)
         toolbar = findViewById(R.id.toolbar)
+        progressBar = findViewById(R.id.progressBar)
+        eventLayout = findViewById(R.id.eventsLayout)
     }
     /////////////////////////////
 }

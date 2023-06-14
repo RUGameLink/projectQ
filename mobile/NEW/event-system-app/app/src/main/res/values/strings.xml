@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">event-system-app</string>
+    <string name="app_name">Events</string>
     <string name="events_text">Events</string>
     <string name="event_text">Event</string>
     <string name="my_events_text">My events</string>
@@ -72,4 +72,6 @@
     <string name="org_text">Organizer</string>
 
     <string name="error">Error</string>
+
+    <string name="no_event">No registered events found</string>
 </resources>

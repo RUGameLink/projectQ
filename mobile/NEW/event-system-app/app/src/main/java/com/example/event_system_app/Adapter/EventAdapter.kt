@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.RadioButton
 import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
@@ -16,6 +17,7 @@ import com.example.event_system_app.Helper.SharedPrefs
 import com.example.event_system_app.Model.Event
 import com.example.event_system_app.R
 import com.google.android.material.button.MaterialButton
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.itextpdf.text.factories.GreekAlphabetFactory.getString
 
 class EventAdapter(private val events: ArrayList<Event>, private val context: Context): RecyclerView.Adapter<EventAdapter.MyViewHolder>() {
@@ -70,12 +72,38 @@ class EventAdapter(private val events: ArrayList<Event>, private val context: Co
                 Toast.makeText(context, context.getString(R.string.clean_profile_text), Toast.LENGTH_SHORT).show()
             }
             else{
-                Toast.makeText(context, "Запишу тебя на ${events[position].title}", Toast.LENGTH_SHORT).show()
+                showTranslateDialog()
+
             }
         }
     }
 
     override fun getItemCount(): Int {
         return events.size
+    }
+
+    private fun showTranslateDialog() {
+        val builder = MaterialAlertDialogBuilder(context, R.style.MaterialAlertDialog_Rounded)
+        val dialogView = LayoutInflater.from(context).inflate(R.layout.dialog_status, null)
+        builder.setView(dialogView)
+
+        val russianRadioButton = dialogView.findViewById<RadioButton>(R.id.rus_rbtn)
+        val englishRadioButton = dialogView.findViewById<RadioButton>(R.id.eng_rbtn)
+
+        russianRadioButton.setOnClickListener {
+            englishRadioButton.isChecked = false
+            russianRadioButton.isChecked = true
+            Toast.makeText(context, "Вы записаны в качестве участника", Toast.LENGTH_SHORT).show()
+
+        }
+
+        englishRadioButton.setOnClickListener {
+            russianRadioButton.isChecked = false
+            englishRadioButton.isChecked = true
+            Toast.makeText(context, "Вы записаны в качестве зрителя", Toast.LENGTH_SHORT).show()
+        }
+
+        val dialog = builder.create()
+        dialog.show()
     }
 }

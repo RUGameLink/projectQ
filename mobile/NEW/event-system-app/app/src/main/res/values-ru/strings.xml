@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">event-system-app</string>
+    <string name="app_name">Мероприятия</string>
     <string name="events_text">Мероприятия</string>
     <string name="event_text">Мероприятие</string>
     <string name="my_events_text">Мои мероприятия</string>
@@ -71,4 +71,6 @@
     <string name="org_text">Организатор</string>
 
     <string name="error">Ошибка</string>
+
+    <string name="no_event">Мероприятий с пройденной регистрацией не найдено</string>
 </resources>

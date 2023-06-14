@@ -42,8 +42,15 @@ class ProfileFragment: Fragment() {
         init(view)
         serverHelper = ServerHelper(requireContext())
         checkConnection()
-        nameUserText.text = "Иванов Иван Иванович"
-        userRoleText.text = "ИСМб-19-1"
+        if (loginPrefs.getLoginCount() == 1){
+            nameUserText.text = "Иванов Иван Иванович"
+            userRoleText.text = "ИСМб-19-1"
+        }
+        if (loginPrefs.getLoginCount() == 2){
+            nameUserText.text = "Петров Петр Петрович"
+            userRoleText.text = "Ответственный"
+        }
+
 
         logOutButton.setOnClickListener {
             showLogOutDialog()
