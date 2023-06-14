@@ -12,11 +12,14 @@ import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.event_system_app.Activity.EventActivity
+import com.example.event_system_app.Helper.SharedPrefs
 import com.example.event_system_app.Model.Event
 import com.example.event_system_app.R
 import com.google.android.material.button.MaterialButton
+import com.itextpdf.text.factories.GreekAlphabetFactory.getString
 
 class EventAdapter(private val events: ArrayList<Event>, private val context: Context): RecyclerView.Adapter<EventAdapter.MyViewHolder>() {
+
     class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){ //Инициализация объектов лайаута айтемов ресайклера
         val titleEventText: TextView = itemView.findViewById(R.id.titleEventText)
         val eventImg: ImageView = itemView.findViewById(R.id.eventImg)
@@ -26,6 +29,8 @@ class EventAdapter(private val events: ArrayList<Event>, private val context: Co
 
         val descButton: MaterialButton = itemView.findViewById(R.id.descButton)
         val runButton: MaterialButton = itemView.findViewById(R.id.runButton)
+
+
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder { //Подвязка лайаута к адаптеру ресайклера
@@ -59,7 +64,14 @@ class EventAdapter(private val events: ArrayList<Event>, private val context: Co
         }
 
         holder.runButton.setOnClickListener {
-            Toast.makeText(context, "Запишу тебя на ${events[position].title}", Toast.LENGTH_SHORT).show()
+             var myPreference: SharedPrefs = SharedPrefs(context)
+            val res = myPreference.getLoginCount()
+            if (res == 0){
+                Toast.makeText(context, context.getString(R.string.clean_profile_text), Toast.LENGTH_SHORT).show()
+            }
+            else{
+                Toast.makeText(context, "Запишу тебя на ${events[position].title}", Toast.LENGTH_SHORT).show()
+            }
         }
     }
 

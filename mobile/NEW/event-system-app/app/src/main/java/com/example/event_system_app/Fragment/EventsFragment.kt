@@ -52,7 +52,8 @@ class EventsFragment: Fragment() {
         checkConnection()
         tagsGrpup.check(R.id.anyToggle)
 
-        eventList = serverHelper.getExternalEvents()
+    //    eventList = serverHelper.getExternalEvents()
+        eventList = serverHelper.getEvents()
 
         checkList(view, requireContext())
 /*        if(eventList.size == 0){
@@ -133,14 +134,14 @@ class EventsFragment: Fragment() {
             println("Размер листа ивентов ${eventList.size}")
             context?.let { checkList(view, requireContext()) }
         }
-        else {
+        else  {
             val searchEventList = ArrayList<Event>()
             eventList.forEach {
                 if (it.tags!!.contains(tags!!, ignoreCase = true)) {
                     searchEventList.add(it)
                 }
-
-                checkList(view, requireContext())
+                setEventAdapter(searchEventList, view, requireContext())
+            //    checkList(view, requireContext())
             }
         }
     }

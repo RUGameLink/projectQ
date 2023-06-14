@@ -4,94 +4,111 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center_horizontal|center_vertical"
     android:orientation="vertical">
 
-    <!-- TODO: Update blank fragment layout -->
-
-    <TextView
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="@android:style/Widget.DeviceDefault.Light.ProgressBar.Horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="15dp"
-        android:paddingStart="15dp"
-        android:paddingEnd="15dp"
-        android:text="@string/clean_profile_text"
-        android:textAlignment="center"
-        android:textAllCaps="false"
-        android:textSize="16dp"
-        android:textStyle="bold" />
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:indeterminate="true"
+        android:indeterminateTint="@color/green_color"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/login_text_view"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        app:shapeAppearance="@style/Rounded"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="@string/login_hint_text">
+        android:layout_height="match_parent"
+        android:gravity="center_horizontal|center_vertical"
+        android:orientation="vertical">
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/loginText"
+        <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="15dp" />
+            android:layout_marginBottom="15dp"
+            android:paddingStart="15dp"
+            android:paddingEnd="15dp"
+            android:text="@string/clean_profile_text"
+            android:textAlignment="center"
+            android:textAllCaps="false"
+            android:textSize="16dp"
+            android:textStyle="bold" />
 
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/password_text_view"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        app:shapeAppearance="@style/Rounded"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="@string/password_hint_text">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/passwordText"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/login_text_view"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            app:shapeAppearance="@style/Rounded"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="15dp"
-            android:inputType="textPassword" />
+            android:hint="@string/login_hint_text">
 
-    </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/loginText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="15dp" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/password_text_view"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            app:shapeAppearance="@style/Rounded"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/password_hint_text">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/passwordText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="15dp"
+                android:inputType="textPassword" />
+
+        </com.google.android.material.textfield.TextInputLayout>
 
 
-    <Button
-        android:id="@+id/singInButton"
-        style="@style/Widget.Material3.Button.OutlinedButton.Icon"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="15dp"
-        android:layout_marginEnd="15dp"
-        android:backgroundTint="@color/green_color"
-        android:paddingTop="15dp"
-        android:paddingBottom="15dp"
-        android:text="@string/sing_in_text"
-        android:textColor="@color/white"
-        android:textSize="16sp"
-        app:icon="@drawable/icon_profile"
-        app:iconPadding="10dp"
-        app:iconTint="@color/white"
-        app:strokeColor="@color/green_color"
-        app:strokeWidth="2dp" />
+        <Button
+            android:id="@+id/singInButton"
+            style="@style/Widget.Material3.Button.OutlinedButton.Icon"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="15dp"
+            android:backgroundTint="@color/green_color"
+            android:paddingTop="15dp"
+            android:paddingBottom="15dp"
+            android:text="@string/sing_in_text"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            app:icon="@drawable/icon_profile"
+            app:iconPadding="10dp"
+            app:iconTint="@color/white"
+            app:strokeColor="@color/green_color"
+            app:strokeWidth="2dp" />
 
-    <Button
-        android:id="@+id/singInButtonLK"
-        style="@style/Widget.Material3.Button.OutlinedButton.Icon"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="15dp"
-        android:layout_marginTop="15dp"
-        android:layout_marginEnd="15dp"
-        android:backgroundTint="@color/orange_color"
-        android:paddingTop="15dp"
-        android:paddingBottom="15dp"
-        android:text="@string/sing_in_text_lk"
-        android:textColor="@color/white"
-        android:textSize="16sp"
-        app:icon="@drawable/icon_profile"
-        app:iconPadding="10dp"
-        app:iconTint="@color/white"
-        app:strokeColor="@color/orange_color"
-        app:strokeWidth="2dp" />
+        <Button
+            android:id="@+id/singInButtonLK"
+            style="@style/Widget.Material3.Button.OutlinedButton.Icon"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="15dp"
+            android:backgroundTint="@color/orange_color"
+            android:paddingTop="15dp"
+            android:paddingBottom="15dp"
+            android:text="@string/sing_in_text_lk"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            app:icon="@drawable/icon_profile"
+            app:iconPadding="10dp"
+            app:iconTint="@color/white"
+            app:strokeColor="@color/orange_color"
+            app:strokeWidth="2dp" />
 
+    </LinearLayout>
 </LinearLayout>

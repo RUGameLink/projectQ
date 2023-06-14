@@ -50,7 +50,7 @@ class EventsResponsibleFragment: Fragment() {
 
         tagsGroup.check(R.id.anyToggle)
 
-        eventList = serverHelper.getExternalEvents()
+        eventList = serverHelper.getEvents()
         checkList(view, requireContext())
 
         eventsSearchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {

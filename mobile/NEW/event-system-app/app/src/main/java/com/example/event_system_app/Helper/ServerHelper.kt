@@ -17,6 +17,7 @@ class ServerHelper(context: Context) {
     private val queue = Volley.newRequestQueue(context)
     private val EXTERNAL_URL = "http://rating-teams-events.ovz1.j37315531.m1yvm.vps.myjino.ru/api/events/external"
     private val EVENT_URL = "http://rating-teams-events.ovz1.j37315531.m1yvm.vps.myjino.ru/api/events/external/"
+    private val  All_EVENT_URL = "http://rating-teams-events.ovz1.j37315531.m1yvm.vps.myjino.ru/api/events"
 
     private var event = Event(null, null, null, null, null, null, null, null, null, null, null)
 
@@ -34,7 +35,7 @@ class ServerHelper(context: Context) {
 
                 var images = obj.optJSONObject(i).optJSONArray("images").getString(0)
                 val id = obj.optJSONObject(i).optString("id").toString().toLong()
-                val type = obj.optJSONObject(i).optString("type")
+                val type = obj.optJSONObject(i).optJSONObject("type").optString("name")
                 val title = obj.optJSONObject(i).optString("title")
                 val dateStart = dateParsing(obj.optJSONObject(i).optString("dateStart"))
                 val description = obj.optJSONObject(i).optString("description")
@@ -66,7 +67,7 @@ class ServerHelper(context: Context) {
                 try {
                     var images = obj.optJSONArray("images").getString(0)
                     val id = obj.optString("id").toString().toLong()
-                    val type = obj.optString("type")
+                    val type = obj.optJSONObject("type").optString("name")
                     val title = obj.optString("title")
                     val dateStart = dateParsing(obj.optString("dateStart"))
                     val description = obj.optString("description")
@@ -132,5 +133,44 @@ class ServerHelper(context: Context) {
 
     fun confirmPresence(id: Long, id1: Long?): Boolean {
         return true
+    }
+
+    fun getEvents(): ArrayList<Event>{
+        val eventList = ArrayList<Event>()
+
+        val stringRequest = StringRequest(Request.Method.GET, All_EVENT_URL, { //Передача запроса и получение ответа
+                response -> //Случай удачного результата отклика api
+            val obj1 = JSONArray(response) //Получение json файла
+            val obj = obj1.optJSONArray(0)
+            print("check response ${obj}")
+            //    val res = obj.getJSONObject("current") //Работа с заголовком current json
+            for (i in 0 until obj.length()) {
+                try {
+
+
+                    var images = obj.optJSONObject(i).optJSONArray("images").getString(0)
+                    val id = obj.optJSONObject(i).optString("id").toString().toLong()
+                    val title = obj.optJSONObject(i).optString("title")
+                    val type = obj.optJSONObject(i).optJSONObject("type").optString("name")
+                    val dateStart = dateParsing(obj.optJSONObject(i).optString("dateStart"))
+                    val description = obj.optJSONObject(i).optString("description")
+
+                    val res = images.toString()
+
+                    println("\nsay me image: ${images}\n")
+                    eventList.add(Event(id, title, description, arrayOf(res), type, dateStart, null, null, null, null, null))
+               }
+                catch (ex: java.lang.NullPointerException){
+                    println(ex)
+                }
+            }
+
+        }, {
+                error -> //Случай неудачного результата отклика api
+            println("resp error ${error.toString()}")
+        })
+        queue.add(stringRequest) //Добавление запроса в очередь
+
+        return eventList
     }
 }

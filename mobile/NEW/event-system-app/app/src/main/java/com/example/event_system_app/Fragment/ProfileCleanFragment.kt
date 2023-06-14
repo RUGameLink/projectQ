@@ -3,10 +3,13 @@ package com.example.event_system_app.Fragment
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.preference.PreferenceManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ProgressBar
 import android.widget.RadioButton
 import android.widget.Toast
 import androidx.fragment.app.Fragment
@@ -28,6 +31,7 @@ class ProfileCleanFragment: Fragment() {
     private lateinit var passwordText: TextInputEditText
     private lateinit var loginText: TextInputEditText
     private lateinit var singInButtonLK: MaterialButton
+    private lateinit var progressBar: ProgressBar
 
     private lateinit var loginPrefs: SharedPrefs
     private lateinit var serverHelper: ServerHelper
@@ -82,22 +86,37 @@ class ProfileCleanFragment: Fragment() {
         val orgRadioButton = dialogView.findViewById<RadioButton>(R.id.org_rbtn)
         val dialog = builder.create()
         studentRadioButton.setOnClickListener {
-            orgRadioButton.isChecked = false
-            studentRadioButton.isChecked = true
-            loginPrefs.setLoginCount(1)
-            dialog.dismiss()
-            goToMain()
+            progressBar.visibility = View.VISIBLE
+            val rnds = (1000..3000).random()
+            Handler(Looper.getMainLooper()).postDelayed(
+                {
+                    orgRadioButton.isChecked = false
+                    studentRadioButton.isChecked = true
+                    loginPrefs.setLoginCount(1)
+                    progressBar.visibility = View.INVISIBLE
+                    dialog.dismiss()
+                    goToMain()
+                },
+                rnds.toLong() // value in milliseconds
+            )
         }
 
         orgRadioButton.setOnClickListener {
-            studentRadioButton.isChecked = false
-            orgRadioButton.isChecked = true
-            loginPrefs.setLoginCount(2)
-            dialog.dismiss()
-            goToMain()
+
+            progressBar.visibility = View.VISIBLE
+            val rnds = (1000..3000).random()
+            Handler(Looper.getMainLooper()).postDelayed(
+                {
+                    studentRadioButton.isChecked = false
+                    orgRadioButton.isChecked = true
+                    loginPrefs.setLoginCount(2)
+                    progressBar.visibility = View.INVISIBLE
+                    dialog.dismiss()
+                    goToMain()
+                },
+                rnds.toLong() // value in milliseconds
+            )
         }
-
-
         dialog.show()
     }
 
@@ -114,6 +133,9 @@ class ProfileCleanFragment: Fragment() {
         passwordText = view.findViewById(R.id.passwordText)
         loginText = view.findViewById(R.id.loginText)
         singInButtonLK = view.findViewById(R.id.singInButtonLK)
+        progressBar = view.findViewById(R.id.progressBar)
+
+        progressBar.visibility = View.INVISIBLE
     }
 
     private fun checkConnection() {
